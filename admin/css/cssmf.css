@@ -1,0 +1,167 @@
+main {
+    margin-left: 220px;
+    padding: 2rem 1.5rem;
+    /* background: white; */
+    min-height: calc(100vh - 85px);
+    height: 100%;
+    width: 98%;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4, 10fr);
+    grid-gap: 2rem;
+    margin-left: 100px;
+}
+
+.card-single {
+    display: flex;
+    justify-content: space-between;
+    background: rgb(255, 255, 255);
+    padding: 2.0rem;
+    border-radius: 2rem;
+}
+
+.card-single h1+span {
+    color: grey;
+    /* padding: 2.5rem; */
+}
+
+.card-single span:first-child {
+    font-size: 3rem;
+}
+
+.card-single:hover {
+
+    background-color: #e6dfdf;
+    color: #fff;
+    box-shadow: 0 4px 6px 0 rgba(97, 126, 222, 0.3);
+}
+
+.table-content {
+    margin-top: 20px;
+    background: rgb(255, 255, 255);
+    width: 87%;
+    border-radius: 30px;
+    padding: 10px;
+}
+
+.table-button {
+    /* margin-top: 20px; */
+    margin: 20px;
+}
+
+.table-button button {
+
+    border: 1px solid rgba(255, 255, 255);
+    border-radius: 30px;
+    width: 170px;
+    height: 30px;
+
+}
+
+.table-button .btn-add button:hover {
+    background: rgba(243, 62, 192, 0.8);
+    padding: 5px;
+    transition: all 0.8s;
+}
+
+.table-button .btn-out button:hover {
+    background: rgba(0, 248, 83, 0.8);
+    padding: 5px;
+    transition: all 0.8s;
+
+}
+
+.table-button .btn-add {
+    float: left;
+    margin-right: 20px;
+}
+
+.table-button .btn-add button {
+    background: rgba(243, 62, 192, 0.5);
+    padding: 5px;
+}
+
+.table-button .btn-out button {
+    background: rgba(0, 248, 83, 0.5);
+    padding: 5px;
+}
+
+.table-button .btn-add span {
+    display: inline;
+
+    font-size: 1rem;
+}
+
+table {
+    /* padding: 30px; */
+    color: rgb(0, 0, 0); 
+    border-collapse: collapse;
+    width: 100%;
+    align-items: center;
+
+}
+
+td,th {
+    border: 2px solid rgb(255, 255, 255);
+    padding: 5px;
+    color: rgb(0, 0, 0);
+    justify-content:center;
+}
+
+table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+ th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    background-color: rgba(227, 239, 59, 0.5);
+    color: rgb(0, 0, 0);
+  }
+td{
+   
+    text-align:center;
+  }
+
+
+  .table-button2 button {
+
+    border: none;
+    border-radius: 30px;
+    width: 100px;
+    height: 30px;
+    margin: 5px;
+}
+
+.table-button2 .btn-delete button:hover {
+    background: rgba(201, 62, 243, 0.8);
+    padding: 5px;
+    transition: all 0.8s;
+}
+
+.table-button2 .btn-update button:hover {
+    background: rgba(0, 248, 83, 0.8);
+    padding: 5px;
+    transition: all 0.8s;
+
+}
+
+/* .table-button2 .btn-delete {
+    margin-right: 5px;
+    float: left;
+} */
+.table-button2 .btn-delete button {
+    background: rgba(255, 0, 13, 0.5);
+    padding: 5px;
+}
+
+.table-button2 .btn-update button {
+    background: rgba(248, 103, 0, 0.5);
+    padding: 5px;
+}
+
+.table-button2 .btn-add span {
+    display: inline;
+    font-size: 1rem;
+}

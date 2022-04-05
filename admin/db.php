@@ -30,5 +30,9 @@ function getInfo($sql){
 
 }
 
+// function insert($table, $data){
+//     $connect = connect();
+//     $data
 
-?>
+
+// }

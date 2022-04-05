@@ -1,4 +1,4 @@
-<?php 
+<?php
 require './func.php';
 require './db.php';
 
@@ -8,11 +8,9 @@ $password = isset($_POST['password']) ? $_POST['password'] : false;
 $isEnror = false;
 $Enror = '';
 
-if($username != false && $password != false){
-	
+if ($username != false && $password != false) {
+
 	$query = "select * FROM admin where username = $username";
-
-
 }
 
 
@@ -20,6 +18,7 @@ if($username != false && $password != false){
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -32,13 +31,13 @@ if($username != false && $password != false){
 
 <body>
 	<div class="center">
-	
+
 		<div class="logo">
-			<img src="./img/logo.png" alt="logo" class="logo" >
+			<img src="./img/logo.png" alt="logo" class="logo">
 		</div>
 		<h1>Wellome to Hikky's</h1>
-		<h2>Administrator dashboard  home</h2>
-		
+		<h2>Administrator dashboard home</h2>
+
 		<form method="post" action="./index.php">
 			<div class="txt_field">
 				<input type="text" value="username" required>
@@ -46,7 +45,7 @@ if($username != false && $password != false){
 				<label>Username</label>
 			</div>
 			<div class="txt_field">
-				<input type="password" value="password"  required>
+				<input type="password" value="password" required>
 				<span></span>
 				<label>Password</label>
 			</div>
@@ -58,30 +57,30 @@ if($username != false && $password != false){
 					<ul class="wrapper">
 						<a href="https://www.facebook.com/TamNC29">
 							<li class="icon facebook">
-	
+
 								<span class="tooltip">Facebook</span>
 								<span><i class="fab fa-facebook"></i></span>
 							</li>
 						</a>
-	
+
 						<a href="https://twitter.com/TamNguy28327146">
 							<li class="icon twitter">
 								<span class="tooltip">Twitter</span>
 								<span><i class="fab fa-twitter"></i></span>
-	
+
 							</li>
 						</a>
 						<a href="https://github.com/TamNguyenS">
 							<li class="icon instagram">
 								<span class="tooltip">Instagram</span>
 								<span><i class="fab fa-instagram"></i></span>
-	
+
 							</li>
 						</a>
 						<a href="https://github.com/TamNguyenS">
 							<li class="icon github">
 								<span class="tooltip">Github</span>
-								<span><i class="fab fa-github"></i></span> 
+								<span><i class="fab fa-github"></i></span>
 							</li>
 						</a>
 						<a href="https://www.youtube.com/channel/UC_aLW5yh278IJt2S4qTDIrA/featured">
@@ -95,10 +94,11 @@ if($username != false && $password != false){
 			</div>
 		</form>
 
-		
+
 
 	</div>
-			<!-- pop-up -->
+	<!-- pop-up -->
 
 </body>
+
 </html>
