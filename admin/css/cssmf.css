@@ -165,3 +165,45 @@ td{
     display: inline;
     font-size: 1rem;
 }
+/* From add mf */
+
+#from-add
+{
+    position: absolute;
+    top: 5%;
+    right: 28%;
+    width: 650px;
+    height: 700px;
+    background: rgb(255, 255, 255);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(2px);
+    border-radius: 16px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    z-index: 99;
+}
+#from-add span
+{
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    color: black;
+    text-align: center;
+    cursor: pointer;
+    background: rgb(201, 216, 165);
+}
+#from-add span:hover
+{
+    background: crimson;
+}
+
+#form-add{
+   
+}
