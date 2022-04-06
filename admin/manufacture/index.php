@@ -1,3 +1,31 @@
+<?php
+$name = empty($_POST['name']) ? $_POST['name'] : false;
+$address = empty($_POST['address']) ? $_POST['address'] : false;
+$phone = empty($_POST['phone']) ? $_POST['phone'] : false;
+$email = empty($_POST['email']) ? $_POST['email'] : false;
+$date = empty($_POST['datee']) ? $_POST['datee'] : false;
+$note = empty($_POST['note']) ? $_POST['note'] : false;
+
+$isEnror = false;
+$isSumit = false;
+$Enror = '';
+
+if (
+    $name != false
+    && $address != false
+    && $phone != false
+    && $email != false
+    && $date != false
+    && $note != false
+)
+{
+
+    
+
+}
+?>
+
+
 <!DOCTYPE html>
 <html>
 
@@ -8,7 +36,7 @@
     <title>Dashboard </title>
     <link rel="stylesheet" href="../css/cssdb.css">
     <link rel="stylesheet" href="../css/cssmf.css">
-    <link rel="stylesheet" href="../js/main.js">
+    <script src="../js/mf.js"></script>
     <!-- icon -->
     <script src="https://kit.fontawesome.com/945e1fd97f.js" crossorigin="anonymous"></script>
     <!-- <link rel="stylesheet"
@@ -110,13 +138,13 @@
 
         <div class="table-content">
             <div class="table-button">
-                <div class="btn-add"> 
-                  
-                   <a href="addmf.html"> <button ><span class="fa fa-user-plus"></span> Thêm nhà sản xuất</button> </a> 
+                <div class="btn-add">
+
+                    <button class="btn btn1" id="button" onclick="turn_on()"><span class="fa fa-user-plus"></span> Thêm nhà sản xuất</button>
                 </div>
                 <div class="btn-out">
-                   
-                    <button >  <span class="fa fa-file-excel-o"></span> &nbsp; Xuất file Excel</button>
+
+                    <button> <span class="fa fa-file-excel-o"></span> &nbsp; Xuất file Excel</button>
                 </div>
 
             </div>
@@ -174,15 +202,15 @@
                         </td>
                         <td>
                             <div class="table-button2">
-                                <div class="btn-delete"> 
-                                  
-                                    <button ><span class="fa fa-times"></span> Xóa</button>
+                                <div class="btn-delete">
+
+                                    <button><span class="fa fa-times"></span> Xóa</button>
                                 </div>
                                 <div class="btn-update">
-                                   
-                                    <button >  <span class="fa fa-eraser"></span> &nbsp; Sửa</button>
+
+                                    <button> <span class="fa fa-eraser"></span> &nbsp; Sửa</button>
                                 </div>
-                
+
                             </div>
                         </td>
                     </tr>
@@ -210,25 +238,48 @@
                         </td>
                         <td>
                             <div class="table-button2">
-                                <div class="btn-delete"> 
-                                  
-                                    <button ><span class="fa fa-times"></span> Xóa</button>
+                                <div class="btn-delete">
+
+                                    <button><span class="fa fa-times"></span> Xóa</button>
                                 </div>
                                 <div class="btn-update">
-                                   
-                                    <button >  <span class="fa fa-eraser"></span> &nbsp; Sửa</button>
+
+                                    <button> <span class="fa fa-eraser"></span> &nbsp; Sửa</button>
                                 </div>
-                
+
                             </div>
                         </td>
                     </tr>
-                    
+
                 </thead>
             </table>
             <br>
         </div>
 
     </main>
+
+    </div>
+
+
+    <div class="row2">
+        <div id="from-add">
+            <span id="exit" onclick="turn_off()">x</span>
+            <from method="POST" action=''>
+                <p>Tên nhà sản xuất: </p>
+                <input type="text" name="name" id="name" placeholder="Nhập tên nhà sản xuất" required>
+                <p>Nhập địa chỉ: </p>
+                <input type="text" name="address" id="address" placeholder="Nhập địa chỉ " required>
+                <p>Email liên hệ: </p>
+                <input type="email" name="email" id="email" placeholder="Email liên hệ" required>
+                <p>Số điện thoại liên hệ: </p>
+                <input type="text" name="name" id="name" placeholder="Số điện thoại liên hệ" required>
+                <p>Ngày thêm: </p>
+                <input type="date" name="datee" id="datee" required>
+                <p>Ghi chú: </p>
+                <input type="text" name="note" id="note" required>
+                <button>ok</button>
+        </div>
+        </from>
 
     </div>
 </body>
