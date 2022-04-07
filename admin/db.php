@@ -30,9 +30,18 @@ function getInfo($sql){
 
 }
 
-// function insert($table, $data){
-//     $connect = connect();
-//     $data
+function insert($table, $data){
+    $connect = connect();
+    $field_list = '';
+    $value_list = '';
+    foreach($data as $key => $value){
+        $field_list .= ",$key";
+        $value_list .= ",'" .  $connect->real_escape_string($value) . "'"; 
+        //real_escape_string: chống sql injection loai bo cac ky tu dac biet
+    }
+    $query = 'INSERT INTO ' . $table . '(' . trim($field_list, ',') . ') VALUES (' . trim($value_list, ',') . ')';
+    $result = $connect->query($query);
+    disconnect($connect);
+    return $result;
 
-
-// }
+}

@@ -88,11 +88,11 @@ li {
 }
 
 .tool:hover img {
-    transform: translateX(5px) rotate(15deg);
+    transform: translateX(5px) rotate(30deg);
 }
 
 .tool:hover span {
-    transform: translateX(1px);
+    transform: translateX(200px);
 }
 
 .container {
@@ -124,8 +124,6 @@ header {
 .search-wrapper span {
     display: inline-block;
     padding: 0rem 1rem;
-
-    /* font-size: .3rem; */
 }
 
 .search-wrapper input {

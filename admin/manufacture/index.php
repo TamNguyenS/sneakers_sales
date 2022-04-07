@@ -1,14 +1,15 @@
 <?php
-$name = empty($_POST['name']) ? $_POST['name'] : false;
-$address = empty($_POST['address']) ? $_POST['address'] : false;
-$phone = empty($_POST['phone']) ? $_POST['phone'] : false;
-$email = empty($_POST['email']) ? $_POST['email'] : false;
-$date = empty($_POST['datee']) ? $_POST['datee'] : false;
-$note = empty($_POST['note']) ? $_POST['note'] : false;
+$name = isset($_POST['name']) ? $_POST['name'] : false;
+$address = isset($_POST['address']) ? $_POST['address'] : false;
+$phone = isset($_POST['phone']) ? $_POST['phone'] : false;
+$email = isset($_POST['email']) ? $_POST['email'] : false;
+$date = isset($_POST['datee']) ? $_POST['datee'] : false;
+$note = isset($_POST['note']) ? $_POST['note'] : false;
 
 $isEnror = false;
 $isSumit = false;
 $Enror = '';
+$msg = '';
 
 if (
     $name != false
@@ -17,11 +18,41 @@ if (
     && $email != false
     && $date != false
     && $note != false
-)
-{
+) {
+    $isSumit = true;
+    require '../db.php';
+    require '../func.php.php';
 
-    
+    if (!isEmail($email)) {
+        $isEnror = true;
+        $Enror .= 'Email Không hợp lệ';
+    }
+    if (!isPhone($phone)) {
+        $isEnror = true;
+        $Enror .= 'Số điện thoại không hợp lệ ';
+    }
+    if (!isname($name)) {
+        $isEnror = true;
+        $Enror .= 'Tên không hợp lệ ';
+    }
 
+    if (!$isEnror) {
+        $result =  insert('manufacture', array(
+            'name' => $name,
+            'age' => $age,
+            'address' => $address,
+            'phone' => $phone,
+            'email' => $email,
+            'datee' => $date,
+            'note' => $note,
+        ));
+        if ($result) {
+            $msg = "Thêm thành công";
+        }
+        else {
+            $msg = "Thêm thất bại";
+        }
+    }
 }
 ?>
 
@@ -39,11 +70,12 @@ if (
     <script src="../js/mf.js"></script>
     <!-- icon -->
     <script src="https://kit.fontawesome.com/945e1fd97f.js" crossorigin="anonymous"></script>
-    <!-- <link rel="stylesheet"
-        href="https://maxst.icons8.com/vue-static/landings/line-awesome/font-awesome-line-awesome/css/all.min.css"> -->
+    <link rel="stylesheet"
+        href="https://maxst.icons8.com/vue-static/landings/line-awesome/font-awesome-line-awesome/css/all.min.css">
 </head>
 
 <body>
+    <div id="main">  
     <div class="side-menu">
         <div class="barnd-logo">
             <img src="../img/logo.png" style=" width: 100px; height: 100px;">
@@ -140,11 +172,13 @@ if (
             <div class="table-button">
                 <div class="btn-add">
 
-                    <button class="btn btn1" id="button" onclick="turn_on()"><span class="fa fa-user-plus"></span> Thêm nhà sản xuất</button>
+                    <button class="btn btn1" id="button" onclick="turn_on()"><span class="fas fa-plus-circle"
+                            style="color: rgb(238, 56, 223); "></span> Thêm nhà sản xuất</button>
                 </div>
                 <div class="btn-out">
 
-                    <button> <span class="fa fa-file-excel-o"></span> &nbsp; Xuất file Excel</button>
+                    <button> <span class="fas fa-file-excel" style="color: rgb(14, 172, 40);"></span> &nbsp; Xuất file
+                        Excel</button>
                 </div>
 
             </div>
@@ -240,7 +274,7 @@ if (
                             <div class="table-button2">
                                 <div class="btn-delete">
 
-                                    <button><span class="fa fa-times"></span> Xóa</button>
+                                    <button "><span class="fa fa-times"></span> Xóa</button>
                                 </div>
                                 <div class="btn-update">
 
@@ -258,30 +292,38 @@ if (
 
     </main>
 
-    </div>
-
+</div>
 
     <div class="row2">
         <div id="from-add">
             <span id="exit" onclick="turn_off()">x</span>
-            <from method="POST" action=''>
-                <p>Tên nhà sản xuất: </p>
-                <input type="text" name="name" id="name" placeholder="Nhập tên nhà sản xuất" required>
-                <p>Nhập địa chỉ: </p>
-                <input type="text" name="address" id="address" placeholder="Nhập địa chỉ " required>
-                <p>Email liên hệ: </p>
-                <input type="email" name="email" id="email" placeholder="Email liên hệ" required>
-                <p>Số điện thoại liên hệ: </p>
-                <input type="text" name="name" id="name" placeholder="Số điện thoại liên hệ" required>
-                <p>Ngày thêm: </p>
-                <input type="date" name="datee" id="datee" required>
-                <p>Ghi chú: </p>
-                <input type="text" name="note" id="note" required>
-                <button>ok</button>
+            <div class="form-content">
+                <form method="post">
+                    <p>Nhập tên nhà sản xuất </p>
+                    <input type="text" name="name" id="name" required placeholder="Nhập tên nhà sản xuất">
+                    <p>Nhập địa chỉ: </p>
+                    <input type="text" name="address" id="address" required placeholder="Nhập địa chỉ ">
+                    <p>Email liên hệ: </p>
+                    <input type="email" name="email" id="email" required placeholder="Email liên hệ">
+                    <p>Số điện thoại liên hệ: </p>
+                    <input type="text" name="name" id="name" required placeholder="Số điện thoại liên hệ">
+                    <p>Ngày thêm: </p>
+                    <input type="date" name="datee" required id="datee">
+                    <p>Ghi chú: </p>
+                    <input type="text" name="note" required id="note">
+                    <div class="table-button">
+                        <div class="btn-ok">
+                        <button > OK </button>
+                        </div>
+                   
+                    </div>
+              
+                </form>
+            </div>
+
         </div>
-        </from>
+
 
     </div>
 </body>
-
 </html>

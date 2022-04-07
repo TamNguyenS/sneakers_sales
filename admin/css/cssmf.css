@@ -65,6 +65,16 @@ main {
     padding: 5px;
     transition: all 0.8s;
 }
+/* .btn-add  span{
+    color: #FFBB36;
+    margin-right: 10px;
+    transition: 0.5s ease-in-out;
+  }
+  
+  .btn-add:hover span{
+    margin-right: 10px;
+    color: #fff;
+  } */
 
 .table-button .btn-out button:hover {
     background: rgba(0, 248, 83, 0.8);
@@ -84,10 +94,9 @@ main {
 }
 
 .table-button .btn-out button {
-    background: rgba(0, 248, 83, 0.5);
+    background: rgba(85, 229, 133, 0.4);
     padding: 5px;
 }
-
 .table-button .btn-add span {
     display: inline;
 
@@ -173,7 +182,7 @@ td{
     top: 5%;
     right: 28%;
     width: 650px;
-    height: 700px;
+    height: 650px;
     background: rgb(255, 255, 255);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(2px);
@@ -204,6 +213,35 @@ td{
     background: crimson;
 }
 
-#form-add{
-   
+ .form-content{
+   align-items: center;
+   margin-top: 30px;
+   margin-left: 30px;
+   font-size: 20px;
+   background: rgb(255, 255, 255);
+}
+.form-content input
+{
+    width: 600px;
+    height: 40px;
+    border-radius: 20px;
+    border: none;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 20px;
+    background: rgba(218, 75, 75, 0.2);
+    text-align: center; 
+    font-size: 18px;
+}
+
+.btn-ok button:hover {
+    background: rgba(0, 248, 83, 0.8);
+    transition: all 0.8s;
+
+}
+
+.btn-ok button {
+    background: rgba(255, 0, 13, 0.5);
+    margin-left: 190px;
 }
