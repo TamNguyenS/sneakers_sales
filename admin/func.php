@@ -21,28 +21,31 @@ function decodeID($id)
     return $id;
 }
 
-function isEmail($email){
-    if(!preg_match('^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',$email)){
+function isEmail ($email) {
+    if ((!preg_match("/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix", $email))) {
         return false;
     }
-    else {
-        return true;
-    }
+
+    return true;
 }
 function isPhone($phone){
-    if(!preg_match('/^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$/',$phone)){
+    if((!preg_match('/^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$/',$phone))){
         return false;
     }
-    else {
+    
         return true;
-    }
+    
 }
 function isName($name){
-    if(!preg_match('^[A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ][a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]*(?:[ ][A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ][a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]*)*$',$name)){
+    if((!preg_match('/^[a-z0-9_-]{3,16}$/',$name))){
         return false;
     }
-    else {
-        return true;
-    }
+    return true;
 }
 
+function isNumeric($num){
+    if($num/1 !== $num ){
+        return false;
+    }
+    return true;
+}

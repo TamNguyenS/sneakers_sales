@@ -128,11 +128,12 @@ header {
 
 .search-wrapper input {
     height: 100%;
-    width: 100%;
+    width: 170%;
     padding: .5rem;
     border-radius: 30px;
     border: none;
     outline: none;
+   
 }
 
 .user-wrapper {
@@ -153,15 +154,14 @@ header {
 }
 
 .tag-name {
-    margin-top: 30px;
-    margin-left: 25px;
+    margin-top: 5px;
+    margin-left: 20px;
 
 }
 
 .tag-name h1 {
-    font-size: 20px;
+    font-size: 18px;
     color: rebeccapurple;
-
 }
 
 
