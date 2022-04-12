@@ -170,9 +170,10 @@ td{
 
     border: none;
     border-radius: 30px;
-    width: 100px;
-    height: 30px;
+    width: 120px;
+    height: 25px;
     margin: 5px;
+    font-size: 14px;
 }
 
 .table-button2 .btn-delete button:hover {
@@ -193,13 +194,17 @@ td{
     float: left;
 } */
 .table-button2 .btn-delete button {
-    background: rgba(255, 0, 13, 0.5);
+    background: rgba(242, 156, 161, 0.5);
     padding: 5px;
+    color: rgb(245, 63, 63);
+    font-weight: 600;
 }
 
 .table-button2 .btn-update button {
-    background: rgba(248, 103, 0, 0.5);
+    background: rgba(243, 201, 170, 0.5);
     padding: 5px;
+    color: white;
+    font-weight: 600;
 }
 
 .table-button2 .btn-add span {
@@ -226,6 +231,7 @@ td{
     flex-wrap: wrap;
     flex-direction: column;
     z-index: 99;
+    animation: scale-animation 0.5s ease;
 }
 #from-add span
 {
@@ -267,7 +273,12 @@ td{
     text-align: center; 
     font-size: 18px;
 }
-
+.container-content{
+    animation: scale-animation 0.5s ease;
+    padding: 20px;
+    background: white;
+    border-radius: 30px;
+}
 .btn-ok button:hover {
     background: rgba(0, 248, 83, 0.8);
     transition: all 0.8s;
@@ -310,7 +321,7 @@ pagination-outer{ text-align: center; }
     /* box-shadow: 2px 2px rgba(0, 0, 0, 0.2), 4px 4px rgba(0,0,0,0.1); */
 }
 
-@media only screen and (max-width: 480px){
+/* @media only screen and (max-width: 480px){
     .pagination{
         font-size: 0;
         display: inline-block;
@@ -320,4 +331,20 @@ pagination-outer{ text-align: center; }
         vertical-align: top;
         margin: 0 0 10px;
     }
-}
+} */
+
+ /* animation */
+ @keyframes scale-animation {
+    0%{
+      opacity: 0;
+      transform: scaleY(1.1);
+      transform: scaleX(1.1);
+ 
+    }
+    100%{
+      opacity: 1;
+      transform: scaleY(1);
+      transform: scaleX(1);
+   
+    }
+  }

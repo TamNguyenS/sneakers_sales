@@ -61,7 +61,7 @@ if (
 }
 
 ?>
-   <?php
+<?php
 
 // require_once '../db.php';
 // require_once '../func.php';
@@ -82,6 +82,21 @@ $query = "SELECT * FROM manufacture WHERE NAME LIKE '%$search%' LIMIT  $page_lim
 $records = get_list($query);
 
 ?> 
+<?php 
+    $delete = empty($_GET['delete']) ? 'false' : $_GET['delete'];
+    if($delete !== false){
+        // $id = $_GET['delete'];
+        $result = remove('manufacture', $delete);
+        
+        if($result){
+            $msg = 'Xóa thành công';
+            // header('Location: ../manufacture');
+        }
+        else{
+            $msg = 'Xóa Không thành công ';
+        }
+    }
+?>
 
 <!DOCTYPE html>
 <html>
@@ -133,7 +148,7 @@ $records = get_list($query);
 
                     <div class="card-single">
                         <div>
-                            <h1> 45</h1>
+                            <h1> 15</h1>
                             <span>Nhà sản xuất hiện tại</span>
                         </div>
                         <div>
@@ -143,7 +158,7 @@ $records = get_list($query);
 
                     <div class="card-single">
                         <div>
-                            <h1> 45</h1>
+                            <h1> 13</h1>
                             <span>Nhà sản xuất trong tháng này</span>
                         </div>
                         <div>
@@ -152,20 +167,21 @@ $records = get_list($query);
                     </div>
                     <div class="card-single">
                         <div>
-                            <h1> 45</h1>
+                            <h1> 13</h1>
                             <span>Nhà sản xuất trong tháng này</span>
                         </div>
                         <div>
-                            <span class="fa fa-line-chart"> </span>
+                            <span class="fa fa-area-chart"> </span>
                         </div>
                     </div>
 
                 </div>
                 <div class="table-content">
+                    <?php echo $msg ?>
                     <div class="table-button">
                         <div class="btn-add">
 
-                            <button class="btn btn1" id="button" onclick="turn_on()"><span class="fas fa-plus-circle" style="color: rgb(238, 56, 223); "></span> Thêm nhà sản xuất</button>
+                            <a href="./manufactureadd.php" ><button class="btn btn1" id="button"><span class="fas fa-plus-circle" style="color: rgb(238, 56, 223); "></span> Thêm nhà sản xuất</button> </a>
                         </div>
                         <div class="btn-out">
 
@@ -230,10 +246,11 @@ $records = get_list($query);
                                     </td>
                                     <td>
                                         <div class="table-button2">
+                                            
                                             <div class="btn-delete">
-                                                <?php   ?>
-                                                <a> <button><span class="fa fa-times"></span> Xóa</button> </a>
+                                               <a onclick="return confirm('Bạn có chắc muốn xóa?')"  href="./?delete=<?= $post['id'] ?>" > <button >  <span class="fa fa-times"  ></span> Xóa</button> </a> 
                                             </div>
+                                        
                                             <div class="btn-update">
 
                                                 <button> <span class="fa fa-eraser"></span> &nbsp; Sửa</button>

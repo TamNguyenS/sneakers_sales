@@ -61,27 +61,6 @@ if (
 }
 
 ?>
-<?php
-
-// require_once '../db.php';
-// require_once '../func.php';
-
-$search = empty($_GET['search']) ? '' : $_GET['search'];
-$search = validate($search);
-
-//page 
-$page = empty($_GET['page']) ? 1 : $_GET['page'];
-if (!is_numeric($page)) die();
-
-$page_limit = 6;
-$page_total_length = get_count('SELECT count(*) FROM manufacture WHERE NAME LIKE \'%' . $search . '%\'');
-$page_length = ceil($page_total_length / $page_limit);
-$page_skip =  $page_limit * ($page - 1);
-
-$query = "SELECT * FROM manufacture WHERE NAME LIKE '%$search%' LIMIT  $page_limit OFFSET $page_skip";
-$records = get_list($query);
-
-?>
 
 <!DOCTYPE html>
 <html>
@@ -117,12 +96,42 @@ $records = get_list($query);
         </div>
 
         <div class="container-main">
+            <div class="container">
+                <div class="tag-name">
+                    <a href="./index.php">
+                        <h2> <span class="fa fa-arrow-circle-left"></span> Thêm nhà cung cấp</h2>
+                    </a>
+                </div>
 
+            </div>
+            <div class="container-content">
+                <div class="form-content">
+                    <form action="" method="POST">
+                        <p>Nhập tên nhà sản xuất </p>
+                        <input type="text" name="name" required placeholder="Nhập tên nhà sản xuất">
+                        <p>Nhập địa chỉ: </p>
+                        <input type="text" name="address" required placeholder="Nhập địa chỉ ">
+                        <p>Email liên hệ: </p>
+                        <input type="email" name="email" required placeholder="Email liên hệ">
+                        <p>Số điện thoại liên hệ: </p>
+                        <input type="phone" name="phone" required placeholder="Số điện thoại liên hệ">
+                        <p>Ngày thêm: </p>
+                        <input type="date" name="datee" required>
+                        <p>Ghi chú: </p>
+                        <input type="text" name="note" required>
+                        <div class="table-button">
+                            <div class="btn-ok">
+                                <button> OK </button>
+                                     <p> <php echo $msg ?></p>
+                                     <p> <php echo $error ?></p>
+                            </div>
+
+                        </div>
+
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
-
-
-
 </body>
-
 </html>

@@ -83,7 +83,7 @@ function get_count ($sql) {
 function remove ($table, $where) {
     $conn = connect();
     
-    $sql = "DELETE FROM $table WHERE $where";
+    $sql = "DELETE FROM $table WHERE id = '$where'";
     $result = mysqli_query($conn, $sql);
 
     disconnect($conn);
