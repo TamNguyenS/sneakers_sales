@@ -1,17 +1,19 @@
 main {
-    margin-left: 220px;
     padding: 0.5rem 1.5rem;
-    /* background: white; */
     min-height: calc(100vh - 85px);
+    margin-left: -20px;
     height: 100%;
-    width: 98%;
+    width: 118%;
 }
-
+main{
+    overflow: hidden;
+}
 .cards {
     display: grid;
     grid-template-columns: repeat(4, 10fr);
     grid-gap: 2rem;
     margin-left: 100px;
+    animation: scale-animation 0.5s ease;
 }
 
 .card-single {
@@ -20,6 +22,7 @@ main {
     background: rgb(255, 255, 255);
     padding: 1.0rem;
     border-radius: 2rem;
+    animation: scale-animation 0.5s ease;
 }
 
 .card-single h1+span {
@@ -39,25 +42,31 @@ main {
 }
 
 .table-content {
-    margin-top: 15px;
+    margin-top: 10px;
     background: rgb(255, 255, 255);
     width: 87%;
-    height: 500px;
-    border-radius: 30px;
+    height: 600px;
+    border-radius: 5px;
     padding: 10px;
     overflow:scroll;
+    animation: scale-animation 0.5s ease;
 }
 .table-content::-webkit-scrollbar {
-    width: 4px;
-    background-color: #f4ebde;
+    width:5px;
+    background-color: #fcf7f0;
     border-radius: 30px;
 } 
+/* .table-content::-webkit-scrollbar {max-height: 30px; height: 30px;} */
+/* .table-content::-webkit-scrollbar-track {max-height: 10%; height: 10%;} */
 .table-content::-webkit-scrollbar-thumb {
-    background-color: #ff4e83;
+    background-color: #ee99b2;
     border-radius: 50px;
 }
+.table-content::-webkit-scrollbar-button {
+    height: 12px;
+  }
 .table-content::-webkit-scrollbar-track {
-    background-color: #f4ebde;
+    background-color: #FBF6F0;
     border-radius: 30px;
 }
 .table-content {
@@ -65,8 +74,8 @@ main {
   }
 
 .table-button {
-    /* margin-top: 20px; */
-    margin: 20px;
+    margin-top: 10px;
+    margin-bottom: 20px;
 }
 
 .table-button button {
@@ -117,10 +126,13 @@ main {
 }
 .table-button .btn-add span {
     display: inline;
-
     font-size: 1rem;
 }
-
+.table-button .btn-out span {
+    display: inline;
+    font-size: 1rem;
+    color: rgb(0, 248, 83);
+}
 table {
     /* padding: 30px; */
     color: rgb(0, 0, 0); 
@@ -194,6 +206,7 @@ td{
     display: inline;
     font-size: 1rem;
 }
+
 /* From add mf */
 
 #from-add

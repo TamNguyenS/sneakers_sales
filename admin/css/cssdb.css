@@ -1,107 +1,144 @@
-@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Palette+Mosaic&family=Poppins:ital,wght@0,100;0,200;0,400;1,100;1,200;1,300&family=Roboto+Mono:ital@1&family=Signika+Negative:wght@300;400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Palette+Mosaic&family=Poppins:ital,wght@0,100;0,200;0,400;1,100;1,200;1,300&family=Roboto+Mono:ital@1&family=Rubik+Glitch&family=Signika+Negative:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Palette+Mosaic&family=Poppins:ital,wght@0,100;0,200;0,400;1,100;1,200;1,300&family=Roboto+Mono:ital@1&family=Rubik+Glitch&family=Signika+Negative:wght@400;500;600;700&display=swap');
 
 * {
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
     font-family: "Signika Negative", sans-serif;
+    font-size: 16px;
 }
-
-body {
-    min-height: 100vh;
-    margin: 0;
-    padding: 0;
-    background: linear-gradient(120deg, #f4ebde, #f4ebde);
-    height: 100vh;
-    overflow: hidden;
-}
-
 a {
     text-decoration: none;
-    color: black;
+    color: #000;
 }
 
 li {
     list-style: none;
 }
 
-.side-menu {
-    position: fixed;
-    min-height: 100vh;
-    width: 13vw;
+  /* animation */
+  @keyframes scale-animation {
+    0%{
+      opacity: 0;
+      transform: scaleY(1.1);
+      transform: scaleX(1.1);
+ 
+    }
+    100%{
+      opacity: 1;
+      transform: scaleY(1);
+      transform: scaleX(1);
+   
+    }
+  }
+/* side-bar */
+
+.sidebar{
+    position: sticky;
+    padding: 10px;
+    top: 0px;
+ 
+}
+.sidebar-header {
     display: flex;
+    margin: 30px 0px 30px 0px;
+    align-items: center;
+    justify-content: center;
     flex-direction: column;
-    background: rgb(255, 255, 255);
-    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); */
-    /* z-index: 1; */
+ 
 }
-
-.side-menu .barnd-name {
-    /* height: 10vh; */
+  
+.sidebar-header .sidebar-header-logo{
+    height: 90px;
+}
+.sidebar-header .menu-webname{
     margin-top: 10px;
-    margin-bottom: 30px;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  .menu-item {
+    height: 35px;
+    margin: 0px 0px 10px 0px;
+    background-color: transparent !important;
+    border-radius: 5px;
     display: flex;
+    align-items: left;
+    padding-left: 10px;
+    padding-right: 10px;
+    justify-content: space-between;
+    flex-direction: row;
     align-items: center;
-    justify-content: center;
-}
+  }
+  
+  .menu-item .menu-link{
+    font-weight: 500;
+  }
+  
+  .menu-item .menu-link i{
+    margin-right: 5px;
+    transition: 1s;
+  }
+  
+  .menu-item:hover{
+    cursor: pointer;
+    background-color: #ebebeb !important;
+  }
+  
+  .menu-item:hover .menu-link i{
+    transform: rotate(60deg);
+  }
+  
+  #product{
+    display: none;
+  }
+  
+  #employee{
+    display: none;
+  }
+  
+  #manufacturer{
+    display: none;
+  }
+  
+  .dropbtn{
+    border: none;
+    background: none !important;
+  }
+  
+  .dropdown-content{
+    width: 100%;
+    margin-left: 5px;
+    animation: scale-animation 0.5s ease;
+    background: transparent !important;
+    transition: 0.3s;
+  }
+  
+  .dropdown-content:hover{
+    background-color: #ebebeb !important;
+  }
+  
+  .show {
+    display: flex !important;
+  }
+  
+  .show i{
+    margin-left: 10px;
+  }
+  
+  .show:hover i{
+    transform:translateX(5px) !important;
+  }
+  
+  .rotation{
+    transform: rotate(360deg);
+  }
 
-.side-menu .barnd-logo {
-    margin-top: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: auto;
-}
 
-.side-menu li {
-    font-size: 18px;
-    padding: 9px 15px;
-    color: rgb(0, 0, 0);
-    display: flex;
-    align-items: center;
-}
+  /* header */
 
-.side-menu .tool {
-    font-size: 18px;
-    padding: 5px 15px;
-    color: rgb(0, 0, 0);
-    display: flex;
-    align-items: center;
-}
-
-.side-menu .tool:hover {
-
-    border-radius: 10px;
-    color: rgb(0, 0, 0);
-    background-color: #e6dfdf;
-    box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.3);
-}
-
-.tool img {
-    margin-right: 3px;
-    transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
-}
-
-.tool span {
-    transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
-}
-
-.tool:hover img {
-    transform: translateX(5px) rotate(30deg);
-}
-
-.tool:hover span {
-    transform: translateX(200px);
-}
-
-.container {
-    margin-top: 0px;
-    margin-left: 209px;
-
-}
-
-header {
+  .header {
     display: flex;
     justify-content: space-between;
     padding: .5rem;
@@ -143,6 +180,8 @@ header {
 
 .user-wrapper img {
     border-radius: 50%;
+    height: 40px;
+    width: 40px;
     margin-right: 1.1rem;
 }
 
@@ -150,18 +189,63 @@ header {
     display: inline-block;
     color: black;
     margin-right: 1.1rem;
-    /* margin-top: - 3px !important; */
+    margin-top: - 3px !important;
 }
 
-.tag-name {
-    margin-top: 5px;
-    margin-left: 20px;
+/* layout */
+.container-header { 
+  grid-area: header; 
+  position: -webkit-sticky;
+  position: sticky; 
+  background-color: #fff;
+  top: 0px;
+  
+}
+.container-menu { 
+  grid-area: menu; 
+  background: #fff;
+  height: 100%;
+}
+.container-main { 
+  grid-area: main; 
+  padding: 20px !important;
+  border-radius: 15px 0px 0px 15px;
+  background:  #FBF6F0;
+}
+.container-right { 
+  grid-area: right; 
 
 }
 
-.tag-name h1 {
-    font-size: 18px;
-    color: rebeccapurple;
+.grid-container {
+  display: grid;
+  grid-template-areas:
+      'menu header header'
+      'menu main right';
+  grid-template-rows: 8vh auto 0vh;
+  grid-template-columns: 30vh auto 0vh;
+  grid-gap: 0px;
+  padding: 0px;
+  height: 100vh;
+  background: #fff;
+ overflow-x: hidden;
 }
 
+.grid-container > div {
+padding: 0;
+}
 
+.grid-container::-webkit-scrollbar {
+  width:8px;
+  background-color: #fcf7f0;
+  border-radius: 50px;
+} 
+.grid-container::-webkit-scrollbar-track {max-height: 10%; height: 10%;}
+.grid-container::-webkit-scrollbar-thumb {
+  background-color: #ff4e83;
+  border-radius: 50px;
+}
+.grid-container::-webkit-scrollbar-track {
+  background-color: #FBF6F0;
+  border-radius: 30px;
+}

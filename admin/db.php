@@ -59,16 +59,16 @@ function get_list($sql){
     disconnect($conn);  
     return $return;
 }
-function count_records($table){
-    $conn = connect();
-    $query = 'SELECT count(id) AS total FROM ' . $table;
-    $result = $conn->query($query);
-    if(!$result) die('[Database class - count_records] Truy vấn sai');
-    $row = mysqli_fetch_assoc($result);
-    $total_records = $row['total'];
-    disconnect($conn);
-    return $total_records;
-}
+// function count_records($table){
+//     $conn = connect();
+//     $query = 'SELECT count(id) AS total FROM ' . $table;
+//     $result = $conn->query($query);
+//     if(!$result) die('[Database class - count_records] Truy vấn sai');
+//     $row = mysqli_fetch_assoc($result);
+//     $total_records = $row['total'];
+//     disconnect($conn);
+//     return $total_records;
+// }
 
 function get_count ($sql) {
     $conn = connect();
@@ -77,5 +77,15 @@ function get_count ($sql) {
     if (!$result) die('[Database class - get_count] Truy vấn sai');
 
     $result = mysqli_fetch_array($result)['count(*)'];
+    return $result;
+}
+
+function remove ($table, $where) {
+    $conn = connect();
+    
+    $sql = "DELETE FROM $table WHERE $where";
+    $result = mysqli_query($conn, $sql);
+
+    disconnect($conn);
     return $result;
 }
