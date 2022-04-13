@@ -3,7 +3,7 @@ define('DB_SERVER', 'localhost');
 define('DB_USERNAME', 'root');
 define('DB_PASSWORD', 'nguyenchitam123');
 define('DB_NAME', 'hikkyshop');
-//connect to the database
+
 function connect()
 {
     $conn = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME) or die('could not connect to database');
@@ -19,7 +19,7 @@ function disconnect($conn)
 function insert($table, $data)
 {
     $conn = connect();
-    $field_list = ''; //ten truong
+    $field_list = ''; //ten truong *
     $value_list = ''; //data cua moi truong
     foreach ($data as $key => $value) {
         $field_list .= ",$key";
@@ -32,6 +32,19 @@ function insert($table, $data)
     disconnect($conn);
     return $result;
 }
+function update ($table, $data, $where) {
+    $conn = connect();
+    $value_list='';
+    foreach($data as $key => $value) {
+        $value_list .= "$key = '" . $conn->real_escape_string($value) . "',";
+    }
+    $sql = 'UPDATE ' . $table . ' SET ' . trim($value_list, ',') . ' WHERE ' . $where;
+    $result = mysqli_query($conn, $sql);
+    disconnect($conn);
+    return $result;
+}
+
+
 //get all data from database
 function get_data($table){
     $conn = connect();

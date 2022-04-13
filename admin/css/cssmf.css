@@ -14,6 +14,7 @@ main{
     grid-gap: 2rem;
     margin-left: 100px;
     animation: scale-animation 0.5s ease;
+
 }
 
 .card-single {
@@ -80,30 +81,24 @@ main{
 
 .table-button button {
 
-    border: 1px solid rgba(255, 255, 255);
-    border-radius: 30px;
-    width: 170px;
-    height: 30px;
+    border: none;
+    border-radius: 10px;
+    width: 140px;
+    font-size:13px;
+    height: 27px;
+   font-weight: bold;
 
 }
 
 .table-button .btn-add button:hover {
-    background: rgba(243, 62, 192, 0.8);
+    color: rgb(255, 255, 255);
+    background: rgba(237, 205, 24, 0.8);
     padding: 5px;
     transition: all 0.8s;
 }
-/* .btn-add  span{
-    color: #FFBB36;
-    margin-right: 10px;
-    transition: 0.5s ease-in-out;
-  }
-  
-  .btn-add:hover span{
-    margin-right: 10px;
-    color: #fff;
-  } */
 
 .table-button .btn-out button:hover {
+    color: rgb(255, 255, 255);
     background: rgba(0, 248, 83, 0.8);
     padding: 5px;
     transition: all 0.8s;
@@ -116,12 +111,14 @@ main{
 }
 
 .table-button .btn-add button {
-    background: rgba(243, 62, 192, 0.5);
+    background: rgba(255, 252, 164, 0.5);
+    color: rgb(185, 158, 8);
     padding: 5px;
 }
 
 .table-button .btn-out button {
-    background: rgba(85, 229, 133, 0.4);
+    background: rgb(180, 250, 190);
+    color: rgb(54, 144, 46);
     padding: 5px;
 }
 .table-button .btn-add span {
@@ -131,7 +128,7 @@ main{
 .table-button .btn-out span {
     display: inline;
     font-size: 1rem;
-    color: rgb(0, 248, 83);
+    color: rgb(50, 248, 0);
 }
 table {
     /* padding: 30px; */
@@ -142,23 +139,28 @@ table {
 
 }
 
-td,th {
-    border: 2px solid rgb(255, 255, 255);
-    padding: 4px;
+td {
+    border: 1px solid rgb(255, 255, 255);
+    padding: 10px;
    
     color: rgb(0, 0, 0);
-    justify-content:center;
+  
+    border-bottom: 1px solid #dddddd;
+     
 }
 
-table tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
+/* table tr:nth-child(even) {
+    background-color: rgba(236, 233, 235, 0.3);
+} */
  th {
+    border: 1px solid rgba(255, 248, 225, 0.5);;
     padding-top: 12px;
     padding-bottom: 12px;
-    background-color: rgba(227, 239, 59, 0.5);
+    background-color: rgba(255, 241, 193, 0.5);
     color: rgb(0, 0, 0);
     font-size:13px;
+
+
   }
 td{
     font-size:15px;
@@ -169,21 +171,23 @@ td{
   .table-button2 button {
 
     border: none;
-    border-radius: 30px;
-    width: 120px;
+    border-radius: 10px;
+    width: 130px;
     height: 25px;
-    margin: 5px;
+    margin: 2px;
     font-size: 14px;
 }
 
 .table-button2 .btn-delete button:hover {
-    background: rgba(201, 62, 243, 0.8);
+    color: #ffffff;
+    background: rgba(252, 21, 21, 0.8);
     padding: 5px;
     transition: all 0.8s;
 }
 
 .table-button2 .btn-update button:hover {
-    background: rgba(0, 248, 83, 0.8);
+    color: #ffffff;
+    background: rgba(247, 229, 36, 0.8);
     padding: 5px;
     transition: all 0.8s;
 
@@ -196,14 +200,14 @@ td{
 .table-button2 .btn-delete button {
     background: rgba(242, 156, 161, 0.5);
     padding: 5px;
-    color: rgb(245, 63, 63);
+    color: rgb(255, 0, 0);
     font-weight: 600;
 }
 
 .table-button2 .btn-update button {
     background: rgba(243, 201, 170, 0.5);
     padding: 5px;
-    color: white;
+    color: rgb(93, 73, 10);
     font-weight: 600;
 }
 
@@ -261,7 +265,7 @@ td{
 }
 .form-content input
 {
-    width: 600px;
+    width: 100%;
     height: 40px;
     border-radius: 20px;
     border: none;
@@ -269,7 +273,7 @@ td{
     margin-top: 10px;
     margin-bottom: 10px;
     font-size: 20px;
-    background: rgba(218, 75, 75, 0.2);
+    background: rgba(245, 140, 140, 0.2);
     text-align: center; 
     font-size: 18px;
 }
@@ -287,7 +291,7 @@ td{
 
 .btn-ok button {
     background: rgba(255, 0, 13, 0.5);
-    margin-left: 190px;
+    margin-left: 560px;
 }
 /* page */
 .page{

@@ -1,11 +1,11 @@
 <?php
-$name = isset($_POST['name']) ? $_POST['name'] : false;
-//fix sửa địa chỉ thành danh mục nhỏ//
-$address = isset($_POST['address']) ? $_POST['name'] : false;
-$phone = isset($_POST['phone']) ? $_POST['phone'] : false;
-$email = isset($_POST['email']) ? $_POST['email'] : false;
-$date = isset($_POST['datee']) ? $_POST['datee'] : false;
-$note = isset($_POST['note']) ? $_POST['note'] : false;
+// $name = isset($_POST['name']) ? $_POST['name'] : false;
+// //fix sửa địa chỉ thành danh mục nhỏ//
+// $address = isset($_POST['address']) ? $_POST['name'] : false;
+// $phone = isset($_POST['phone']) ? $_POST['phone'] : false;
+// $email = isset($_POST['email']) ? $_POST['email'] : false;
+// $date = isset($_POST['datee']) ? $_POST['datee'] : false;
+// $note = isset($_POST['note']) ? $_POST['note'] : false;
 
 $isSubmit = false; //submit
 $error = ''; //loi
@@ -13,53 +13,6 @@ $msg = ''; //thong bao
 $isError = false; //loi
 require_once '../db.php';
 require_once '../func.php';
-if (
-    $name !== false
-    && $address !== false
-    && $phone !== false
-    && $email !== false
-    && $date !== false
-    && $note !== false
-
-) {
-
-    $isSubmit = true;
-
-    // fix validate
-    // if (!isName($name)) {
-    //     $error .= 'Tên không hợp lệ<br>';
-    //     $isError = true;
-    // }
-    // if (!isPhone($phone)) {
-    //     $error .= 'Số điện thoại không hợp lệ<br>';
-    //     $isError = true;
-    // }
-    // if (!isEmail($email)) {
-    //     $error .= 'Email không hợp lệ<br>';
-    //     $isError = true;
-    // }
-    // if (isName($address)) {
-    //     $error .= 'Địa chỉ không hợp lệ<br>';
-    //     $isError = true;
-    // }
-    if (!$isError) {
-        $result = insert('manufacture', array(
-            'name' => $name,
-            'address' => $address,
-            'phone' => $phone,
-            'email' => $email,
-            'datee' => $date,
-            'note' => $note
-        ));
-
-        if ($result) {
-            $msg = 'Chúc mừng bạn đã thêm thành công !<br>';
-        } else {
-            $error = 'Có lỗi xảy ra, vui lòng thử lại sau!<br>';
-        }
-    }
-}
-
 ?>
 <?php
 
@@ -100,10 +53,10 @@ $records = get_list($query);
 
 <!DOCTYPE html>
 <html>
-<div class="row2">
+<!-- <div class="row2">
 
     <?php include '../root/fromadd.php'; ?>
-</div>
+</div> -->
 
 </div>
 
@@ -111,7 +64,7 @@ $records = get_list($query);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <title>Dashboard </title> -->
+    <title>Dashboard - manufacture</title>
     <link rel="stylesheet" href="../css/cssdb.css">
     <link rel="stylesheet" href="../css/cssmf.css">
     <script src="../js/mf.js"></script>
@@ -133,8 +86,6 @@ $records = get_list($query);
      
         <div class="container-main">
             <div class="container">
-
-
                 <div class="tag-name">
                     <h2> Nhà cung cấp</h2>
                 </div>
@@ -143,8 +94,7 @@ $records = get_list($query);
 
 
             <main>
-
-                <div class="cards">
+                <div class="cards" style="margin-top:-5px; margin-bottom: 10px; ">
 
                     <div class="card-single">
                         <div>
@@ -181,12 +131,11 @@ $records = get_list($query);
                     <div class="table-button">
                         <div class="btn-add">
 
-                            <a href="./manufactureadd.php" ><button class="btn btn1" id="button"><span class="fas fa-plus-circle" style="color: rgb(238, 56, 223); "></span> Thêm nhà sản xuất</button> </a>
+                            <a href="./manufactureadd.php" ><button class="btn btn1" id="button"><span class="fas fa-plus-circle" style="color: rgb(237, 205, 24); "></span> Thêm nhà sản xuất</button> </a>
                         </div>
                         <div class="btn-out">
 
-                            <button> <span class="fas fa-file-excel" style="color: rgb(14, 172, 40);"></span> &nbsp; Xuất file
-                                Excel</button>
+                            <button> <span class="fas fa-file-excel" style="color: rgb(14, 172, 40); height: 20px; width: 20px;"></span> &nbsp; Xuất file Excel</button>
                         </div>
 
                     </div>
@@ -253,7 +202,7 @@ $records = get_list($query);
                                         
                                             <div class="btn-update">
 
-                                                <button> <span class="fa fa-eraser"></span> &nbsp; Sửa</button>
+                                               <a  href="./manufactureupdate.php?id=<?= $post['id'] ?>" ><button> <span class="fa fa-eraser"></span> &nbsp; Sửa</button>  </a> 
                                             </div>
 
                                         </div>
