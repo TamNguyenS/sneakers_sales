@@ -56,6 +56,7 @@ if (
 
         if ($result) {
             $msg = 'Chúc mừng bạn đã thêm thành công !<br>';
+            // phpAlert('Thanh cong');
         } else {
             $error = 'Có lỗi xảy ra, vui lòng thử lại sau!<br>';
         }
@@ -98,6 +99,7 @@ if (
         </div>
 
         <div class="container-main">
+               
             <div class="container">
                 <div class="tag-name">
                     <a href="./index.php">
@@ -108,6 +110,8 @@ if (
 
             </div>
             <div class="container-content">
+                <h1> <?php echo $msg ?> </h1>
+                <h1> <?php echo $error ?></h1>
                 <div class="form-content">
                     <form action="" method="POST">
                         <p>Nhập tên nhà sản xuất </p>

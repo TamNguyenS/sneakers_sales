@@ -172,7 +172,7 @@ td{
 
     border: none;
     border-radius: 10px;
-    width: 130px;
+    width: 150px;
     height: 25px;
     margin: 2px;
     font-size: 14px;
@@ -215,45 +215,26 @@ td{
     display: inline;
     font-size: 1rem;
 }
-
-/* From add mf */
-
-#from-add
-{
-    position: absolute;
-    top: 5%;
-    right: 28%;
-    width: 650px;
-    height: 650px;
-    background: rgb(255, 255, 255);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(2px);
-    border-radius: 16px;
-    display: block;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    flex-direction: column;
-    z-index: 99;
-    animation: scale-animation 0.5s ease;
+.table-button2 .btn-detail button {
+    background: rgba(255, 167, 234, 0.5);
+    padding: 5px;
+    color: rgba(126, 4, 87, 0.519);
+    font-weight: 600;
 }
-#from-add span
-{
-    position: absolute;
-    top: 5px;
-    right: 10px;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.2);
-    color: black;
-    text-align: center;
-    cursor: pointer;
-    background: rgb(201, 216, 165);
+.table-button2 .btn-detail button:hover {
+    color: #ffffff;
+    background: rgba(255, 0, 179, 0.8);
+    padding: 5px;
+    transition: all 0.8s;
+
 }
-#from-add span:hover
-{
-    background: crimson;
+.table-image{
+  
+    padding:50px;
+    color: rgb(0, 0, 0);
+}
+.table-manager{
+   width: 250px;
 }
 
  .form-content{
@@ -263,7 +244,7 @@ td{
    font-size: 20px;
    background: rgb(255, 255, 255);
 }
-.form-content input
+/* .form-content input
 {
     width: 100%;
     height: 40px;
@@ -277,6 +258,105 @@ td{
     text-align: center; 
     font-size: 18px;
 }
+.form-content input {
+    padding: .25rem;
+    box-sizing: border-box;
+    color: rgb(0, 0, 0);
+    transition: border 1s, color 1.5s;
+}
+.form-content input:focus {
+    outline: none;
+    border: 1px solid #ff3010;
+    transition: border 1s, color .5s;
+    color: #f04a30;
+} */
+.form-content p {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: rgb(252, 58, 139);
+}
+.form-content input  {
+    background-color: transparent;
+    border: none;
+    border: 1px solid rgb(232, 232, 232);
+    padding: 0.7rem;
+    margin-top: .25rem;
+    margin-bottom: 1rem;
+    box-sizing: border-box;
+    width: 100%;
+    color: rgb(0, 0, 0);
+    transition: border 1s, color 1.5s;
+    border-radius: 30px
+}
+
+.form-content  input:focus {
+    outline: none;
+    border: 1px solid #ff3010;
+    border-radius: 30px;
+    transition: border 1s, color 1.5s;
+    color: #f85f47;
+}
+textarea:focus{
+    outline: none;
+    border: 1px solid #ff3010;
+    border-radius: 10px;
+    transition: border 1s, color 1.5s;
+    color: #f85f47;
+}
+textarea   {
+    background-color: transparent;
+    border: none;
+    border: 1px solid rgb(232, 232, 232);
+    padding: 0.7rem;
+    margin-top: .25rem;
+    margin-bottom: 1rem;
+    box-sizing: border-box;
+    width: 100%;
+    color: rgb(0, 0, 0);
+    transition: border 1s, color 1.5s;
+    border-radius: 10px;
+}
+#image-product-upload{
+    background:rgb(250, 140, 140);
+    width: 15%;
+    text-align: center;
+    height: 40px;
+    border-radius: 30px;
+    font-size:30px;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+
+}
+#image-product-upload:hover{
+    /* background:rgb(255, 0, 0); */
+    transition: color 3.5s;
+    color: #42110a;
+}
+select:focus{
+    outline: none;
+    border: 1px solid #ff3010;
+    border-radius: 10px;
+    transition: border 1s, color 1.5s;
+    color: #f85f47;
+}
+select  {
+    background-color: transparent;
+    border: none;
+    border: 1px solid rgb(232, 232, 232);
+    padding: 0.7rem;
+    margin-top: .25rem;
+    margin-bottom: 1rem;
+    box-sizing: border-box;
+    width: 100%;
+    color: rgb(0, 0, 0);
+    transition: border 1s, color 1.5s;
+    border-radius: 10px;
+}
+.image-product button{
+    background:rebeccapurple;
+}
+
 .container-content{
     animation: scale-animation 0.5s ease;
     padding: 20px;

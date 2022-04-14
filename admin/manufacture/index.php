@@ -43,7 +43,8 @@ $records = get_list($query);
         
         if($result){
             $msg = 'Xóa thành công';
-            // header('Location: ../manufacture');
+            // header('Location: ./index.php');
+            // die();
         }
         else{
             $msg = 'Xóa Không thành công ';
@@ -92,7 +93,6 @@ $records = get_list($query);
 
             </div>
 
-
             <main>
                 <div class="cards" style="margin-top:-5px; margin-bottom: 10px; ">
 
@@ -135,7 +135,7 @@ $records = get_list($query);
                         </div>
                         <div class="btn-out">
 
-                            <button> <span class="fas fa-file-excel" style="color: rgb(14, 172, 40); height: 20px; width: 20px;"></span> &nbsp; Xuất file Excel</button>
+                            <button> <span class="fa-solid fa-file-excel" style="color: rgb(14, 172, 40); height: 20px; width: 20px;"></span> &nbsp; Xuất file Excel</button>
                         </div>
 
                     </div>
@@ -195,16 +195,16 @@ $records = get_list($query);
                                     </td>
                                     <td>
                                         <div class="table-button2">
-                                            
+                                           
                                             <div class="btn-delete">
-                                               <a onclick="return confirm('Bạn có chắc muốn xóa?')"  href="./?delete=<?= $post['id'] ?>" > <button >  <span class="fa fa-times"  ></span> Xóa</button> </a> 
+                                               <a onclick="return confirm('Bạn có chắc muốn xóa?')"  href="./?delete=<?= $post['id'] ?>" > <button >  <span class="fa-solid fa-trash"  ></span> Xóa</button> </a> 
                                             </div>
-                                        
+                                      
                                             <div class="btn-update">
 
-                                               <a  href="./manufactureupdate.php?id=<?= $post['id'] ?>" ><button> <span class="fa fa-eraser"></span> &nbsp; Sửa</button>  </a> 
+                                               <a  href="./manufactureupdate.php?id=<?= $post['id'] ?>" ><button> <span class="fa-solid fa-pen"></span> &nbsp; Sửa</button>  </a> 
                                             </div>
-
+                            
                                         </div>
                                     </td>
                                 </tr>

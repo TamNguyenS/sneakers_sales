@@ -65,6 +65,7 @@ if (
 
         if ($result) {
             $msg = 'Chúc mừng bạn đã sửa thành công !<br>';
+           
             // echo '<script type="text/JavaScript"> location.reload(); </script>';
         } else {
             $error = 'Có lỗi xảy ra, vui lòng thử lại sau!<br>';

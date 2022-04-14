@@ -23,17 +23,17 @@
 				<a href="" class="menu-link"><i class="fa fa-shopping-cart"></i> <span>Đơn hàng</span> </a>
 			</li>
 			<li class="menu-item">
-				<a href="../product/" class="menu-link"><i class="fa fa-shopping-bag"></i> <span>Các mặt hàng</span></a>
+				<a href="../product/" class="menu-link"><i class="fa fa-shopping-bag"></i> <span>Sản phẩm</span></a>
 				<button onclick="product_child()" class="dropbtn"> <i class="fas fa-angle-down" id="product_btn"></i>
 				</button>
 			</li>
 
 			<li class="menu-item dropdown-content" id="product">
-				<a href="../product/productadd.php" class="menu-link"> &nbsp; <span> Thêm mặt hàng</span> <i class="fas fa-angle-right"></i> </a>
+				<a href="../product/productadd.php" class="menu-link"> &nbsp; <span> Thêm sản phẩm</span> <i class="fas fa-angle-right"></i> </a>
 			</li>
 
 			<li class="menu-item">
-				<a href="" class="menu-link"><i class="fas fa-user-plus"></i><span>Nhân viên</span></a>
+				<a href="./header.php" class="menu-link"><i class="fas fa-user-plus"></i><span>Nhân viên</span></a>
 				<button onclick="employee_child()" class="dropbtn"> <i class="fas fa-angle-down" id="employee_btn"></i>
 				</button>
 			</li>
