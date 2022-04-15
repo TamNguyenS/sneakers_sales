@@ -2,27 +2,62 @@
 require_once '../db.php';
 require_once '../func.php';
 ?>
-
 <?php
-$query = 'SELECT id, name FROM manufacture';
-$manufacture_list = get_list($query);
+$query_m = 'SELECT id, name FROM manufacture';
+$manufacture_list = get_list($query_m);
 // print_r($manufacture_list );
 ?>
 
 <?php
-$query = 'SELECT id, name FROM type';
-$type_list = get_list($query);
+$query_t = 'SELECT id, name FROM type';
+$type_list = get_list($query_t);
 // print_r($type_list );
 ?>
-
 <?php
+
+$id = $_GET['id'];
+// die($id);
+$query = "SELECT product.* , manufacture.name AS manufacture_name,
+type.name AS type_name FROM product 
+INNER JOIN manufacture ON product.manufacture_id = manufacture.id
+INNER JOIN type ON product.type_id = type.id
+WHERE product.id = '$id'";
+$product_info = get_list($query);
+// print_r($product_info); 
+?>
+<?php
+foreach($product_info as $value){
+    $image_old = $value['image'];
+
+}
 $name = isset($_POST['name']) ? $_POST['name'] : false;
-$image = isset($_FILES['image-product']) ? $_FILES['image-product'] : false;
+// $image = isset($_FILES['image-product']) ? $_FILES['image-product'] : ;
 $description = isset($_POST['description']) ? $_POST['description'] : false;
 $cost = isset($_POST['cost']) ? $_POST['cost'] : false;
 $quantity = isset($_POST['quantity']) ? $_POST['quantity'] : false;
 $manufacture_id = isset($_POST['manufacture']) ? $_POST['manufacture'] : false;
 $type_id = isset($_POST['type']) ? $_POST['type'] : false;
+if(isset($_FILES['image-product'])){
+       
+    $folder = '../photos/';
+    $imageFileType = explode('.', $image["name"])[1];
+    $file_extension = '';
+    if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
+        echo "Cái lày không phải file ảnh ";
+        $upload = true;
+        $isError = true;
+    }
+    if (!$upload) {
+        $file_extension = time() . '.' . $imageFileType;
+        $path_file = $folder . $file_extension;
+        move_uploaded_file($image["tmp_name"], $path_file);
+    }
+
+    }
+    else{
+        $file_extension = $image_old;
+    }
+
 $upload = false;
 $isSumit = false;
 $isError = false;
@@ -31,7 +66,6 @@ $msg = '';
 
 if (
     $name !== false
-    && $image !== false
     && $description !== false
     && $cost !== false
     && $quantity !== false
@@ -40,23 +74,9 @@ if (
 ) {
     $isSubmit = true;
 
-    //validate image
-    $folder = '../photos/';
-    $imageFileType = explode('.', $image["name"])[1];
-    if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
-        echo "Cái lày không phải file ảnh ";
-        $upload = true;
-        $isError = true;
-    }
-    if (!$upload) {
-        $file_extension= time() . '.' . $imageFileType;
-        $path_file = $folder . $file_extension;
-        move_uploaded_file($image["tmp_name"], $path_file);
-    }
-    //validate de khi khác :V
-
-    if(!$isError){
-        $result = update('product', array(
+    
+    if (!$isError) {
+        $result = insert('product', array(
             'name' => $name,
             'image' => $file_extension,
             'quantity' => $quantity,
@@ -64,17 +84,14 @@ if (
             'cost' => $cost,
             'manufacture_id' => $manufacture_id,
             'type_id'  => $type_id,
-            
-        ),"id =$id");
-        if($result){
-            $msg = 'Chúc mừng bạn đã thêm thành công !<br>';
-        }
-        else{
+
+        ));
+        if ($result) {
+            $msg = 'Chúc mừng bạn đã sửa thành công !<br>';
+        } else {
             $error = 'Có lỗi xảy ra, vui lòng thử lại sau!<br>';
         }
     }
-    
-
 }
 ?>
 
@@ -112,7 +129,7 @@ if (
             <div class="container">
                 <div class="tag-name">
                     <a href="./index.php">
-                        <h2> <span class="fa fa-arrow-circle-left"></span> Thêm sản phẩm</h2>
+                        <h2> <span class="fa fa-arrow-circle-left"></span> Sửa sản phẩm</h2>
                         <br>
 
                     </a>
@@ -120,39 +137,43 @@ if (
 
             </div>
             <div class="container-content">
-                <!-- <h1> <php echo $msg ?> </h1>
-                <h1> <php echo $error ?></h1> -->
+                <h1> <?php echo $msg ?> </h1>
+                <h1> <?php echo $error ?></h1>
                 <div class="form-content">
                     <p><?php  ?></p>
                     <form action="" method="POST" enctype="multipart/form-data">
-
+                    <?php foreach($product_info as $post){ ?>
                         <p>Nhập tên sản phẩm </p>
-                        <input type="text" name="name" placeholder="Nhập tên nhà sản xuất">
+                        <input type="text" name="name" placeholder="Nhập tên nhà sản xuất" value="<?php echo $post['name']?>">
                         <p>Hình ảnh sản phẩm</p>
                         <div id="image-product-upload">
                             <label for="image-product" id="image-upload"> <i class="fas fa-upload"></i>Tải ảnh lên </label>
                             <input type="file" name="image-product" accept="image/png, image/jpeg, image/jpg" id="image-product" hidden>
                         </div>
-                        <p>perview hình ảnh đang làm</p>
+                        <p>Hình ảnh củ </p>
+                        <img src="../photos/<?php echo $post['image']?> " alt="anh" style="width: 250px ; wight: 150px; border: 2px solid #ff3010; boder-radius: 30px ">
+                        
                         <br>
                         <p>Giá bán </p>
-                        <input type="text" name="cost" placeholder="">
+                        <input type="text" name="cost" placeholder=""  value="<?php echo $post['cost']?>">
                         <p>Số lượng </p>
-                        <input type="int" name="quantity" placeholder="Nhập số lượng">
+                        <input type="int" name="quantity" placeholder="Nhập số lượng" value="<?php echo $post['quantity']?>">
                         <p> Loại sản phẩm</p>
+
                         <select name="type" id="type">
-                            <?php foreach ($type_list as $post) { ?>
-                                <option value="<?php echo $post['id'] ?>"> <?php echo $post['name'] ?> </h1>
+                            <?php foreach ($type_list as $post1) { ?>
+                                <option value="<?php echo $post1['id'] ?>"> <?php echo $post1['name'] ?> </h1>
                             <?php } ?>
                         </select>
                         <p> Nhà sản xuất</p>
                         <select name="manufacture" id="manufacture">
-                            <?php foreach ($manufacture_list as $post) { ?>
-                                <option value="<?php echo $post['id'] ?>"> <?php echo $post['name'] ?> </option>
+                            <?php foreach ($manufacture_list as $post2) { ?>
+                                <option value="<?php echo $post2['id'] ?>"> <?php echo $post2['name'] ?> </option>
                             <?php } ?>
                         </select>
                         <p>Mô tả</p>
-                        <textarea name="description" id="" cols="170" rows="10"></textarea>
+                        <textarea name="description" id="" cols="170" rows="10"> <?php echo $post['description'] ?></textarea>
+                      
                         <div class="table-button">
                             <div class="btn-ok">
                                 <button> OK </button>
@@ -165,7 +186,7 @@ if (
                             </div>
 
                         </div>
-
+                        <?php } ?>
                     </form>
                 </div>
             </div>

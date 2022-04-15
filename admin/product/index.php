@@ -1,10 +1,25 @@
 <?php
 require_once '../db.php';
 require_once '../func.php';
-
-
 ?>
 
+<?php
+$search = empty($_GET['search']) ? '' : $_GET['search'];
+$search = validate($search);
+
+//page 
+$page = empty($_GET['page']) ? 1 : $_GET['page'];
+if (!is_numeric($page)) die();
+
+$page_limit = 6;
+$page_total_length = get_count('SELECT count(*) FROM product WHERE NAME LIKE \'%' . $search . '%\'');
+$page_length = ceil($page_total_length / $page_limit);
+$page_skip =  $page_limit * ($page - 1);
+
+$query = "SELECT * FROM product WHERE NAME LIKE '%$search%' LIMIT  $page_limit OFFSET $page_skip";
+$records = get_list($query);
+
+?> 
 <!DOCTYPE html>
 <html>
 </div>
@@ -104,9 +119,9 @@ require_once '../func.php';
                                 <th>
                                     <h3>Đã bán</h3>
                                 </th>
-                                <th>
+                                <!-- <th>
                                     <h3>Nhà sản xuất</h3>
-                                </th>
+                                </th> -->
                                 <th>
                                     <h3>Mô tả</h3>
                                 </th>
@@ -117,25 +132,27 @@ require_once '../func.php';
                                 
                             </tr>
 
-
+                            <?php foreach($records as $post){   ?>
                             <tr>
                                 <td class="table-image">
-                                    <p></p>
+                                     <img src="../photos/<?php echo $post['image']; ?>" style="width: 150px; height 150px; border-radius: 5px;">
                                 </td>
                                 <td>
-                                    <p< /p>
+                                    <p><?php echo $post['name']; ?> </p>
+                                </td>
+                                <td style=" width: 150px;">
+                                   <p><?php echo number_format(  $post['cost'],0, '', '.' ); ?> VND</p>
                                 </td>
                                 <td>
-                                    <p></p>
+                                    <p><?php echo $post['sold']; ?></p>
                                 </td>
-                                <td>
-                                    <p></p>
-                                </td>
-                                <td>
-                                    <p></p>
-                                </td>
-                                <td>
-                                    <p></p>
+                                <!-- <td>
+                                   <p><php echo $post['manufacture_id']; ?> </p>
+                                </td> -->
+                                <td class="table-description">
+                                     <p><?php echo mb_strimwidth($post['description'], 0, 94, "..."); ; ?> </p>
+                                     
+
                                 </td>
 
                                 </td>
@@ -143,22 +160,22 @@ require_once '../func.php';
                                     <div class="table-button2">
 
                                         <div class="btn-delete">
-                                            <a onclick="return confirm('Bạn có chắc muốn xóa?')"" > <button >  <span class="fa-solid fa-trash"></span> Xóa</button> </a>
+                                            <a onclick="return confirm('Bạn có chắc muốn xóa?')"" > <button >  <span class="fa-solid fa-eraser"></span> Xóa</button> </a>
                                         </div>
-
                                         <div class="btn-update">
-
-                                            <a href=""><button> <span class="fa-solid fa-pen"></span> &nbsp; Sửa</button> </a>
+                                      
+                                            <a href="./productupdate.php?id=<?php echo $post['id'] ?>"><button> <span class="fa-regular fa-pen-to-square"></span> &nbsp; Sửa</button> </a>
                                         </div>
+                                     
                                         <div class="btn-detail">
 
-                                            <a href=""><button> <span class="fa-solid fa-eye"></span> &nbsp; Xem chi tiết</button> </a>
+                                            <a href=""><button> <span class=""></span> &nbsp; Xem chi tiết</button> </a>
                                         </div>
                     
                                     </div>
                                 </td>
                             </tr>
-
+                                <?php } ?>
                         </thead>
                     </table>
                     <br>

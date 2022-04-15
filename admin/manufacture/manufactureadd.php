@@ -116,8 +116,8 @@ if (
                     <form action="" method="POST">
                         <p>Nhập tên nhà sản xuất </p>
                         <input type="text" name="name" required placeholder="Nhập tên nhà sản xuất">
-                        <p>Nhập địa chỉ: </p>
-                        <input type="text" name="address" required placeholder="Nhập địa chỉ ">
+                        <p>Xuất xứ: </p>
+                        <input type="text" name="address" required placeholder="Nhập xuất xứ ">
                         <p>Email liên hệ: </p>
                         <input type="email" name="email" required placeholder="Email liên hệ">
                         <p>Số điện thoại liên hệ: </p>

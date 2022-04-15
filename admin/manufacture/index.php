@@ -1,24 +1,13 @@
 <?php
-// $name = isset($_POST['name']) ? $_POST['name'] : false;
-// //fix sửa địa chỉ thành danh mục nhỏ//
-// $address = isset($_POST['address']) ? $_POST['name'] : false;
-// $phone = isset($_POST['phone']) ? $_POST['phone'] : false;
-// $email = isset($_POST['email']) ? $_POST['email'] : false;
-// $date = isset($_POST['datee']) ? $_POST['datee'] : false;
-// $note = isset($_POST['note']) ? $_POST['note'] : false;
 
-$isSubmit = false; //submit
-$error = ''; //loi
-$msg = ''; //thong bao
-$isError = false; //loi
+$isSubmit = false; 
+$error = ''; 
+$msg = ''; 
+$isError = false;
 require_once '../db.php';
 require_once '../func.php';
 ?>
 <?php
-
-// require_once '../db.php';
-// require_once '../func.php';
-
 $search = empty($_GET['search']) ? '' : $_GET['search'];
 $search = validate($search);
 
@@ -131,7 +120,7 @@ $records = get_list($query);
                     <div class="table-button">
                         <div class="btn-add">
 
-                            <a href="./manufactureadd.php" ><button class="btn btn1" id="button"><span class="fas fa-plus-circle" style="color: rgb(237, 205, 24); "></span> Thêm nhà sản xuất</button> </a>
+                            <a href="./manufactureadd.php" ><button class="btn btn1" id="button"><span class="fas fa-plus-circle" style="color: rgb(237, 205, 24); "></span> Thêm nhà cung cấp</button> </a>
                         </div>
                         <div class="btn-out">
 
@@ -150,7 +139,7 @@ $records = get_list($query);
                                     <h3>Tên nhà sản xuất</h3>
                                 </th>
                                 <th>
-                                    <h3>Địa chỉ</h3>
+                                    <h3>Xuất xứ</h3>
                                 </th>
                                 <th>
                                     <h3>Email</h3>
@@ -197,12 +186,12 @@ $records = get_list($query);
                                         <div class="table-button2">
                                            
                                             <div class="btn-delete">
-                                               <a onclick="return confirm('Bạn có chắc muốn xóa?')"  href="./?delete=<?= $post['id'] ?>" > <button >  <span class="fa-solid fa-trash"  ></span> Xóa</button> </a> 
+                                               <a onclick="return confirm('Bạn có chắc muốn xóa?')"  href="./?delete=<?= $post['id'] ?>" > <button >  <span class="fa-solid fa-eraser"  ></span> Xóa</button> </a> 
                                             </div>
                                       
                                             <div class="btn-update">
 
-                                               <a  href="./manufactureupdate.php?id=<?= $post['id'] ?>" ><button> <span class="fa-solid fa-pen"></span> &nbsp; Sửa</button>  </a> 
+                                               <a  href="./manufactureupdate.php?id=<?= $post['id'] ?>" ><button> <span class="fa-regular fa-pen-to-square"></span> &nbsp; Sửa</button>  </a> 
                                             </div>
                             
                                         </div>

@@ -26,6 +26,7 @@ function insert($table, $data)
         $value_list .= ",'" . $conn->real_escape_string($value) . "'"; //real_escape_string: chống sql injection loai bo cac ky tu dac biet
     }
     $query = 'INSERT INTO ' . $table . '(' . trim($field_list, ',') . ') VALUES (' . trim($value_list, ',') . ')';
+    // die($query);
     $result = $conn->query($query);
     // echo $result;
     if(!$result) die('[Database class - insert] Truy vấn sai');

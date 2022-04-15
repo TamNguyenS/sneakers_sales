@@ -172,10 +172,12 @@ td{
 
     border: none;
     border-radius: 10px;
-    width: 150px;
+    width: 110px;
     height: 25px;
-    margin: 2px;
+    margin: 4px;
     font-size: 14px;
+    letter-spacing: 1px;
+  
 }
 
 .table-button2 .btn-delete button:hover {
@@ -198,14 +200,14 @@ td{
     float: left;
 } */
 .table-button2 .btn-delete button {
-    background: rgba(242, 156, 161, 0.5);
+    background: rgb(252, 181, 184);
     padding: 5px;
-    color: rgb(255, 0, 0);
+    color: rgb(109, 9, 9);
     font-weight: 600;
 }
 
 .table-button2 .btn-update button {
-    background: rgba(243, 201, 170, 0.5);
+    background: rgb(241, 254, 125);
     padding: 5px;
     color: rgb(93, 73, 10);
     font-weight: 600;
@@ -216,25 +218,31 @@ td{
     font-size: 1rem;
 }
 .table-button2 .btn-detail button {
-    background: rgba(255, 167, 234, 0.5);
+    background: rgb(177, 247, 168);
     padding: 5px;
-    color: rgba(126, 4, 87, 0.519);
+    color: rgba(6, 101, 36, 0.519);
     font-weight: 600;
 }
 .table-button2 .btn-detail button:hover {
     color: #ffffff;
-    background: rgba(255, 0, 179, 0.8);
+    background: rgb(13, 255, 0);
     padding: 5px;
     transition: all 0.8s;
 
 }
-.table-image{
-  
-    padding:50px;
+.table-image  {
+   
+    width: 250px;
+    padding: 10px;
+    text-align: center;
     color: rgb(0, 0, 0);
 }
+.table-description{ 
+    width: 350px;
+}
+
 .table-manager{
-   width: 250px;
+   width: 22px;
 }
 
  .form-content{
