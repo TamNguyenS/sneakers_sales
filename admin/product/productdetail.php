@@ -2,7 +2,21 @@
 require_once '../db.php';
 require_once '../func.php';
 ?>
+<?php
 
+
+$id = $_GET['id'];
+// die($id);
+$query = "SELECT product.* , 
+manufacture.name AS manufacture_name, manufacture.address AS manufacture_address,
+type.name AS type_name FROM product 
+INNER JOIN manufacture ON product.manufacture_id = manufacture.id
+INNER JOIN type ON product.type_id = type.id
+WHERE product.id = '$id'";
+$product_info = get_list($query);
+// print_r($product_info); 
+
+?>
 
 <!DOCTYPE html>
 <html>
@@ -48,7 +62,7 @@ require_once '../func.php';
 
             <div class="container-content">
                 <!-- containner connetent -->
-
+                <?php foreach ($product_info as $product){ ?>
                 <div class="table-button-detail">
                     <div class="btn-out">
                         <a> <button> <span class="fa-solid fa-file-excel"></span> &nbsp; Excel</button> </a>
@@ -62,9 +76,9 @@ require_once '../func.php';
                 </div>
                 <div class="product-detail">
                     <div class="product-title">
-                        <h1>Sản phẩm :<h1>
+                        <h1><?php echo $product['name']; ?><h1>
                                 <div class="detail-img">
-                                    <img src="../photos/1650042430.png" alt="">
+                                    <img src="../photos/<?php echo $product['image']; ?>" alt="">
                                 </div>
 
                     </div>
@@ -72,40 +86,42 @@ require_once '../func.php';
                     
                         <div class="table-detail">
                             <table>
+                               
                                 <tr>
                                     <th>Tên sản phẩm</th>
-                                    <td>sadasdasd </td>
+                                    <td><?php echo $product['name']; ?></td>
                                 </tr>
 
                                 <tr>
                                     <th>Đã bán</th>
-                                    <td>sadasdasd </td>
+                                    <td><?php echo $product['sold']; ?> </td>
                                 </tr>
 
                                 <tr>
                                     <th>Số lượng hiện có</th>
-                                    <td>sadasdasd </td>
+                                    <td><?php echo $product['quantity']; ?> </td>
                                 </tr>
                                 <tr>
                                     <th>Nhà sản xuất</th>
-                                    <td>sadasdasd </td>
+                                    <td><?php echo $product['manufacture_name']; ?> </td>
                                 </tr>
                                 <tr>
                                     <th>Loại sản phẩm</th>
-                                    <td>sadasdasd </td>
+                                    <td><?php echo $product['type_name']; ?> </td>
                                 </tr>
                                 <tr>
                                     <th>Xuất sứ</th>
-                                    <td>sadasdasd </td>
+                                    <td><?php echo $product['manufacture_address']; ?> </td>
                                 </tr>
                                 <tr>
                                     <th>Ngày thêm</th>
-                                    <td>sadasdasd </td>
+                                    <td><?php echo $product['date']; ?> </td>
                                 </tr>
                                 <tr>
                                     <th>Mô tả</th>
-                                    <td><textarea readonly>sadasdsad</textarea></td>
+                                    <td><textarea  rows="10" readonly><?php echo $product['description']; ?></textarea></td>
                                 </tr>
+                                <?php }?>
                             </table>
                         </div>
 

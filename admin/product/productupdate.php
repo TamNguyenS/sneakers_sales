@@ -175,9 +175,11 @@ if (
                                     <option value="<?php echo $post2['id'] ?>" <?php if ($manufacture_id_selected  == $post2['id']) { ?> selected <?php } ?>><?php echo $post2['name'] ?> </option>
                                 <?php } ?>
                             </select>
+                            <p>Ngày thêm</p>
+                            <input type="date" name="date" id="datePicker"  value="<?php echo $post['date'] ?>" readonly>
                             <p>Mô tả</p>
                             <textarea name="description" id="" cols="170" rows="10"> <?php echo $post['description'] ?></textarea>
-
+                          
                             <div class="table-button">
                                 <div class="btn-ok">
                                     <button> OK </button>

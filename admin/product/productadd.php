@@ -23,6 +23,7 @@ $cost = isset($_POST['cost']) ? $_POST['cost'] : false;
 $quantity = isset($_POST['quantity']) ? $_POST['quantity'] : false;
 $manufacture_id = isset($_POST['manufacture']) ? $_POST['manufacture'] : false;
 $type_id = isset($_POST['type']) ? $_POST['type'] : false;
+$date = isset($_POST['date']) ? $_POST['date'] : false;
 $upload = false;
 $isSumit = false;
 $isError = false;
@@ -37,6 +38,7 @@ if (
     && $quantity !== false
     && $manufacture_id  !== false
     && $type_id  !== false
+    && $date  !== false
 ) {
     $isSubmit = true;
     //validate image
@@ -64,6 +66,7 @@ if (
             'cost' => $cost,
             'manufacture_id' => $manufacture_id,
             'type_id'  => $type_id,
+            'date' => $date
 
         ));
         if ($result) {
@@ -150,6 +153,8 @@ if (
                                 <option value="<?php echo $post['id'] ?>"> <?php echo $post['name'] ?> </option>
                             <?php } ?>
                         </select>
+                        <p>Ngày thêm</p>
+                        <input type="date" name="date" id="datePicker" required readonly>
                         <p>Mô tả</p>
                         <textarea name="description" id="" cols="170" rows="10"></textarea>
                         <div class="table-button">
@@ -171,5 +176,7 @@ if (
         </div>
     </div>
 </body>
-
+<script type="text/javascript">
+    document.getElementById('datePicker').valueAsDate = new Date();
+</script>
 </html>

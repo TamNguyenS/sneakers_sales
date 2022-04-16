@@ -99,7 +99,7 @@ if (
         </div>
 
         <div class="container-main">
-               
+
             <div class="container">
                 <div class="tag-name">
                     <a href="./index.php">
@@ -129,8 +129,12 @@ if (
                         <div class="table-button">
                             <div class="btn-ok">
                                 <button> OK </button>
-                                     <p> <php echo $msg ?></p>
-                                     <p> <php echo $error ?></p>
+                                <p>
+                                    <php echo $msg ?>
+                                </p>
+                                <p>
+                                    <php echo $error ?>
+                                </p>
                             </div>
 
                         </div>
@@ -143,5 +147,6 @@ if (
 </body>
 <script type="text/javascript">
     document.getElementById('datePicker').valueAsDate = new Date();
-    </script>
+</script>
+
 </html>
