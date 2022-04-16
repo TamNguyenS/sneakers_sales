@@ -17,7 +17,8 @@ $type_list = get_list($query_t);
 
 $id = $_GET['id'];
 // die($id);
-$query = "SELECT product.* , manufacture.name AS manufacture_name,
+$query = "SELECT product.* , 
+manufacture.name AS manufacture_name,
 type.name AS type_name FROM product 
 INNER JOIN manufacture ON product.manufacture_id = manufacture.id
 INNER JOIN type ON product.type_id = type.id
@@ -32,7 +33,9 @@ foreach ($product_info as $value) {
     $type_id_selected = $value['type_id'];
 }
 $name = isset($_POST['name']) ? $_POST['name'] : false;
-$image = empty($_FILES['image-product']) ? false :  $_FILES['image-product'];
+
+// $image_new = isset($_FILES['image-new']) ?  $_FILES['image-new']  : false ;
+
 $description = isset($_POST['description']) ? $_POST['description'] : false;
 $cost = isset($_POST['cost']) ? $_POST['cost'] : false;
 $quantity = isset($_POST['quantity']) ? $_POST['quantity'] : false;
@@ -44,7 +47,24 @@ $isSumit = false;
 $isError = false;
 $error = '';
 $msg = '';
-$file_extension = "$image_old";
+$file_name = '';
+
+
+if(isset($_FILES["image-new"])){
+    $product_image = $_FILES["image-new"];
+    // print_r($product_image);
+    // die();
+    if(strlen($product_image['tmp_name']) != 0 ){
+        $folder = '../photos/';
+        $file_extension = explode('.',$product_image['name'])[1];
+        $file_name =  time() . '.' . $file_extension;
+        $path_file = $folder . $file_name;
+        move_uploaded_file($product_image['tmp_name'], $path_file);
+    }else{
+        $file_name =  $image_old;
+    }
+    
+}
 
 
 if (
@@ -57,26 +77,11 @@ if (
 ) {
     $isSubmit = true;
 
-    if ($image == false) {
-    
-        $imageFileType = explode('.', $image["name"])[1];
-        if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
-            echo "Cái lày không phải file ảnh ";
-            $upload = true;
-            $isError = true;
-        }
-        if (!$upload) {
-            $file_extension = time() . '.' . $imageFileType;
-            $path_file = '../photos/'. $file_extension;
-            move_uploaded_file($image["tmp_name"], $path_file);
-        }
-    }
-
-
+    //validate!!
     if (!$isError) {
         $result = update('product', array(
             'name' => $name,
-            'image' => $file_extension,
+            'image' => $file_name ,
             'quantity' => $quantity,
             'description' => $description,
             'cost' => $cost,
@@ -146,10 +151,10 @@ if (
                             <p>Hình ảnh sản phẩm</p>
                             <div id="image-product-upload">
                                 <label for="image-product" id="image-upload"> <i class="fas fa-upload"></i>Tải ảnh lên </label>
-                                <input type="file" name="image-product" accept="image/png, image/jpeg, image/jpg" id="image-product" >
+                                <input type="file" name="image-new" accept="image/png, image/jpeg, image/jpg" id="image-product" hidden>
                             </div>
                             <p>Hình ảnh củ </p>
-                            <img src="../photos/<?php echo $post['image'] ?> " alt="anh" style="width: 250px ; wight: 150px; border: 2px solid #ff3010; boder-radius: 30px ">
+                            <img src="../photos/<?php echo  $image_old ?> " alt="anh" style="width: 350px ; wight: 350px; border: 2px solid #ff3010; boder-radius: 100px ">
 
                             <br>
                             <p>Giá bán </p>
@@ -160,23 +165,14 @@ if (
 
                             <select name="type" id="type">
                                 <?php foreach ($type_list as $post1) { ?>
-                                    <option value="<?php echo $post1['id'] ?>"
-                                    <?php if( $type_id_selected == $post1['id']){ ?>
-                                    selected
-                                    <?php } ?>                      
-                                    
-                                    > <?php echo $post1['name'] ?> </h1>
+                                    <option value="<?php echo $post1['id'] ?>" <?php if ($type_id_selected == $post1['id']) { ?> selected <?php } ?>> <?php echo $post1['name'] ?> </h1>
                                     <?php } ?>
                             </select>
                             <p> Nhà sản xuất</p>
                             <select name="manufacture" id="manufacture">
                                 <?php foreach ($manufacture_list as $post2) { ?>
 
-                                    <option value="<?php echo $post2['id'] ?>" 
-                                    <?php if($manufacture_id_selected  == $post2['id']){ ?>
-                                     selected
-                                    <?php } ?>
-                                      ><?php echo $post2['name'] ?> </option>
+                                    <option value="<?php echo $post2['id'] ?>" <?php if ($manufacture_id_selected  == $post2['id']) { ?> selected <?php } ?>><?php echo $post2['name'] ?> </option>
                                 <?php } ?>
                             </select>
                             <p>Mô tả</p>

@@ -1,0 +1,130 @@
+
+        .table-button-detail {
+            margin-bottom: 20px;
+
+        }
+
+        .table-button-detail button {
+
+            border: none;
+            border-radius: 30px;
+            width: 70px;
+            font-size: 13px;
+            height: 25px;
+            font-weight: bold;
+            margin-right: 10px;
+            transition: all 0.8s;
+
+        }
+
+        .table-button-detail .btn-addd {
+            float: left;
+        }
+
+        .table-button-detail .btn-addd button {
+            background: rgba(255, 252, 164, 0.5);
+            color: rgb(185, 158, 8);
+            padding: 5px;
+        }
+
+        .table-button-detail .btn-out button {
+            float: left;
+            background: rgb(188, 246, 197);
+            color: rgb(54, 144, 46);
+            padding: 5px;
+        }
+
+
+
+        .table-button-detail .btn-addd span {
+            display: inline;
+            font-size: 1rem;
+        }
+
+        .table-button-detail .btn-out span {
+            display: inline;
+            font-size: 1rem;
+        }
+
+        .table-button-detail .btn-delete span {
+            display: inline;
+            font-size: 1rem;
+        }
+
+        .table-button-detail .btn-delete button {
+            background: rgb(255, 179, 175);
+            color: rgb(175, 21, 21);
+            padding: 5px;
+        }
+        
+        .table-button-detail .btn-addd button:hover {
+            color: rgb(255, 255, 255);
+            background: rgba(237, 205, 24, 0.8);
+            padding: 5px;
+            transition: all 0.8s;
+            letter-spacing: 2px;
+        }
+
+        .table-button-detail .btn-out button:hover {
+            color: rgb(255, 255, 255);
+            background: rgba(0, 248, 83, 0.8);
+            padding: 5px;
+            transition: all 0.8s;
+            letter-spacing: 1px;
+
+        }
+        .table-button-detail .btn-delete button:hover {
+            color: rgb(255, 255, 255);
+            background: rgba(255, 0, 0, 0.8);
+            padding: 5px;
+            transition: all 0.8s;
+            letter-spacing: 2px;
+        }
+
+        .detail-img{
+            margin:20px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+
+       
+           
+        }
+        .product-title{
+            margin:30px;
+            margin-bottom: 40px;
+            
+        }
+        .product-title h1 {
+            font-size: 30px;
+            color: rgb(252, 140, 140);
+        }
+        .detail-img img{
+            transition: all 2s;
+            height: 30%;
+            width: 30%;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            border-radius: 40px;
+        }
+        .detail-img img:hover{
+            transform: scaleX(-1);
+           
+        }
+        
+        .text {
+          color: rgb(91, 85, 85);
+          font-size: 18px;
+          font-weight: 400;
+        }
+        .table-detail table{
+            border-collapse: separate;
+            border-spacing: 15px;
+
+           }
+        .table-detail th{
+         width: 20% ;
+         background: rgb(251, 216, 216);
+         border-radius: 10px;
+        }

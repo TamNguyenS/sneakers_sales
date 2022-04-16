@@ -14,6 +14,7 @@ main{
     grid-gap: 2rem;
     margin-left: 100px;
     animation: scale-animation 0.5s ease;
+    transition: all 0.8s;
 
 }
 
@@ -24,6 +25,7 @@ main{
     padding: 1.0rem;
     border-radius: 2rem;
     animation: scale-animation 0.5s ease;
+    transition: all 0.8s;
 }
 
 .card-single h1+span {
@@ -87,6 +89,7 @@ main{
     font-size:13px;
     height: 27px;
    font-weight: bold;
+   transition: all 0.8s;
 
 }
 
@@ -128,8 +131,14 @@ main{
 .table-button .btn-out span {
     display: inline;
     font-size: 1rem;
-    color: rgb(50, 248, 0);
 }
+
+
+
+
+
+
+
 table {
     /* padding: 30px; */
     color: rgb(0, 0, 0); 
@@ -171,12 +180,14 @@ td{
   .table-button2 button {
 
     border: none;
-    border-radius: 10px;
-    width: 110px;
-    height: 25px;
+    border-radius: 30px;
+    width: 85px;
+    height: 23px;
     margin: 4px;
-    font-size: 14px;
-    letter-spacing: 1px;
+    font-size: 13px;
+   
+    transition: all 0.8s;
+    font-weight: 1000;
   
 }
 
@@ -185,6 +196,7 @@ td{
     background: rgba(252, 21, 21, 0.8);
     padding: 5px;
     transition: all 0.8s;
+    letter-spacing: 2px;
 }
 
 .table-button2 .btn-update button:hover {
@@ -192,6 +204,7 @@ td{
     background: rgba(247, 229, 36, 0.8);
     padding: 5px;
     transition: all 0.8s;
+    letter-spacing: 2px;
 
 }
 
@@ -203,14 +216,15 @@ td{
     background: rgb(252, 181, 184);
     padding: 5px;
     color: rgb(109, 9, 9);
-    font-weight: 600;
+    letter-spacing: 1px;
 }
 
 .table-button2 .btn-update button {
     background: rgb(241, 254, 125);
     padding: 5px;
     color: rgb(93, 73, 10);
-    font-weight: 600;
+    letter-spacing: 1px;
+
 }
 
 .table-button2 .btn-add span {
@@ -221,13 +235,14 @@ td{
     background: rgb(177, 247, 168);
     padding: 5px;
     color: rgba(6, 101, 36, 0.519);
-    font-weight: 600;
+  
 }
 .table-button2 .btn-detail button:hover {
     color: #ffffff;
     background: rgb(13, 255, 0);
     padding: 5px;
     transition: all 0.8s;
+    letter-spacing: 0.5px;
 
 }
 .table-image  {

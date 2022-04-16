@@ -43,11 +43,6 @@ $records = get_list($query);
 
 <!DOCTYPE html>
 <html>
-<!-- <div class="row2">
-
-    <?php include '../root/fromadd.php'; ?>
-</div> -->
-
 </div>
 
 <head>
@@ -120,11 +115,11 @@ $records = get_list($query);
                     <div class="table-button">
                         <div class="btn-add">
 
-                            <a href="./manufactureadd.php" ><button class="btn btn1" id="button"><span class="fas fa-plus-circle" style="color: rgb(237, 205, 24); "></span> Thêm nhà cung cấp</button> </a>
+                            <a href="./manufactureadd.php" ><button class="btn btn1" id="button"><span class="fas fa-plus-circle"></span> Thêm nhà cung cấp</button> </a>
                         </div>
                         <div class="btn-out">
 
-                            <button> <span class="fa-solid fa-file-excel" style="color: rgb(14, 172, 40); height: 20px; width: 20px;"></span> &nbsp; Xuất file Excel</button>
+                            <button> <span class="fa-solid fa-file-excel"></span> &nbsp; Xuất file Excel</button>
                         </div>
 
                     </div>

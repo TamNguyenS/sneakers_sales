@@ -39,11 +39,10 @@ if (
     && $type_id  !== false
 ) {
     $isSubmit = true;
-
     //validate image
     $folder = '../photos/';
-    $imageFileType = explode('.', $image["name"])[1];
-    if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
+    $imageFileType = explode('.', $image['name'])[1];
+    if ($imageFileType != 'jpg' && $imageFileType != 'png' && $imageFileType != 'jpeg' && $imageFileType != 'gif') {
         echo "Cái lày không phải file ảnh ";
         $upload = true;
         $isError = true;
@@ -51,7 +50,7 @@ if (
     if (!$upload) {
         $file_extension= time() . '.' . $imageFileType;
         $path_file = $folder . $file_extension;
-        move_uploaded_file($image["tmp_name"], $path_file);
+        move_uploaded_file($image['tmp_name'], $path_file);
     }
     //validate de khi khác :V
 
@@ -127,7 +126,7 @@ if (
                     <form action="" method="POST" enctype="multipart/form-data">
 
                         <p>Nhập tên sản phẩm </p>
-                        <input type="text" name="name" placeholder="Nhập tên nhà sản xuất">
+                        <input type="text" name="name" placeholder="Nhập tên sản phẩm">
                         <p>Hình ảnh sản phẩm</p>
                         <div id="image-product-upload">
                             <label for="image-product" id="image-upload"> <i class="fas fa-upload"></i>Tải ảnh lên </label>

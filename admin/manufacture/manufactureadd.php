@@ -123,7 +123,7 @@ if (
                         <p>Số điện thoại liên hệ: </p>
                         <input type="phone" name="phone" required placeholder="Số điện thoại liên hệ">
                         <p>Ngày thêm: </p>
-                        <input type="date" name="datee" required>
+                        <input type="date" name="datee" id="datePicker" required readonly>
                         <p>Ghi chú: </p>
                         <input type="text" name="note" required>
                         <div class="table-button">
@@ -141,4 +141,7 @@ if (
         </div>
     </div>
 </body>
+<script type="text/javascript">
+    document.getElementById('datePicker').valueAsDate = new Date();
+    </script>
 </html>

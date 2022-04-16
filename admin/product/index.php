@@ -19,7 +19,19 @@ $page_skip =  $page_limit * ($page - 1);
 $query = "SELECT * FROM product WHERE NAME LIKE '%$search%' LIMIT  $page_limit OFFSET $page_skip";
 $records = get_list($query);
 
-?> 
+?>
+
+<?php
+$delete = empty($_GET['delete']) ? 'false' : $_GET['delete'];
+if ($delete !== false) {
+    $result = remove('product', $delete);
+    if ($result) {
+        $msg = 'Xóa thành công';
+    } else {
+        $msg = 'Xóa Không thành công ';
+    }
+}
+?>
 <!DOCTYPE html>
 <html>
 </div>
@@ -95,13 +107,13 @@ $records = get_list($query);
                     <div class="table-button">
                         <div class="btn-add">
 
-                            <a href="./productadd.php"><button class="btn btn1" id="button"><span class="fas fa-plus-circle" style="color: rgb(237, 205, 24); "></span> Thêm sản phẩm</button> </a>
+                            <a href="./productadd.php"><button class="btn btn1" id="button"><span class="fas fa-plus-circle"></span> Thêm sản phẩm</button> </a>
                         </div>
                         <div class="btn-out">
 
-                            <button> <span class="fa-solid fa-file-excel" style="color: rgb(14, 172, 40); height: 20px; width: 20px;"></span> &nbsp; Xuất file Excel</button>
+                            <button> <span class="fa-solid fa-file-excel"></span> &nbsp; Xuất file Excel</button>
                         </div>
-                      
+
                     </div>
 
                     <table border="1px">
@@ -119,9 +131,6 @@ $records = get_list($query);
                                 <th>
                                     <h3>Đã bán</h3>
                                 </th>
-                                <!-- <th>
-                                    <h3>Nhà sản xuất</h3>
-                                </th> -->
                                 <th>
                                     <h3>Mô tả</h3>
                                 </th>
@@ -129,53 +138,53 @@ $records = get_list($query);
                                 <th>
                                     <h3>Quản lí</h3>
                                 </th>
-                                
+
                             </tr>
 
-                            <?php foreach($records as $post){   ?>
-                            <tr>
-                                <td class="table-image">
-                                     <img src="../photos/<?php echo $post['image']; ?>" style="width: 150px; height 150px; border-radius: 5px;">
-                                </td>
-                                <td>
-                                    <p><?php echo $post['name']; ?> </p>
-                                </td>
-                                <td style=" width: 150px;">
-                                   <p><?php echo number_format(  $post['cost'],0, '', '.' ); ?> VND</p>
-                                </td>
-                                <td>
-                                    <p><?php echo $post['sold']; ?></p>
-                                </td>
-                                <!-- <td>
+                            <?php foreach ($records as $post) {   ?>
+                                <tr>
+                                    <td class="table-image">
+                                        <img src="../photos/<?php echo $post['image']; ?>" style="width: 150px; height 150px; border-radius: 5px;">
+                                    </td>
+                                    <td>
+                                        <p><?php echo $post['name']; ?> </p>
+                                    </td>
+                                    <td style=" width: 150px;">
+                                        <p><?php echo number_format($post['cost'], 0, '', '.'); ?> VND</p>
+                                    </td>
+                                    <td>
+                                        <p><?php echo $post['sold']; ?></p>
+                                    </td>
+                                    <!-- <td>
                                    <p><php echo $post['manufacture_id']; ?> </p>
                                 </td> -->
-                                <td class="table-description">
-                                     <p><?php echo mb_strimwidth($post['description'], 0, 94, "..."); ; ?> </p>
-                                     
+                                    <td class="table-description">
+                                        <p><?php echo mb_strimwidth($post['description'], 0, 94, "...");; ?> </p>
 
-                                </td>
 
-                                </td>
-                                <td class="table-manager">
-                                    <div class="table-button2">
+                                    </td>
 
-                                        <div class="btn-delete">
-                                            <a onclick="return confirm('Bạn có chắc muốn xóa?')"" > <button >  <span class="fa-solid fa-eraser"></span> Xóa</button> </a>
+                                    </td>
+                                    <td class="table-manager">
+                                        <div class="table-button2">
+
+                                            <div class="btn-delete">
+                                                <a onclick="return confirm('Bạn có chắc muốn xóa?')" href="./?delete=<?= $post['id'] ?>"> <button> <span class="fa-solid fa-eraser"></span> Xóa</button> </a>
+                                            </div>
+                                            <div class="btn-update">
+
+                                                <a href="./productupdate.php?id=<?php echo $post['id'] ?>"><button> <span class="fa-regular fa-pen-to-square"></span> &nbsp; Sửa</button> </a>
+                                            </div>
+
+                                            <div class="btn-detail">
+
+                                                <a href="./productdetail.php?id=<?php echo $post['id'] ?>"><button> <span class="fa-solid fa-square-up-right"></span> &nbsp; Chi tiết</button> </a>
+                                            </div>
+
                                         </div>
-                                        <div class="btn-update">
-                                      
-                                            <a href="./productupdate.php?id=<?php echo $post['id'] ?>"><button> <span class="fa-regular fa-pen-to-square"></span> &nbsp; Sửa</button> </a>
-                                        </div>
-                                     
-                                        <div class="btn-detail">
-
-                                            <a href=""><button> <span class=""></span> &nbsp; Xem chi tiết</button> </a>
-                                        </div>
-                    
-                                    </div>
-                                </td>
-                            </tr>
-                                <?php } ?>
+                                    </td>
+                                </tr>
+                            <?php } ?>
                         </thead>
                     </table>
                     <br>
@@ -197,7 +206,7 @@ $records = get_list($query);
                 </div>
         </div>
 
-
+    </div>
 </body>
 
 </html>
