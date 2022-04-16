@@ -55,8 +55,9 @@ if (
     }
     //validate de khi khác :V
 
-    if(!$isError){
-        $result = update('product', array(
+     
+    if (!$isError) {
+        $result = insert('product', array(
             'name' => $name,
             'image' => $file_extension,
             'quantity' => $quantity,
@@ -64,18 +65,17 @@ if (
             'cost' => $cost,
             'manufacture_id' => $manufacture_id,
             'type_id'  => $type_id,
-            
-        ),"id =$id");
-        if($result){
+
+        ));
+        if ($result) {
             $msg = 'Chúc mừng bạn đã thêm thành công !<br>';
-        }
-        else{
+        } else {
             $error = 'Có lỗi xảy ra, vui lòng thử lại sau!<br>';
         }
     }
-    
-
 }
+   
+    
 ?>
 
 <!DOCTYPE html>

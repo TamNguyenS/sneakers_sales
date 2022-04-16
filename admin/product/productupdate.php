@@ -26,43 +26,26 @@ $product_info = get_list($query);
 // print_r($product_info); 
 ?>
 <?php
-foreach($product_info as $value){
+foreach ($product_info as $value) {
     $image_old = $value['image'];
-
+    $manufacture_id_selected = $value['manufacture_id'];
+    $type_id_selected = $value['type_id'];
 }
 $name = isset($_POST['name']) ? $_POST['name'] : false;
-// $image = isset($_FILES['image-product']) ? $_FILES['image-product'] : ;
+$image = empty($_FILES['image-product']) ? false :  $_FILES['image-product'];
 $description = isset($_POST['description']) ? $_POST['description'] : false;
 $cost = isset($_POST['cost']) ? $_POST['cost'] : false;
 $quantity = isset($_POST['quantity']) ? $_POST['quantity'] : false;
 $manufacture_id = isset($_POST['manufacture']) ? $_POST['manufacture'] : false;
 $type_id = isset($_POST['type']) ? $_POST['type'] : false;
-if(isset($_FILES['image-product'])){
-       
-    $folder = '../photos/';
-    $imageFileType = explode('.', $image["name"])[1];
-    $file_extension = '';
-    if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
-        echo "Cái lày không phải file ảnh ";
-        $upload = true;
-        $isError = true;
-    }
-    if (!$upload) {
-        $file_extension = time() . '.' . $imageFileType;
-        $path_file = $folder . $file_extension;
-        move_uploaded_file($image["tmp_name"], $path_file);
-    }
-
-    }
-    else{
-        $file_extension = $image_old;
-    }
 
 $upload = false;
 $isSumit = false;
 $isError = false;
 $error = '';
 $msg = '';
+$file_extension = "$image_old";
+
 
 if (
     $name !== false
@@ -74,9 +57,24 @@ if (
 ) {
     $isSubmit = true;
 
+    if ($image == false) {
     
+        $imageFileType = explode('.', $image["name"])[1];
+        if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
+            echo "Cái lày không phải file ảnh ";
+            $upload = true;
+            $isError = true;
+        }
+        if (!$upload) {
+            $file_extension = time() . '.' . $imageFileType;
+            $path_file = '../photos/'. $file_extension;
+            move_uploaded_file($image["tmp_name"], $path_file);
+        }
+    }
+
+
     if (!$isError) {
-        $result = insert('product', array(
+        $result = update('product', array(
             'name' => $name,
             'image' => $file_extension,
             'quantity' => $quantity,
@@ -85,7 +83,7 @@ if (
             'manufacture_id' => $manufacture_id,
             'type_id'  => $type_id,
 
-        ));
+        ), "id =$id");
         if ($result) {
             $msg = 'Chúc mừng bạn đã sửa thành công !<br>';
         } else {
@@ -142,50 +140,60 @@ if (
                 <div class="form-content">
                     <p><?php  ?></p>
                     <form action="" method="POST" enctype="multipart/form-data">
-                    <?php foreach($product_info as $post){ ?>
-                        <p>Nhập tên sản phẩm </p>
-                        <input type="text" name="name" placeholder="Nhập tên nhà sản xuất" value="<?php echo $post['name']?>">
-                        <p>Hình ảnh sản phẩm</p>
-                        <div id="image-product-upload">
-                            <label for="image-product" id="image-upload"> <i class="fas fa-upload"></i>Tải ảnh lên </label>
-                            <input type="file" name="image-product" accept="image/png, image/jpeg, image/jpg" id="image-product" hidden>
-                        </div>
-                        <p>Hình ảnh củ </p>
-                        <img src="../photos/<?php echo $post['image']?> " alt="anh" style="width: 250px ; wight: 150px; border: 2px solid #ff3010; boder-radius: 30px ">
-                        
-                        <br>
-                        <p>Giá bán </p>
-                        <input type="text" name="cost" placeholder=""  value="<?php echo $post['cost']?>">
-                        <p>Số lượng </p>
-                        <input type="int" name="quantity" placeholder="Nhập số lượng" value="<?php echo $post['quantity']?>">
-                        <p> Loại sản phẩm</p>
-
-                        <select name="type" id="type">
-                            <?php foreach ($type_list as $post1) { ?>
-                                <option value="<?php echo $post1['id'] ?>"> <?php echo $post1['name'] ?> </h1>
-                            <?php } ?>
-                        </select>
-                        <p> Nhà sản xuất</p>
-                        <select name="manufacture" id="manufacture">
-                            <?php foreach ($manufacture_list as $post2) { ?>
-                                <option value="<?php echo $post2['id'] ?>"> <?php echo $post2['name'] ?> </option>
-                            <?php } ?>
-                        </select>
-                        <p>Mô tả</p>
-                        <textarea name="description" id="" cols="170" rows="10"> <?php echo $post['description'] ?></textarea>
-                      
-                        <div class="table-button">
-                            <div class="btn-ok">
-                                <button> OK </button>
-                                <p>
-                                    <?php echo $msg ?>
-                                </p>
-                                <p>
-                                    <?php echo $error ?>
-                                </p>
+                        <?php foreach ($product_info as $post) { ?>
+                            <p>Nhập tên sản phẩm </p>
+                            <input type="text" name="name" placeholder="Nhập tên nhà sản xuất" value="<?php echo $post['name'] ?>">
+                            <p>Hình ảnh sản phẩm</p>
+                            <div id="image-product-upload">
+                                <label for="image-product" id="image-upload"> <i class="fas fa-upload"></i>Tải ảnh lên </label>
+                                <input type="file" name="image-product" accept="image/png, image/jpeg, image/jpg" id="image-product" >
                             </div>
+                            <p>Hình ảnh củ </p>
+                            <img src="../photos/<?php echo $post['image'] ?> " alt="anh" style="width: 250px ; wight: 150px; border: 2px solid #ff3010; boder-radius: 30px ">
 
-                        </div>
+                            <br>
+                            <p>Giá bán </p>
+                            <input type="text" name="cost" placeholder="" value="<?php echo $post['cost'] ?>">
+                            <p>Số lượng </p>
+                            <input type="int" name="quantity" placeholder="Nhập số lượng" value="<?php echo $post['quantity'] ?>">
+                            <p> Loại sản phẩm</p>
+
+                            <select name="type" id="type">
+                                <?php foreach ($type_list as $post1) { ?>
+                                    <option value="<?php echo $post1['id'] ?>"
+                                    <?php if( $type_id_selected == $post1['id']){ ?>
+                                    selected
+                                    <?php } ?>                      
+                                    
+                                    > <?php echo $post1['name'] ?> </h1>
+                                    <?php } ?>
+                            </select>
+                            <p> Nhà sản xuất</p>
+                            <select name="manufacture" id="manufacture">
+                                <?php foreach ($manufacture_list as $post2) { ?>
+
+                                    <option value="<?php echo $post2['id'] ?>" 
+                                    <?php if($manufacture_id_selected  == $post2['id']){ ?>
+                                     selected
+                                    <?php } ?>
+                                      ><?php echo $post2['name'] ?> </option>
+                                <?php } ?>
+                            </select>
+                            <p>Mô tả</p>
+                            <textarea name="description" id="" cols="170" rows="10"> <?php echo $post['description'] ?></textarea>
+
+                            <div class="table-button">
+                                <div class="btn-ok">
+                                    <button> OK </button>
+                                    <p>
+                                        <?php echo $msg ?>
+                                    </p>
+                                    <p>
+                                        <?php echo $error ?>
+                                    </p>
+                                </div>
+
+                            </div>
                         <?php } ?>
                     </form>
                 </div>
