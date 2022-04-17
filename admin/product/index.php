@@ -228,6 +228,7 @@ if ($delete !== false) {
              }
         })
     });
+    
 </script>
 
 </html>
