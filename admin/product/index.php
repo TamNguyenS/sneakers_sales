@@ -169,7 +169,8 @@ if ($delete !== false) {
                                         <div class="table-button2">
 
                                             <div class="btn-delete">
-                                                <a onclick="return confirm('Bạn có chắc muốn xóa?')" href="./?delete=<?= $post['id'] ?>"> <button> <span class="fa-solid fa-eraser"></span> Xóa</button> </a>
+
+                                            <button class="btn-delete-real" data-name=" <?= $post['name'] ?>" data-id="<?= $post['id'] ?>"> <span class="fa-solid fa-eraser"></span> Xóa</button>
                                             </div>
                                             <div class="btn-update">
 
@@ -208,5 +209,25 @@ if ($delete !== false) {
 
     </div>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.btn-delete-real').click(function() {
+            let btn = $(this);
+            let id = $(this).data('id');
+            let name = $(this).data('name');
+            let result = confirm('Bạn có chắc muốn xóa?: ' + name);
+             if(result == true) {
+                 $.ajax({
+                     type: "GET",
+                     url: "./?delete=" + id,
+                     success: function (response) {
+                       btn.parents('tr').remove();
+                     }
+                 });
+             }
+        })
+    });
+</script>
 
 </html>

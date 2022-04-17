@@ -93,11 +93,13 @@
         .product-title{
             margin:30px;
             margin-bottom: 40px;
+           
             
         }
         .product-title h1 {
             font-size: 30px;
             color: rgb(252, 140, 140);
+            text-align: center;
         }
         .detail-img img{
             transition: all 2s;
