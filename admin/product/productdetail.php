@@ -62,73 +62,73 @@ $product_info = get_list($query);
 
             <div class="container-content">
                 <!-- containner connetent -->
-                <?php foreach ($product_info as $product){ ?>
-                <div class="table-button-detail">
-                    <div class="btn-out">
-                        <a> <button> <span class="fa-solid fa-file-excel"></span> &nbsp; Excel</button> </a>
+                <?php foreach ($product_info as $product) { ?>
+                    <div class="table-button-detail">
+                        <div class="btn-out">
+                            <a> <button> <span class="fa-solid fa-file-excel"></span> &nbsp; Excel</button> </a>
+                        </div>
+                        <div class="btn-addd">
+                            <a href="./productadd.php"><button><span class="fa-regular fa-pen-to-square"></span> Sửa</button> </a>
+                        </div>
+                        <div class="btn-delete">
+                            <a href="./productadd.php"><button><span class="fa-solid fa-eraser"></span> Xóa</button> </a>
+                        </div>
                     </div>
-                    <div class="btn-addd">
-                        <a href="./productadd.php"><button><span class="fa-regular fa-pen-to-square"></span> Sửa</button> </a>
-                    </div>
-                    <div class="btn-delete">
-                        <a href="./productadd.php"><button><span class="fa-solid fa-eraser"></span> Xóa</button> </a>
-                    </div>
-                </div>
-                <div class="product-detail">
-                    <div class="product-title">
-                        <h1><?php echo $product['name']; ?><h1>
-                                <div class="detail-img">
-                                    <img src="../photos/<?php echo $product['image']; ?>" alt="">
-                                </div>
+                    <div class="product-detail">
+                        <div class="product-title">
+                            <h1><?php echo $product['name']; ?><h1>
+                                    <div class="detail-img">
+                                        <img src="../photos/<?php echo $product['image']; ?>" alt="">
+                                    </div>
 
-                    </div>
-                    <div class="product-content">
-                    
-                        <div class="table-detail">
-                            <table>
-                               
-                                <tr>
-                                    <th>Tên sản phẩm</th>
-                                    <td><?php echo $product['name']; ?></td>
-                                </tr>
+                        </div>
+                        <div class="product-content">
 
-                                <tr>
-                                    <th>Đã bán</th>
-                                    <td><?php echo $product['sold']; ?> </td>
-                                </tr>
+                            <div class="table-detail">
+                                <table>
 
-                                <tr>
-                                    <th>Số lượng hiện có</th>
-                                    <td><?php echo $product['quantity']; ?> </td>
-                                </tr>
-                                <tr>
-                                    <th>Nhà sản xuất</th>
-                                    <td><?php echo $product['manufacture_name']; ?> </td>
-                                </tr>
-                                <tr>
-                                    <th>Loại sản phẩm</th>
-                                    <td><?php echo $product['type_name']; ?> </td>
-                                </tr>
-                                <tr>
-                                    <th>Xuất sứ</th>
-                                    <td><?php echo $product['manufacture_address']; ?> </td>
-                                </tr>
-                                <tr>
-                                    <th>Ngày thêm</th>
-                                    <td><?php echo $product['date']; ?> </td>
-                                </tr>
-                                <tr>
-                                    <th>Mô tả</th>
-                                    <td><textarea  rows="10" readonly><?php echo $product['description']; ?></textarea></td>
-                                </tr>
-                                <?php }?>
-                            </table>
+                                    <tr>
+                                        <th>Tên sản phẩm</th>
+                                        <td><?php echo $product['name']; ?></td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>Đã bán</th>
+                                        <td><?php echo $product['sold']; ?> </td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>Số lượng hiện có</th>
+                                        <td><?php echo $product['quantity']; ?> </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Nhà sản xuất</th>
+                                        <td><?php echo $product['manufacture_name']; ?> </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Loại sản phẩm</th>
+                                        <td><?php echo $product['type_name']; ?> </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Xuất sứ</th>
+                                        <td><?php echo $product['manufacture_address']; ?> </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Ngày thêm</th>
+                                        <td><?php echo $product['date']; ?> </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Mô tả</th>
+                                        <td><textarea rows="10" readonly><?php echo $product['description']; ?></textarea></td>
+                                    </tr>
+                                <?php } ?>
+                                </table>
+                            </div>
+
                         </div>
 
+
                     </div>
-
-
-                </div>
 
             </div>
         </div>
@@ -137,7 +137,7 @@ $product_info = get_list($query);
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
-    
-    </script>
+
+</script>
 
 </html>
