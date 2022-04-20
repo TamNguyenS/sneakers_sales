@@ -1,4 +1,7 @@
 <?php
+require '../root/checklogin.php';
+?>
+<?php
 $name = isset($_POST['name']) ? $_POST['name'] : false;
 //fix sửa địa chỉ thành danh mục nhỏ//
 $address = isset($_POST['address']) ? $_POST['name'] : false;
@@ -79,8 +82,8 @@ if (
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add</title>
-    <link rel="stylesheet" href="../css/cssdb.css">
-    <link rel="stylesheet" href="../css/cssmf.css">
+    <link rel="stylesheet" href="../css/cssdb.css?v=2">
+    <link rel="stylesheet" href="../css/cssmf.css?v=2">
     <script src="../js/mf.js"></script>
     <!-- icon -->
     <script src="https://kit.fontawesome.com/945e1fd97f.js" crossorigin="anonymous"></script>

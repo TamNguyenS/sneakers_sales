@@ -1,4 +1,7 @@
 <?php
+require '../root/checklogin.php';
+?>
+<?php
 
 $name = isset($_POST['name']) ? $_POST['name'] : false;
 //fix sửa địa chỉ thành danh mục nhỏ//

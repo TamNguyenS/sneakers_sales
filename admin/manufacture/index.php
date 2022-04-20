@@ -1,4 +1,7 @@
 <?php
+require '../root/checklogin.php';
+?>
+<?php
 
 $isSubmit = false; 
 $error = ''; 
@@ -50,8 +53,8 @@ $records = get_list($query);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - manufacture</title>
-    <link rel="stylesheet" href="../css/cssdb.css">
-    <link rel="stylesheet" href="../css/cssmf.css">
+    <link rel="stylesheet" href="../css/cssdb.css?v=2">
+    <link rel="stylesheet" href="../css/cssmf.css?v=2">
     <script src="../js/mf.js"></script>
     <!-- icon -->
     <script src="https://kit.fontawesome.com/945e1fd97f.js" crossorigin="anonymous"></script>

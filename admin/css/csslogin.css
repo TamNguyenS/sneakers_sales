@@ -253,3 +253,29 @@ input[type="submit"]:hover {
   height: 90px;
   top: 10px;
 }
+.checkbox-content{
+  display: inline-block;
+  position:relative;
+  top: 10px;
+  cursor:pointer;
+  font-size:15px;
+  user-select: none;
+  padding-left:0px;
+
+  color: grey;
+}
+.checkbox-content > label{
+  /* background-color: grey; */
+  color: grey;
+}
+.checkbox-content input[type="checkbox"] {
+  position: absolute;
+  width: 1rem;
+  height: 1rem;
+  top: 2px;
+  right: -20px;
+  border: 1px solid gray;
+  border-radius: 4px;
+  outline: 0;
+  cursor: pointer;
+}

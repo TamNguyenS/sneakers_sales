@@ -1,3 +1,7 @@
+
+<?php
+require '../root/checklogin.php';
+?>
 <?php
 require_once '../db.php';
 require_once '../func.php';
