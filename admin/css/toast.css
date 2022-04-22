@@ -1,25 +1,5 @@
-/* * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-  }
-  
-  body {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    font-family: "Helvetica Neue";
-    background-color: #f4f4f5;
-  }
-  
-  body > div {
-    margin: auto;
-  }
-  
-   */
-  
-  /* ======= Toast message ======== */
-  
+
+
   #toast {
     position: fixed;
     top: 32px;
@@ -38,6 +18,7 @@
     border-left: 4px solid;
     box-shadow: 0 5px 8px rgba(0, 0, 0, 0.08);
     transition: all linear 0.3s;
+
   }
   
   @keyframes slideInLeft {

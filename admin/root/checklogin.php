@@ -6,13 +6,13 @@ if(!isset($_SESSION))
 }
 if (
     !isset($_SESSION['id'])
-    && !isset($_SESSION['name'])
+    // && !isset($_SESSION['name'])
+    // && !isset( $_SESSION['username'])
+    // && !isset( $_SESSION['position'])
+
 ) {
-    // echo "Luu sesson thanh cong";
-    // echo $_SESSION['id'];
-    // echo $_SESSION['username'];
-    // echo $_SESSION['position'];
-    // echo $_SESSION['photo'];
+   
     header('Location: ../root/404page.php');
     exit;
 }
+?>

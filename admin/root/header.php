@@ -1,7 +1,6 @@
-<!-- <php  
-session_start();
-
-?> -->
+<?php
+require_once '../process/check_session.php';
+?>
 
 <!DOCTYPE html>
 <html>
@@ -21,7 +20,7 @@ session_start();
             <span class="fa fa-search"> </span>
             <form method="get" action="">
                 <input placeholder="Search" name="search" type="search" value="<?php echo  $search ?>">
-            </form>
+            
 
         </div>
 
@@ -48,7 +47,7 @@ session_start();
                 ?>
                  <small> <?php echo $role;  ?></small>
                
-              
+                 </form>
                         
 
             </div>

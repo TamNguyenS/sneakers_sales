@@ -2,12 +2,35 @@
 session_start();
 require './func.php';
 require './db.php';
+$cookies_temp = isset($_COOKIE['remember1']) ? isset($_COOKIE['remember1'])  : false;
+if ($cookies_temp != false) {
+
+	$id = $_COOKIE['remember1'];
+	$sql = "SELECT * FROM admin WHERE id = '$id'";
+	$record = get_list($sql);
+	$_SESSION['id'] = $record[0]['id'];
+	$_SESSION['username'] = $record[0]['username'];
+	$_SESSION['position'] = $record[0]['position'];
+	// print_r($_SESSION);
+	// 	die();
+}
+
+if (isset($_SESSION['id'])) {
+	header('location: ./main');
+	exit;
+}
+
+
 
 ?>
 <?php
+if (isset($_POST['remember'])) {
+	$remember = true;
+} else {
+	$remeber = false;
+}
 $email = isset($_POST['email']) ? $_POST['email'] : false;
 $password = isset($_POST['password']) ? $_POST['password'] : false;
-
 $isEnror = false;
 $error = '';
 $msg = '';
@@ -26,14 +49,35 @@ if ($email != false && $password != false) {
 		$_SESSION['id'] = $info['id'];
 		$_SESSION['username'] = $info['username'];
 		$_SESSION['position'] = $info['position'];
-		$_SESSION['photo'] = $info['photo'];
+
+
+		if ($remember) {
+			// setcookie('remember1', $info['id'], time() + (24 * 30));
+			setcookie('remember1', $info['id'], time() + (24 * 30), '/', '', 0);
+			print_r($_COOKIE);
+			echo ("<br>");
+			// setcookie('remember', null, -1);
+			// print_r($_COOKIE);
+			// die();
+		}
+
+		// $token =  openssl_random_pseudo_bytes(16) + time();
+
+
+
+		// $result = insert('admin', array(
+		// 	'token' => $token
+		// ));
+		// print_r($_COOKIE);
+		// echo ("br");
+		// setcookie('remember', null, -1);
+		// print_r($_COOKIE);
 		$msg = 'Ban da dang nhap thanh cong';
 		header('Location: main/index.php');
 		exit;
 	} else {
-		$error = "Ten tai khoan hoac mat khau Khum dung";
+		$error = "Tên tài khoản và mật khẩu khum đúng! ";
 	}
-
 }
 ?>
 <!DOCTYPE html>
@@ -45,6 +89,7 @@ if ($email != false && $password != false) {
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Login Administrator</title>
 	<link rel="stylesheet" href="./css/csslogin.css?v=2">
+	<link rel="stylesheet" href="./css/toast.css?v=2">
 
 	<!-- icon -->
 	<script src="https://kit.fontawesome.com/945e1fd97f.js" crossorigin="anonymous"></script>
@@ -62,7 +107,9 @@ if ($email != false && $password != false) {
 		</div>
 		<h1>Wellome to Hikky's</h1>
 		<h2>Administrator dashboard home</h2>
-		
+		<!-- <div style="margin:5px;   text-align: center; "> -->
+		<span style="color:red; font-weight: bold;"><?php echo $error ?></span>
+		<!-- </div> -->
 		<form method="POST" action="">
 			<div class="txt_field">
 				<input type="text" value="" name="email" required>
@@ -73,21 +120,20 @@ if ($email != false && $password != false) {
 				<input type="password" value="" name="password" required>
 				<span></span>
 				<label>Password</label>
+
 			</div>
 
 
 
 			<div class="pass">Forgot Password?</div>
 
-			<input onclick="" type="submit" value="Login" id="buttonLogin">
-			<h4 style="color:red; font-weight: bold; margin: 5px;" ><?php echo $error ?></h4>
-		
+			<input onclick="return false" type="submit" value="Login" id="buttonLogin">
+
+
 			<div class="checkbox-content">
 				<label class="container">Remember me
-					<input type="checkbox" checked="checked">
-					<span class="checkmark"></span>
+					<input type="checkbox" name="remember">
 				</label>
-
 			</div>
 
 
@@ -139,48 +185,33 @@ if ($email != false && $password != false) {
 
 	</div>
 	<!-- pop-up -->
-	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </body>
-<!-- <script type="text/javascript">
+<script type="text/javascript">
+	// function showSuccessToast() {
+	// 	toast({
+	// 		title: "Thành công!",
+	// 		message: "Bạn đã đăng nhập thành công tại Hikky's shop.",
+	// 		type: "success",
+	// 		duration: 5000
+	// 	});
+	// }
+
 	$(document).ready(function() {
 		$('#buttonLogin').click(function() {
-			let string = "<php echo $error ?>";
-			let length = string.length;
-			let string1 = "?php echo $msg ?>";
-			let length1 = string.length;
-			if (length != 0) {
-				showErrorToast(string);
-				console.log(string);
-				return false;
-			} else if (length1 != 0) {
-				string = '';
-				console.log(string1);
-				showSuccessToast();
-				return false;
-			}
 
 		});
-
-		function showSuccessToast() {
-			toast({
-				title: "Thành công!",
-				message: "Bạn đã đăng nhập thành công tại Hikky's shop.",
-				type: "success",
-				duration: 5000
-			});
-		}
-
-		function showErrorToast(error) {
-
-			toast({
-				title: "Đăng nhập thất bại!",
-				message: error,
-				type: "error",
-				duration: 5000
-			});
-		}
-
 	});
-</script> -->
+
+	function showErrorToast(error) {
+
+		toast({
+			title: "Đăng nhập thất bại!",
+			message: error,
+			type: "error",
+			duration: 5000
+		});
+	}
+</script>
 
 </html>
