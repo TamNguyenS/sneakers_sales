@@ -28,43 +28,48 @@
 				</button>
 			</li>
 
-			<li class="menu-item dropdown-content" id="product">
-				<a href="../product/productadd.php" class="menu-link"> &nbsp; <span> Thêm sản phẩm</span> <i class="fas fa-angle-right"></i> </a>
+			<li class="menu-item dropdown-content product">
+				<a href="../product/productadd.php" class="menu-link"> <i class="fa-solid fa-caret-right"></i> <span> Thêm sản phẩm</span> <i class=""></i> </a>
 			</li>
 
+			<li class="menu-item dropdown-content product">
+				<a href="../product/productadd.php" class="menu-link"> <i class="fa-solid fa-caret-right"></i> <span> Thống kê</span> <i class=""></i> </a>
+			</li>
 			<li class="menu-item">
 				<a href="./header.php" class="menu-link"><i class="fas fa-user-plus"></i><span>Nhân viên</span></a>
 				<button onclick="employee_child()" class="dropbtn"> <i class="fas fa-angle-down" id="employee_btn"></i>
 				</button>
 			</li>
 
-			<li class="menu-item dropdown-content" id="employee">
-				<a href="" class="menu-link"> &nbsp; <span> Thêm nhân viên</span> <i class="fas fa-angle-right"></i>
+			<li class="menu-item dropdown-content employee" id="employee">
+				<a href="" class="menu-link"><i class="fa-solid fa-caret-right"></i> <span> Thêm nhân viên</span> <i class=""></i>
 				</a>
 			</li>
 
 			<li class="menu-item">
 				<a href="../manufacture/" class="menu-link"><i class="fas fa-industry"></i><span>Nhà cung cấp</span></a>
-				<button onclick="manufacturer_child()" class="dropbtn"> <i class="fas fa-angle-down" id="manufacturer_btn"></i> </button>
+				<button onclick="manufacturer_child()" class="dropbtn"> <i class="fas fa-angle-down" id="manufacturer_btn"></i>
+			</button>
 			</li>
 
-			<li class="menu-item dropdown-content" id="manufacturer">
-				<a href="../manufacture/manufactureadd.php" class="menu-link"> &nbsp; <span> Thêm nhà cung cấp</span> <i class="fas fa-angle-right"></i></a>
+			<li class="menu-item dropdown-content manufacturer" id="manufacturer">
+				<a href="../manufacture/manufactureadd.php" class="menu-link"> <i class="fa-solid fa-caret-right"></i> <span> Thêm nhà cung cấp</span> <i class=""></i></a>
 			</li>
 			<li class="menu-item">
 				<a href="" class="menu-link"><i class="fa fa-info-circle"></i> <span>Thông tin</span> </a>
 			</li>
 		</ul>
-	
+
 	</div>
 
 	<script>
 		function product_child() {
-			document.getElementById("product").classList.toggle("show");
+			let product = document.getElementsByClassName('product');
+			for (let i = 0; i < product.length; i++) {
+				document.getElementsByClassName('product')[i].classList.toggle("show");
+			}
 			document.getElementById("product_btn").classList.toggle("rotation");
-
 		}
-
 		function employee_child() {
 			document.getElementById("employee").classList.toggle("show");
 			document.getElementById("employee_btn").classList.toggle("rotation");

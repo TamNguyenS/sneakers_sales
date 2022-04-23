@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404</title>
+    <title>404 Not Found</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Palette+Mosaic&family=Poppins:ital,wght@0,100;0,200;0,400;1,100;1,200;1,300&family=Roboto+Mono:ital@1&family=Signika+Negative:wght@300;400&display=swap');
 

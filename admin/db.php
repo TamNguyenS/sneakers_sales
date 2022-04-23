@@ -104,15 +104,3 @@ function remove ($table, $where) {
     disconnect($conn);
     return $result;
 }
-function count_records ($table, $where) {
-    $conn = connect();
-    $sql = 'SELECT count(id) AS total FROM ' . $table . ' WHERE token=' . $where;
-    $result = mysqli_query($conn, $sql);
-    echo  $sql . '<br>';
-    die();
-    if (!$result) die('[Database class - get_count] Truy vấn sai');
-
-    $result = mysqli_fetch_array($result)['total'];
-
-    return $result;
-}

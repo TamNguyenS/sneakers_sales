@@ -5,9 +5,11 @@ main {
     height: 100%;
     width: 118%;
 }
-main{
+
+main {
     overflow: hidden;
 }
+
 .cards {
     display: grid;
     grid-template-columns: repeat(4, 10fr);
@@ -51,30 +53,35 @@ main{
     height: 600px;
     border-radius: 5px;
     padding: 10px;
-    overflow:scroll;
+    overflow: scroll;
     animation: scale-animation 0.5s ease;
 }
+
 .table-content::-webkit-scrollbar {
-    width:5px;
+    width: 5px;
     background-color: #fcf7f0;
     border-radius: 30px;
-} 
+}
+
 /* .table-content::-webkit-scrollbar {max-height: 30px; height: 30px;} */
 /* .table-content::-webkit-scrollbar-track {max-height: 10%; height: 10%;} */
 .table-content::-webkit-scrollbar-thumb {
     background-color: #ee99b2;
     border-radius: 50px;
 }
+
 .table-content::-webkit-scrollbar-button {
     height: 12px;
-  }
+}
+
 .table-content::-webkit-scrollbar-track {
     background-color: #FBF6F0;
     border-radius: 30px;
 }
+
 .table-content {
     overflow-x: hidden;
-  }
+}
 
 .table-button {
     margin-top: 10px;
@@ -86,10 +93,10 @@ main{
     border: none;
     border-radius: 10px;
     width: 140px;
-    font-size:13px;
+    font-size: 13px;
     height: 27px;
-   font-weight: bold;
-   transition: all 0.8s;
+    font-weight: bold;
+    transition: all 0.8s;
 
 }
 
@@ -124,10 +131,12 @@ main{
     color: rgb(54, 144, 46);
     padding: 5px;
 }
+
 .table-button .btn-add span {
     display: inline;
     font-size: 1rem;
 }
+
 .table-button .btn-out span {
     display: inline;
     font-size: 1rem;
@@ -141,7 +150,7 @@ main{
 
 table {
     /* padding: 30px; */
-    color: rgb(0, 0, 0); 
+    color: rgb(0, 0, 0);
     border-collapse: collapse;
     width: 100%;
     align-items: center;
@@ -151,44 +160,45 @@ table {
 td {
     border: 1px solid rgb(255, 255, 255);
     padding: 10px;
-   
+
     color: rgb(0, 0, 0);
-  
+
     border-bottom: 1px solid #dddddd;
-     
+
 }
 
 /* table tr:nth-child(even) {
     background-color: rgba(236, 233, 235, 0.3);
 } */
- th {
-    border: 1px solid rgba(255, 248, 225, 0.5);;
+th {
+    border: 1px solid rgba(255, 248, 225, 0.5);
+    ;
     padding-top: 12px;
     padding-bottom: 12px;
     background-color: rgba(255, 241, 193, 0.5);
     color: rgb(0, 0, 0);
-    font-size:13px;
+    font-size: 13px;
 
 
-  }
-td{
-    font-size:15px;
-    text-align:center;
-  }
+}
+
+td {
+    font-size: 15px;
+    text-align: center;
+}
 
 
-  .table-button2 button {
+.table-button2 button {
 
     border: none;
-    border-radius: 30px;
-    width: 85px;
-    height: 23px;
+    border-radius: 7px;
+    width: 95px;
+    height: 25px;
     margin: 4px;
     font-size: 13px;
-   
     transition: all 0.8s;
-    font-weight: 1000;
-  
+    font-weight: 600;
+
 }
 
 .table-button2 .btn-delete button:hover {
@@ -213,16 +223,16 @@ td{
     float: left;
 } */
 .table-button2 .btn-delete button {
-    background: rgb(252, 181, 184);
+    background: rgb(255, 222, 223);
     padding: 5px;
-    color: rgb(109, 9, 9);
+    color: rgb(255, 0, 0);
     letter-spacing: 1px;
 }
 
 .table-button2 .btn-update button {
-    background: rgb(241, 254, 125);
+    background: rgb(250, 255, 210);
     padding: 5px;
-    color: rgb(93, 73, 10);
+    color: rgba(178, 159, 9, 0.673);
     letter-spacing: 1px;
 
 }
@@ -231,12 +241,14 @@ td{
     display: inline;
     font-size: 1rem;
 }
+
 .table-button2 .btn-detail button {
-    background: rgb(177, 247, 168);
+    background: rgb(225, 254, 221);
     padding: 5px;
-    color: rgba(6, 101, 36, 0.519);
-  
+    color: rgba(12, 173, 63, 0.519);
+
 }
+
 .table-button2 .btn-detail button:hover {
     color: #ffffff;
     background: rgb(13, 255, 0);
@@ -245,28 +257,31 @@ td{
     letter-spacing: 0.5px;
 
 }
-.table-image  {
-   
+
+.table-image {
+
     width: 250px;
     padding: 10px;
     text-align: center;
     color: rgb(0, 0, 0);
 }
-.table-description{ 
+
+.table-description {
     width: 350px;
 }
 
-.table-manager{
-   width: 22px;
+.table-manager {
+    width: 22px;
 }
 
- .form-content{
-   align-items: center;
-   margin-top: 30px;
-   margin-left: 30px;
-   font-size: 20px;
-   background: rgb(255, 255, 255);
+.form-content {
+    align-items: center;
+    margin-top: 30px;
+    margin-left: 30px;
+    font-size: 20px;
+    background: rgb(255, 255, 255);
 }
+
 /* .form-content input
 {
     width: 100%;
@@ -299,7 +314,8 @@ td{
     font-weight: bold;
     color: rgb(252, 58, 139);
 }
-.form-content input  {
+
+.form-content input {
     background-color: transparent;
     border: none;
     border: 1px solid rgb(232, 232, 232);
@@ -313,21 +329,23 @@ td{
     border-radius: 30px
 }
 
-.form-content  input:focus {
+.form-content input:focus {
     outline: none;
     border: 1px solid #ff3010;
     border-radius: 30px;
     transition: border 1s, color 1.5s;
     color: #f85f47;
 }
-textarea:focus{
+
+textarea:focus {
     outline: none;
     border: 1px solid #ff3010;
     border-radius: 10px;
     transition: border 1s, color 1.5s;
     color: #f85f47;
 }
-textarea   {
+
+textarea {
     background-color: transparent;
     border: none;
     border: 1px solid rgb(232, 232, 232);
@@ -340,30 +358,35 @@ textarea   {
     transition: border 1s, color 1.5s;
     border-radius: 10px;
 }
-#image-product-upload{
-    background:rgb(250, 140, 140);
-    width: 15%;
+
+#image-product-upload {
+    background: rgb(250, 221, 221);
     text-align: center;
-    height: 40px;
-    border-radius: 30px;
-    font-size:30px;
-    color: rgb(255, 255, 255);
+    height: 35px;
+    border-radius: 10px;
+    font-size: 24px;
+    color: rgb(251, 56, 128);
     font-weight: bold;
+    margin-bottom: 10px;
+    transition: all 3.5s;
+}
 
-}
-#image-product-upload:hover{
+#image-product-upload:hover {
     /* background:rgb(255, 0, 0); */
-    transition: color 3.5s;
+    transition: all 3.5s;
     color: #42110a;
+    background: rgb(253, 115, 115);
 }
-select:focus{
+
+select:focus {
     outline: none;
     border: 1px solid #ff3010;
     border-radius: 10px;
     transition: border 1s, color 1.5s;
     color: #f85f47;
 }
-select  {
+
+select {
     background-color: transparent;
     border: none;
     border: 1px solid rgb(232, 232, 232);
@@ -376,16 +399,18 @@ select  {
     transition: border 1s, color 1.5s;
     border-radius: 10px;
 }
-.image-product button{
-    background:rebeccapurple;
+
+.image-product button {
+    background: rebeccapurple;
 }
 
-.container-content{
+.container-content {
     animation: scale-animation 0.5s ease;
     padding: 20px;
     background: white;
     border-radius: 30px;
 }
+
 .btn-ok button:hover {
     background: rgba(0, 248, 83, 0.8);
     transition: all 0.8s;
@@ -396,16 +421,22 @@ select  {
     background: rgba(255, 0, 13, 0.5);
     margin-left: 560px;
 }
+
 /* page */
-.page{
+.page {
     text-align: center;
 }
-pagination-outer{ text-align: center; }
-.pagination{
+
+pagination-outer {
+    text-align: center;
+}
+
+.pagination {
     display: inline-flex;
     position: relative;
 }
-.pagination li a.page-link{
+
+.pagination li a.page-link {
     color: rgb(0, 0, 0);
     background-color: #f4ebde;
     font-size: 18px;
@@ -419,39 +450,49 @@ pagination-outer{ text-align: center; }
     border: none;
     transition: all 0.5s ease 0s;
 }
+
 .pagination li a.page-link:hover,
 .pagination li a.page-link:focus,
 .pagination li.active a.page-link:hover,
-.pagination li.active a.page-link{
+.pagination li.active a.page-link {
     color: #fff;
     background: #eb3b5a;
     /* box-shadow: 2px 2px rgba(0, 0, 0, 0.2), 4px 4px rgba(0,0,0,0.1); */
 }
 
-/* @media only screen and (max-width: 480px){
-    .pagination{
-        font-size: 0;
-        display: inline-block;
-    }
-    .pagination li{
-        display: inline-block;
-        vertical-align: top;
-        margin: 0 0 10px;
-    }
-} */
-
- /* animation */
- @keyframes scale-animation {
-    0%{
-      opacity: 0;
-      transform: scaleY(1.1);
-      transform: scaleX(1.1);
- 
-    }
-    100%{
-      opacity: 1;
-      transform: scaleY(1);
-      transform: scaleX(1);
+.img-preview img {
    
-    }
+    width: 100%;
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+.img-preview {
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    max-width: 550px;
+    max-height: 550px;
+    margin: auto;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 0 20px rgba(170, 170, 170, 0.2);
   }
+
+/* animation */
+@keyframes scale-animation {
+    0% {
+        opacity: 0;
+        transform: scaleY(1.1);
+        transform: scaleX(1.1);
+
+    }
+
+    100% {
+        opacity: 1;
+        transform: scaleY(1);
+        transform: scaleX(1);
+
+    }
+}

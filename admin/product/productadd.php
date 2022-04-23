@@ -1,4 +1,3 @@
-
 <?php
 require '../root/checklogin.php';
 ?>
@@ -54,13 +53,13 @@ if (
         $isError = true;
     }
     if (!$upload) {
-        $file_extension= time() . '.' . $imageFileType;
+        $file_extension = time() . '.' . $imageFileType;
         $path_file = $folder . $file_extension;
         move_uploaded_file($image['tmp_name'], $path_file);
     }
     //validate de khi khác :V
 
-     
+
     if (!$isError) {
         $result = insert('product', array(
             'name' => $name,
@@ -80,8 +79,8 @@ if (
         }
     }
 }
-   
-    
+
+
 ?>
 
 <!DOCTYPE html>
@@ -95,7 +94,7 @@ if (
     <title>Add</title>
     <link rel="stylesheet" href="../css/cssdb.css">
     <link rel="stylesheet" href="../css/cssmf.css">
-    <script src="../js/uploadFile.js"></script>
+   
     <!-- icon -->
     <script src="https://kit.fontawesome.com/945e1fd97f.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/font-awesome-line-awesome/css/all.min.css">
@@ -135,11 +134,16 @@ if (
                         <p>Nhập tên sản phẩm </p>
                         <input type="text" name="name" placeholder="Nhập tên sản phẩm">
                         <p>Hình ảnh sản phẩm</p>
+
                         <div id="image-product-upload">
-                            <label for="image-product" id="image-upload"> <i class="fas fa-upload"></i>Tải ảnh lên </label>
+                            
+                            <label for="image-product"> <i class="fas fa-upload"></i>Tải ảnh lên </label>
                             <input type="file" name="image-product" accept="image/png, image/jpeg, image/jpg" id="image-product" hidden>
                         </div>
-                        <p>perview hình ảnh đang làm</p>
+                        <div class="img-preview">
+                            <img id="img-preview" src=" " />
+                        </div>
+                      
                         <br>
                         <p>Giá bán </p>
                         <input type="text" name="cost" placeholder="">
@@ -149,7 +153,7 @@ if (
                         <select name="type" id="type">
                             <?php foreach ($type_list as $post) { ?>
                                 <option value="<?php echo $post['id'] ?>"> <?php echo $post['name'] ?> </h1>
-                            <?php } ?>
+                                <?php } ?>
                         </select>
                         <p> Nhà sản xuất</p>
                         <select name="manufacture" id="manufacture">
@@ -183,4 +187,5 @@ if (
 <script type="text/javascript">
     document.getElementById('datePicker').valueAsDate = new Date();
 </script>
+<script src="../js/previewImg.js"></script>
 </html>
