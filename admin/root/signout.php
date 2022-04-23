@@ -1,18 +1,25 @@
 <?php
 session_start();
-// setcookie('remember1sdsd', false, -1);;
-setcookie('remember1', false, -99, '/', '', 0);
+setcookie('token_remem', false, -99, '/', '', 0);
 print_r($_COOKIE);
-session_destroy();
-if ($_COOKIE['remember1'] == false) {
-    print_r($_COOKIE);
-    echo "Đã xãy ra một số lỗi";
-    die();
-    //   header('Location: ../');
-    exit();
-} else {
-    print_r($_COOKIE);
-    echo "false";
-    header('Location: ../');
 
+session_destroy();
+try{
+    if ($_COOKIE['token_remem'] == false || empty($_COOKIE['token_remem'])) {
+        print_r($_COOKIE);
+        header('Location: ../');
+        exit();
+       
+    } else {
+        print_r($_COOKIE);
+        echo "false";
+        header('Location: ../');
+        exit();
+    }
+    
 }
+catch (Exception $e) {
+    header('root: ../root/404.php');
+    exit();
+}
+?>

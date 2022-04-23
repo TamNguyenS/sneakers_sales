@@ -2,17 +2,22 @@
 session_start();
 require './func.php';
 require './db.php';
-$cookies_temp = isset($_COOKIE['remember1']) ? isset($_COOKIE['remember1'])  : false;
+$cookies_temp = isset($_COOKIE['token_remem']) ? isset($_COOKIE['token_remem'])  : false;
 if ($cookies_temp != false) {
 
-	$id = $_COOKIE['remember1'];
-	$sql = "SELECT * FROM admin WHERE id = '$id'";
+	$token = $_COOKIE['token_remem'];
+	$sql = "SELECT * FROM admin WHERE token = '$token' limit 1";
 	$record = get_list($sql);
-	$_SESSION['id'] = $record[0]['id'];
-	$_SESSION['username'] = $record[0]['username'];
-	$_SESSION['position'] = $record[0]['position'];
-	// print_r($_SESSION);
-	// 	die();
+	$conn = connect();
+	$query = "SELECT * FROM admin WHERE token = '$token'";
+	$result = mysqli_query($conn, $query);
+	$number_rows = mysqli_num_rows($result);
+	if ($number_rows == 1) {
+		$_SESSION['id'] = $record[0]['id'];
+		$_SESSION['username'] = $record[0]['username'];
+		$_SESSION['position'] = $record[0]['position'];
+		$_SESSION['photo'] = $record[0]['photo'];
+	}
 }
 
 if (isset($_SESSION['id'])) {
@@ -20,15 +25,15 @@ if (isset($_SESSION['id'])) {
 	exit;
 }
 
-
-
 ?>
+
 <?php
 if (isset($_POST['remember'])) {
 	$remember = true;
 } else {
 	$remeber = false;
 }
+
 $email = isset($_POST['email']) ? $_POST['email'] : false;
 $password = isset($_POST['password']) ? $_POST['password'] : false;
 $isEnror = false;
@@ -46,32 +51,17 @@ if ($email != false && $password != false) {
 	if ($number_rows == 1) {
 
 		$info = mysqli_fetch_array($result);
-		$_SESSION['id'] = $info['id'];
+		$id = $info['id'];
+		$_SESSION['id'] = $id;
 		$_SESSION['username'] = $info['username'];
 		$_SESSION['position'] = $info['position'];
-
-
+		$_SESSION['photo'] = $record[0]['photo'];
 		if ($remember) {
-			// setcookie('remember1', $info['id'], time() + (24 * 30));
-			setcookie('remember1', $info['id'], time() + (24 * 30), '/', '', 0);
-			print_r($_COOKIE);
-			echo ("<br>");
-			// setcookie('remember', null, -1);
-			// print_r($_COOKIE);
-			// die();
+			$token = uniqid($info['username'] . '_', true);
+			$update_token = update('admin', array('token' => $token), "id = $id");
+
+			setcookie('token_remem', $token, time() + (24 * 30), '/', '', 0);
 		}
-
-		// $token =  openssl_random_pseudo_bytes(16) + time();
-
-
-
-		// $result = insert('admin', array(
-		// 	'token' => $token
-		// ));
-		// print_r($_COOKIE);
-		// echo ("br");
-		// setcookie('remember', null, -1);
-		// print_r($_COOKIE);
 		$msg = 'Ban da dang nhap thanh cong';
 		header('Location: main/index.php');
 		exit;
@@ -127,7 +117,7 @@ if ($email != false && $password != false) {
 
 			<div class="pass">Forgot Password?</div>
 
-			<input onclick="return false" type="submit" value="Login" id="buttonLogin">
+			<input onclick="" type="submit" value="Login" id="buttonLogin">
 
 
 			<div class="checkbox-content">
@@ -187,6 +177,7 @@ if ($email != false && $password != false) {
 	<!-- pop-up -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </body>
+<!-- ajax check password and username -->
 <script type="text/javascript">
 	// function showSuccessToast() {
 	// 	toast({

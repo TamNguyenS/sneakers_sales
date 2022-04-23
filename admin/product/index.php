@@ -1,4 +1,3 @@
-
 <?php
 require '../root/checklogin.php';
 ?>
@@ -22,8 +21,8 @@ $page_length = ceil($page_total_length / $page_limit);
 $page_skip =  $page_limit * ($page - 1);
 
 $query = "SELECT * FROM product WHERE NAME LIKE '%$search%' LIMIT  $page_limit OFFSET $page_skip";
-$records = get_list($query);
 
+$records = get_list($query);
 ?>
 
 <?php
@@ -175,7 +174,7 @@ if ($delete !== false) {
 
                                             <div class="btn-delete">
 
-                                            <button class="btn-delete-real" data-name=" <?= $post['name'] ?>" data-id="<?= $post['id'] ?>"> <span class="fa-solid fa-eraser"></span> Xóa</button>
+                                                <button class="btn-delete-real" data-name=" <?= $post['name'] ?>" data-id="<?= $post['id'] ?>"> <span class="fa-solid fa-eraser"></span> Xóa</button>
                                             </div>
                                             <div class="btn-update">
 
@@ -222,15 +221,15 @@ if ($delete !== false) {
             let id = $(this).data('id');
             let name = $(this).data('name');
             let result = confirm('Bạn có chắc muốn xóa?: ' + name);
-             if(result == true) {
-                 $.ajax({
-                     type: "GET",
-                     url: "./?delete=" + id,
-                     success: function (response) {
-                       btn.parents('tr').remove();
-                     }
-                 });
-             }
+            if (result == true) {
+                $.ajax({
+                    type: "GET",
+                    url: "./?delete=" + id,
+                    success: function(response) {
+                        btn.parents('tr').remove();
+                    }
+                });
+            }
         })
     });
 </script>
