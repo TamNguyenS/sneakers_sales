@@ -121,13 +121,13 @@ main {
 }
 
 .table-button .btn-add button {
-    background: rgba(255, 252, 164, 0.5);
+    background: rgba(249, 247, 187, 0.5);
     color: rgb(185, 158, 8);
     padding: 5px;
 }
 
 .table-button .btn-out button {
-    background: rgb(180, 250, 190);
+    background: rgb(195, 250, 204);
     color: rgb(54, 144, 46);
     padding: 5px;
 }

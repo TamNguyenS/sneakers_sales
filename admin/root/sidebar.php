@@ -15,12 +15,11 @@
 			<p class="menu-webname">Hikky's shop</p>
 		</div>
 		<ul class="sidebar-menu">
-
 			<li class="menu-item">
 				<a href="../main/" class="menu-link"><i class="far fa-eye"></i> <span>Tổng quan</span> </a>
 			</li>
 			<li class="menu-item">
-				<a href="" class="menu-link"><i class="fa fa-shopping-cart"></i> <span>Đơn hàng</span> </a>
+				<a href="../order/" class="menu-link"><i class="fa fa-shopping-cart"></i> <span>Đơn hàng</span> </a>
 			</li>
 			<li class="menu-item">
 				<a href="../product/" class="menu-link"><i class="fa fa-shopping-bag"></i> <span>Sản phẩm</span></a>

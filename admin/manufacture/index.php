@@ -27,7 +27,7 @@ $query = "SELECT * FROM manufacture WHERE NAME LIKE '%$search%' LIMIT  $page_lim
 $records = get_list($query);
 
 ?> 
-<?php 
+<?php ; 
     $delete = empty($_GET['delete']) ? 'false' : $_GET['delete'];
     if($delete !== false){
         // $id = $_GET['delete'];
@@ -114,7 +114,7 @@ $records = get_list($query);
 
                 </div>
                 <div class="table-content">
-                    <?php echo $msg ?>
+                    <!-- <php echo $msg ?> -->
                     <div class="table-button">
                         <div class="btn-add">
 
