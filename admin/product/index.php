@@ -78,11 +78,11 @@ if ($delete !== false) {
 
                     <div class="card-single">
                         <div>
-                            <h1> 15</h1>
-                            <span>Số sản phẩm hiện tại</span>
+                            <h1 > 15</h1>
+                            <span  >Số sản phẩm hiện tại</span>
                         </div>
-                        <div>
-                            <span class="fa fa-industry"> </span>
+                        <div class="card-icon" style="background-color: rgb(252, 242, 210);">
+                        <span class="fa-solid fa-store" style="color: rgb(248, 225, 52)"></span>
                         </div>
                     </div>
 
@@ -91,8 +91,8 @@ if ($delete !== false) {
                             <h1> 13</h1>
                             <span>Số sản phẩm bán được trong tuần</span>
                         </div>
-                        <div>
-                            <span class="fa fa-line-chart"> </span>
+                        <div class="card-icon"  style="  background-color: rgb(221, 230, 254);" >
+                        <span class="fa-regular fa-chart-bar" style=" color: rgb(30, 90, 255);"></span>
                         </div>
                     </div>
                     <div class="card-single">
@@ -100,8 +100,8 @@ if ($delete !== false) {
                             <h1> 13</h1>
                             <span>Số sản phẩm bán được trong tháng</span>
                         </div>
-                        <div>
-                            <span class="fa fa-area-chart"> </span>
+                        <div class="card-icon"  style="background-color: rgb(249, 219, 237);" >
+                        <span class="fa-solid fa-chart-bar" style="color: rgb(252, 64, 176);"></span>
                         </div>
                     </div>
 
@@ -156,7 +156,7 @@ if ($delete !== false) {
                                     <td style=" width: 150px;">
                                         <p><?php echo number_format($post['cost'], 0, '', '.'); ?> VND</p>
                                     </td>
-                                    <td>
+                                    <td style=" width: 150px;">
                                         <p><?php echo $post['sold']; ?></p>
                                     </td>
                                     <!-- <td>
@@ -209,6 +209,7 @@ if ($delete !== false) {
                     </div>
                     <br>
                 </div>
+                </main>
         </div>
 
     </div>

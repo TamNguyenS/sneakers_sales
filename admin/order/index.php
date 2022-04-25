@@ -33,12 +33,54 @@
                 </div>
 
             </div>
-            <div class="table-content">
+            <main>
+                <div class="cards" style="margin-top:-5px; margin-bottom: 10px;  margin-left: 100px;  grid-template-columns: repeat(5, 1fr);">
+
+                    <div class="card-single">
+                        <div>
+                            <h1> 15</h1>
+                            <span>Tổng số đơn</span>
+                        </div>
+                        <div class="card-icon" style="background-color: rgb(252, 242, 210);">
+                            <span class="fa-solid fa-store" style="color: rgb(248, 225, 52)"></span>
+                        </div>
+                    </div>
+
+                    <div class="card-single">
+                        <div>
+                            <h1> 13</h1>
+                            <span>Tổng số đơn hôm nay</span>
+                        </div>
+                        <div class="card-icon" style="  background-color: rgb(221, 230, 254);">
+                            <span class="fa-regular fa-chart-bar" style=" color: rgb(30, 90, 255);"></span>
+                        </div>
+                    </div>
+                    <div class="card-single">
+                        <div>
+                            <h1> 13</h1>
+                            <span>Đơn đang chờ xử lý</span>
+                        </div>
+                        <div class="card-icon" style="background-color: rgb(249, 219, 237);">
+                            <span class="fa-solid fa-chart-bar" style="color: rgb(252, 64, 176);"></span>
+                        </div>
+                    </div>
+                    <div class="card-single">
+                        <div>
+                            <h1> 13</h1>
+                            <span>Đơn đã hủy</span>
+                        </div>
+                        <div class="card-icon" style="background-color: rgb(249, 219, 237);">
+                            <span class="fa-solid fa-chart-bar" style="color: rgb(252, 64, 176);"></span>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="table-content">
                     <!-- <php echo $msg ?> -->
                     <div class="table-button">
                         <div class="btn-add">
 
-                            <a href="./manufactureadd.php" ><button class="btn btn1" id="button"><span class="fas fa-plus-circle"></span> Thêm nhà cung cấp</button> </a>
+                            <a href="./manufactureadd.php"><button class="btn btn1" id="button"><span class="fas fa-plus-circle"></span> Thêm nhà cung cấp</button> </a>
                         </div>
                         <div class="btn-out">
 
@@ -54,20 +96,20 @@
                                     <h3>ID</h3>
                                 </th>
                                 <th>
-                                    <h3>Tên đơn hàng</h3>
+                                    <h3>Thời gian đặt</h3>
                                 </th>
                                 <th>
-                                    <h3>Xuất xứ</h3>
+                                    <h3>Thông tin người nhận</h3>
                                 </th>
                                 <th>
-                                    <h3>Email</h3>
+                                    <h3>Thông tin người đặt</h3>
                                 </th>
                                 <th>
-                                    <h3>Điện thoại</h3>
+                                    <h3>Trạng thái</h3>
                                 </th>
-                                <th>
-                                    <h3>Ngày thêm</h3>
-                                </th>
+                                <!-- <th>
+                                    <h3>Tổng tiền</h3>
+                                </th> -->
                                 <th>
                                     <h3>Ghi chú</h3>
                                 </th>
@@ -76,63 +118,69 @@
                                 </th>
 
                             </tr>
-                     
-                                <tr>
-                                    <td>
-                                        <p></p>
-                                    </td>
-                                    <td>
-                                        <p></p>
-                                    </td>
-                                    <td>
-                                        <p></p>
-                                    </td>
-                                    <td>
-                                        <p></p>
-                                    </td>
-                                    <td>
-                                        <p></p>
-                                    </td>
-                                    <td>
-                                        <p></p>
-                                    </td>
-                                    <td>
-                                        <p></p>
-                                    </td>
-                                    <td>
-                                        <div class="table-button2">
-                                           
-                                            <div class="btn-delete">
-                                                <button class="btn-delete-real" data-name=" <?= $post['name'] ?>" data-id="<?= $post['id'] ?>" >  <span class="fa-solid fa-eraser"  ></span> Xóa</button> </a> 
-                                            </div>
-                                      
-                                            <div class="btn-update">
 
-                                               <a  href="./manufactureupdate.php?id=<?= $post['id'] ?>" ><button> <span class="fa-regular fa-pen-to-square"></span> &nbsp; Sửa</button>  </a> 
-                                            </div>
-                            
+                            <tr>
+                                <td>
+                                    <p></p>
+                                </td>
+                                <td>
+                                    <p></p>
+                                </td>
+                                <td>
+                                    <p></p>
+                                </td>
+                                <td>
+                                    <p></p>
+                                </td>
+                                <td>
+                                    <p></p>
+                                </td>
+                                <!-- <td>
+                                    <p></p>
+                                </td> -->
+                                <td>
+                                    <p></p>
+                                </td>
+                                <td class="table-manager">
+                                    <div class="table-button2">
+
+                                        <div class="btn-delete">
+
+                                            <button class="btn-delete-real" data-name=" <?= $post['name'] ?>" data-id="<?= $post['id'] ?>"> <i class="fa-solid fa-xmark"></i>&nbsp; &nbsp;Hủy </button>
                                         </div>
-                                    </td>
-                                </tr>
-                            
+                                        <div class="btn-update">
+
+                                            <a href="./productupdate.php?id=<?php echo $post['id'] ?>"><button> <i class="fa-solid fa-check"></i>&nbsp;  Duyệt</button> </a>
+                                        </div>
+
+                                        <div class="btn-detail">
+
+                                            <a href="./productdetail.php?id=<?php echo $post['id'] ?>"><button> <i class="fa-solid fa-ellipsis"></i>&nbsp; Chi tiết</button> </a>
+                                        </div>
+
+                                    </div>
+                                </td>
+                            </tr>
+
                         </thead>
                     </table>
                     <br>
                     <div class="page">
                         <nav class="pagination-outer" aria-label="Page navigation">
                             <ul class="pagination">
-                                
-                                        <li class="page-item active"><a class="page-link" href="#"></a></li>
-                                  
-                                        <li class="page-item"><a class="page-link" href="./?&search="> </a></li>
-                                
+
+                                <li class="page-item active"><a class="page-link" href="#"></a></li>
+
+                                <li class="page-item"><a class="page-link" href="./?&search="> </a></li>
+
                             </ul>
                         </nav>
                     </div>
                     <br>
-            </main>
 
-        </div>
+
+                </div>
+            </main>
         </div>
     </div>
 </body>

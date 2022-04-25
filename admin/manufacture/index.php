@@ -3,9 +3,9 @@ require '../root/checklogin.php';
 ?>
 <?php
 
-$isSubmit = false; 
-$error = ''; 
-$msg = ''; 
+$isSubmit = false;
+$error = '';
+$msg = '';
 $isError = false;
 require_once '../db.php';
 require_once '../func.php';
@@ -26,22 +26,21 @@ $page_skip =  $page_limit * ($page - 1);
 $query = "SELECT * FROM manufacture WHERE NAME LIKE '%$search%' LIMIT  $page_limit OFFSET $page_skip";
 $records = get_list($query);
 
-?> 
-<?php ; 
-    $delete = empty($_GET['delete']) ? 'false' : $_GET['delete'];
-    if($delete !== false){
-        // $id = $_GET['delete'];
-        $result = remove('manufacture', $delete);
-        
-        if($result){
-            $msg = 'Xóa thành công';
-            // header('Location: ./index.php');
-            // die();
-        }
-        else{
-            $msg = 'Xóa Không thành công ';
-        }
+?>
+<?php
+$delete = empty($_GET['delete']) ? 'false' : $_GET['delete'];
+if ($delete !== false) {
+    // $id = $_GET['delete'];
+    $result = remove('manufacture', $delete);
+
+    if ($result) {
+        $msg = 'Xóa thành công';
+        // header('Location: ./index.php');
+        // die();
+    } else {
+        $msg = 'Xóa Không thành công ';
     }
+}
 ?>
 
 <!DOCTYPE html>
@@ -68,10 +67,10 @@ $records = get_list($query);
             <?php include '../root/header.php' ?>
         </div>
         <div class="container-siderbar">
-           <?php include '../root/sidebar.php' ?>
+            <?php include '../root/sidebar.php' ?>
 
         </div>
-     
+
         <div class="container-main">
             <div class="container">
                 <div class="tag-name">
@@ -81,36 +80,36 @@ $records = get_list($query);
             </div>
 
             <main>
-                <div class="cards" style="margin-top:-5px; margin-bottom: 10px; ">
-
-                    <div class="card-single">
+                <div class="cards"  style="margin-top:-5px; margin-bottom: 10px;  margin-left: 200px;  grid-template-columns: repeat(3, 1fr);">
+               
+                    <div class="card-single" >
                         <div>
                             <h1> 15</h1>
-                            <span>Nhà sản xuất hiện tại</span>
+                            <span>Số nhà cung cấp hiện tại</span>
                         </div>
-                        <div>
-                            <span class="fa fa-industry"> </span>
+                        <div class="card-icon" style="background-color: rgb(252, 242, 210);">
+                            <span class="fa-solid fa-industry" style="color: rgb(248, 225, 52)"></span>
                         </div>
                     </div>
 
-                    <div class="card-single">
+                    <div class="card-single" >
                         <div>
                             <h1> 13</h1>
-                            <span>Nhà sản xuất trong tháng này</span>
+                            <span>Số nhà cung cấp mới trong năm nay</span>
                         </div>
-                        <div>
-                            <span class="fa fa-line-chart"> </span>
+                        <div class="card-icon" style="  background-color: rgb(221, 230, 254);">
+                            <span class="fa-regular fa-chart-bar" style=" color: rgb(30, 90, 255);"></span>
                         </div>
                     </div>
-                    <div class="card-single">
+                    <!-- <div class="card-single">
                         <div>
                             <h1> 13</h1>
-                            <span>Nhà sản xuất trong tháng này</span>
+                            <span>Số sản phẩm bán được trong tháng</span>
                         </div>
-                        <div>
-                            <span class="fa fa-area-chart"> </span>
+                        <div class="card-icon" style="background-color: rgb(249, 219, 237);">
+                            <span class="fa-solid fa-chart-bar" style="color: rgb(252, 64, 176);"></span>
                         </div>
-                    </div>
+                    </div> -->
 
                 </div>
                 <div class="table-content">
@@ -118,7 +117,7 @@ $records = get_list($query);
                     <div class="table-button">
                         <div class="btn-add">
 
-                            <a href="./manufactureadd.php" ><button class="btn btn1" id="button"><span class="fas fa-plus-circle"></span> Thêm nhà cung cấp</button> </a>
+                            <a href="./manufactureadd.php"><button class="btn btn1" id="button"><span class="fas fa-plus-circle"></span> Thêm nhà cung cấp</button> </a>
                         </div>
                         <div class="btn-out">
 
@@ -134,7 +133,7 @@ $records = get_list($query);
                                     <h3>ID</h3>
                                 </th>
                                 <th>
-                                    <h3>Tên nhà sản xuất</h3>
+                                    <h3>Tên nhà cung cấp</h3>
                                 </th>
                                 <th>
                                     <h3>Xuất xứ</h3>
@@ -182,16 +181,16 @@ $records = get_list($query);
                                     </td>
                                     <td>
                                         <div class="table-button2">
-                                           
+
                                             <div class="btn-delete">
-                                                <button class="btn-delete-real" data-name=" <?= $post['name'] ?>" data-id="<?= $post['id'] ?>" >  <span class="fa-solid fa-eraser"  ></span> Xóa</button> </a> 
+                                                <button class="btn-delete-real" data-name=" <?= $post['name'] ?>" data-id="<?= $post['id'] ?>"> <span class="fa-solid fa-eraser"></span> Xóa</button> </a>
                                             </div>
-                                      
+
                                             <div class="btn-update">
 
-                                               <a  href="./manufactureupdate.php?id=<?= $post['id'] ?>" ><button> <span class="fa-regular fa-pen-to-square"></span> &nbsp; Sửa</button>  </a> 
+                                                <a href="./manufactureupdate.php?id=<?= $post['id'] ?>"><button> <span class="fa-regular fa-pen-to-square"></span> &nbsp; Sửa</button> </a>
                                             </div>
-                            
+
                                         </div>
                                     </td>
                                 </tr>
@@ -231,16 +230,17 @@ $records = get_list($query);
             let id = $(this).data('id');
             let name = $(this).data('name');
             let result = confirm('Bạn có chắc muốn xóa?: ' + name);
-             if(result == true) {
-                 $.ajax({
-                     type: "GET",
-                     url: "./?delete=" + id,
-                     success: function (response) {
-                       btn.parents('tr').remove();
-                     }
-                 });
-             }
+            if (result == true) {
+                $.ajax({
+                    type: "GET",
+                    url: "./?delete=" + id,
+                    success: function(response) {
+                        btn.parents('tr').remove();
+                    }
+                });
+            }
         })
     });
 </script>
+
 </html>

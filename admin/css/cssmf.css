@@ -1,9 +1,9 @@
 main {
     padding: 0.5rem 1.5rem;
     min-height: calc(100vh - 85px);
-    margin-left: -20px;
+    margin-left: -31px;
     height: 100%;
-    width: 118%;
+    width: 120%;
 }
 
 main {
@@ -24,7 +24,7 @@ main {
     display: flex;
     justify-content: space-between;
     background: rgb(255, 255, 255);
-    padding: 1.0rem;
+    padding: .8rem;
     border-radius: 2rem;
     animation: scale-animation 0.5s ease;
     transition: all 0.8s;
@@ -36,22 +36,39 @@ main {
 }
 
 .card-single span:first-child {
-    font-size: 3rem;
+    font-size: 2rem;
+   
 }
+/* .card-single span:last-child {
+    font-size: 1.5rem;
+} */
 
 .card-single:hover {
 
-    background-color: #e6dfdf;
-    color: #fff;
+    background-color: #e6dfdf !important; 
+    color: #fff !important; 
     box-shadow: 0 4px 6px 0 rgba(97, 126, 222, 0.3);
 }
-
+.card-icon {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+.card-icon span{
+    margin: auto;
+}
+.card-icon {
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  
+}
 .table-content {
     margin-top: 10px;
     background: rgb(255, 255, 255);
     width: 87%;
     height: 600px;
-    border-radius: 5px;
+    border-radius: 10px;
     padding: 10px;
     overflow: scroll;
     animation: scale-animation 0.5s ease;
@@ -150,19 +167,19 @@ main {
 
 table {
     /* padding: 30px; */
-    color: rgb(0, 0, 0);
+    color: rgb(108, 106, 106);
     border-collapse: collapse;
     width: 100%;
     align-items: center;
-
+    border-radius: 30px;
+    border:none;
+    /* background-color: rgb(255, 0, 0); */
 }
 
 td {
     border: 1px solid rgb(255, 255, 255);
-    padding: 10px;
-
-    color: rgb(0, 0, 0);
-
+    padding: 5px;
+    color: rgb(108, 106, 106);
     border-bottom: 1px solid #dddddd;
 
 }
@@ -171,30 +188,38 @@ td {
     background-color: rgba(236, 233, 235, 0.3);
 } */
 th {
-    border: 1px solid rgba(255, 248, 225, 0.5);
-    ;
+    /* border: 1px solid rgba(185, 185, 185, 0.5); */
+    border:none;
     padding-top: 12px;
     padding-bottom: 12px;
-    background-color: rgba(255, 241, 193, 0.5);
+    background-color: rgba(255, 198, 198, 0.5);
     color: rgb(0, 0, 0);
-    font-size: 13px;
+    font-size: 16px;
+  
+}
+th:first-child {
+    border-radius: 15px 0 0 5px;
+}
 
-
+th:last-child {
+    border-radius: 0 15px 5px 0 ;
 }
 
 td {
-    font-size: 15px;
+    font-size: 17px;
     text-align: center;
 }
 
 
 .table-button2 button {
-
+    display: flex;
+    justify-content: center;
     border: none;
     border-radius: 7px;
     width: 95px;
     height: 25px;
-    margin: 4px;
+    margin: auto;
+    margin-bottom: 5px;
     font-size: 13px;
     transition: all 0.8s;
     font-weight: 600;
@@ -257,7 +282,11 @@ td {
     letter-spacing: 0.5px;
 
 }
-
+.table-button2 i {
+    /* display: flex;
+    justify-content: center; */
+    text-align: center;
+}
 .table-image {
 
     width: 250px;
