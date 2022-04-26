@@ -1,3 +1,20 @@
+<?php
+require '../root/checklogin.php';
+?>
+
+<?php
+require_once '../db.php';
+require_once '../func.php';
+?>
+<?php
+
+$sql = "SELECT orders.* , customer.name as customer_name, 
+customer.phone as customer_phone, customer.address as customer_address 
+FROM orders INNER JOIN customer ON orders.recipient_id = customer.id";
+$records = get_list($sql);
+// print_r($records);
+?>
+
 <!DOCTYPE html>
 <html>
 </div>
@@ -52,7 +69,8 @@
                             <span>Tổng số đơn hôm nay</span>
                         </div>
                         <div class="card-icon" style="  background-color: rgb(221, 230, 254);">
-                            <span class="fa-regular fa-chart-bar" style=" color: rgb(30, 90, 255);"></span>
+                            <span class="fa-solid fa-file-invoice-dollar" style=" color: rgb(30, 90, 255);"></span>
+
                         </div>
                     </div>
                     <div class="card-single">
@@ -69,8 +87,9 @@
                             <h1> 13</h1>
                             <span>Đơn đã hủy</span>
                         </div>
-                        <div class="card-icon" style="background-color: rgb(249, 219, 237);">
-                            <span class="fa-solid fa-chart-bar" style="color: rgb(252, 64, 176);"></span>
+                        <div class="card-icon" style="background-color: #ffe9ed;">
+                            <span class="fa-solid fa-sack-xmark" style="color: #f3272a;;"></span>
+
                         </div>
                     </div>
 
@@ -107,9 +126,9 @@
                                 <th>
                                     <h3>Trạng thái</h3>
                                 </th>
-                                <!-- <th>
+                                <th>
                                     <h3>Tổng tiền</h3>
-                                </th> -->
+                                </th>
                                 <th>
                                     <h3>Ghi chú</h3>
                                 </th>
@@ -118,26 +137,45 @@
                                 </th>
 
                             </tr>
+                            <?php foreach ($records as $record) {?>
+
 
                             <tr>
                                 <td>
-                                    <p></p>
+                                    <p><?= $record['id'] ?></p>
                                 </td>
                                 <td>
-                                    <p></p>
+                                    <p><?= $record['time_order'] ?></p>
                                 </td>
                                 <td>
-                                    <p></p>
+                                    <p><?= $record['recipent_name'] ?></p>
+                                   
+                                    <p><?= $record['recipent_address'] ?></p>
+                              
+                                    <p><?= $record['recipent_phone'] ?></p>
                                 </td>
                                 <td>
-                                    <p></p>
+                                    <p><?= $record['customer_name'] ?></p>
+                                    <p><?= $record['customer_address'] ?></p>
+                                    <p><?= $record['customer_phone'] ?></p>
+                                </td>
+                                <td style="width: 110px; ">
+                                    <?php $satuss = $record['status'];
+                                 
+                                    switch ($satuss){
+                                        case 0: '<p class="status1">Chờ duyệt</p>'; 
+                                        break;
+                                        case 1: echo '<p class="status2">Đã duyệt</p>'; 
+                                        break;
+                                        case 2: echo '<p class="status3">Đã Hủy</p>'; 
+                                        break;
+                                    }
+                                    
+                                    ?>
                                 </td>
                                 <td>
-                                    <p></p>
+                    
                                 </td>
-                                <!-- <td>
-                                    <p></p>
-                                </td> -->
                                 <td>
                                     <p></p>
                                 </td>
@@ -150,18 +188,18 @@
                                         </div>
                                         <div class="btn-update">
 
-                                            <a href="./productupdate.php?id=<?php echo $post['id'] ?>"><button> <i class="fa-solid fa-check"></i>&nbsp;  Duyệt</button> </a>
+                                            <a href="./productupdate.php?id=<?= $post['id'] ?>"><button> <i class="fa-solid fa-check"></i>&nbsp; Duyệt</button> </a>
                                         </div>
 
                                         <div class="btn-detail">
 
-                                            <a href="./productdetail.php?id=<?php echo $post['id'] ?>"><button> <i class="fa-solid fa-ellipsis"></i>&nbsp; Chi tiết</button> </a>
+                                            <a href="./productdetail.php?id=<?= $post['id'] ?>"><button> <i class="fa-solid fa-ellipsis"></i>&nbsp; Chi tiết</button> </a>
                                         </div>
 
                                     </div>
                                 </td>
                             </tr>
-
+<?php }?>
                         </thead>
                     </table>
                     <br>

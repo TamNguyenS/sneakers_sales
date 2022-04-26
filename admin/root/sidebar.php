@@ -35,16 +35,19 @@
 				<a href="../product/productadd.php" class="menu-link"> <i class="fa-solid fa-caret-right"></i> <span> Thống kê</span> <i class=""></i> </a>
 			</li>
 			<li class="menu-item">
-				<a href="./header.php" class="menu-link"><i class="fas fa-user-plus"></i><span>Nhân viên</span></a>
+				<a href="" class="menu-link"><i class="fas fa-user-plus"></i><span>Tài khoản</span></a>
 				<button onclick="employee_child()" class="dropbtn"> <i class="fas fa-angle-down" id="employee_btn"></i>
 				</button>
 			</li>
 
-			<li class="menu-item dropdown-content employee" id="employee">
-				<a href="" class="menu-link"><i class="fa-solid fa-caret-right"></i> <span> Thêm nhân viên</span> <i class=""></i>
+			<li class="menu-item dropdown-content employee" >
+				<a href="" class="menu-link"><i class="fa-solid fa-caret-right"></i> <span> Khách hàng</span>
 				</a>
 			</li>
-
+			<li class="menu-item dropdown-content employee">
+				<a href="" class="menu-link"><i class="fa-solid fa-caret-right"></i> <span> Nhân viên</span> 
+				</a>
+			</li>
 			<li class="menu-item">
 				<a href="../manufacture/" class="menu-link"><i class="fas fa-industry"></i><span>Nhà cung cấp</span></a>
 				<button onclick="manufacturer_child()" class="dropbtn"> <i class="fas fa-angle-down" id="manufacturer_btn"></i>
@@ -70,7 +73,11 @@
 			document.getElementById("product_btn").classList.toggle("rotation");
 		}
 		function employee_child() {
-			document.getElementById("employee").classList.toggle("show");
+			let employee = document.getElementsByClassName('employee');
+			for (let i = 0; i < employee.length; i++) {
+				document.getElementsByClassName('employee')[i].classList.toggle("show");
+			}
+
 			document.getElementById("employee_btn").classList.toggle("rotation");
 
 		}

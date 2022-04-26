@@ -181,6 +181,7 @@ td {
     padding: 5px;
     color: rgb(108, 106, 106);
     border-bottom: 1px solid #dddddd;
+    text-align: center;
 
 }
 
@@ -524,4 +525,38 @@ pagination-outer {
         transform: scaleX(1);
 
     }
+}
+
+.status1{
+    display: flex;
+    justify-content: center;
+    background-color: #fdf1db;
+    border-radius: 10px;
+    color: #f3a527;
+    font-size: 13px;
+    width: 80px;
+    margin: auto;
+    font-weight: bold;
+   
+}.status2{
+    display: flex;
+    justify-content: center;
+    background-color: #e0fddb;
+    border-radius: 10px;
+    color: #27f364;
+    font-size: 13px;
+    width: 80px;
+    margin: auto;
+    font-weight: bold;
+}
+.status3{
+    display: flex;
+    justify-content: center;
+    background-color: #ffe9ed;
+    border-radius: 10px;
+    color: #f3272a;
+    font-size: 13px;
+    width: 80px;
+    margin: auto;
+    font-weight: bold;
 }
