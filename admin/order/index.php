@@ -6,13 +6,26 @@ require '../root/checklogin.php';
 require_once '../db.php';
 require_once '../func.php';
 ?>
-<?php
 
-$sql = "SELECT orders.* , customer.name as customer_name, 
+<?php
+$search = empty($_GET['search']) ? '' : $_GET['search'];
+$search = validate($search);
+
+//page 
+$page = empty($_GET['page']) ? 1 : $_GET['page'];
+if (!is_numeric($page)) die();
+
+$page_limit = 6;
+$page_total_length = get_count('SELECT count(*) FROM orders WHERE recipent_name LIKE \'%' . $search . '%\'');
+$page_length = ceil($page_total_length / $page_limit);
+$page_skip =  $page_limit * ($page - 1);
+
+$query = "SELECT orders.* , customer.name as customer_name, 
 customer.phone as customer_phone, customer.address as customer_address 
-FROM orders INNER JOIN customer ON orders.recipient_id = customer.id";
-$records = get_list($sql);
-// print_r($records);
+FROM orders INNER JOIN customer ON orders.recipient_id = customer.id
+WHERE recipent_name LIKE '%$search%' LIMIT  $page_limit OFFSET $page_skip";
+
+$records = get_list($query);
 ?>
 
 <!DOCTYPE html>
@@ -36,7 +49,7 @@ $records = get_list($sql);
 
     <div class="grid-container">
         <div class="container-header">
-            <!-- <php include '../root/header.php' ?> -->
+            <?php include '../root/header.php' ?>
         </div>
         <div class="container-siderbar">
             <?php include '../root/sidebar.php' ?>
@@ -99,7 +112,7 @@ $records = get_list($sql);
                     <div class="table-button">
                         <div class="btn-add">
 
-                            <a href="./manufactureadd.php"><button class="btn btn1" id="button"><span class="fas fa-plus-circle"></span> Thêm nhà cung cấp</button> </a>
+                            <a href="./manufactureadd.php"><button class="btn btn1" id="button"><span class="fas fa-plus-circle"></span>Đơn chưa duyệt</button> </a>
                         </div>
                         <div class="btn-out">
 
@@ -107,15 +120,21 @@ $records = get_list($sql);
                         </div>
 
                     </div>
+                    <div class="fillter">
+                        <select class="" value="Sắp xếp">
+                            <option value="">Sắp xếp1</option>
+                            <option value="">Sắp xếp2</option>
+                        </select>
+                    </div>
 
                     <table border="1px">
                         <thead>
                             <tr>
                                 <th>
-                                    <h3>ID</h3>
+                                    <h3>ID  </h3>
                                 </th>
                                 <th>
-                                    <h3>Thời gian đặt</h3>
+                                    <h3>Thời gian đặt &nbsp;<i class="fa-solid fa-caret-down"></i></h3>
                                 </th>
                                 <th>
                                     <h3>Thông tin người nhận</h3>
@@ -124,10 +143,10 @@ $records = get_list($sql);
                                     <h3>Thông tin người đặt</h3>
                                 </th>
                                 <th>
-                                    <h3>Trạng thái</h3>
+                                    <h3>Trạng thái &nbsp;<i class="fa-solid fa-caret-down"></i></h3>
                                 </th>
                                 <th>
-                                    <h3>Tổng tiền</h3>
+                                    <h3>Tổng tiền &nbsp;<i class="fa-solid fa-caret-down"></i></h3>
                                 </th>
                                 <th>
                                     <h3>Ghi chú</h3>
@@ -144,7 +163,7 @@ $records = get_list($sql);
                                 <td>
                                     <p><?= $record['id'] ?></p>
                                 </td>
-                                <td>
+                                <td style="width: 150px;">
                                     <p><?= $record['time_order'] ?></p>
                                 </td>
                                 <td>
@@ -163,34 +182,28 @@ $records = get_list($sql);
                                     <?php $satuss = $record['status'];
                                  
                                     switch ($satuss){
-                                        case 0: '<p class="status1">Chờ duyệt</p>'; 
+                                        case 0:echo '<p class="status1">Chờ duyệt</p>'; 
                                         break;
                                         case 1: echo '<p class="status2">Đã duyệt</p>'; 
                                         break;
                                         case 2: echo '<p class="status3">Đã Hủy</p>'; 
                                         break;
                                     }
-                                    
                                     ?>
                                 </td>
                                 <td>
-                    
+                                <p><?php echo number_format($record['total_cost'], 0, '', ','); ?> <span class="cost">đ</span></p>
                                 </td>
                                 <td>
-                                    <p></p>
+                                    <p><?= $record['note'] ?></p>
                                 </td>
                                 <td class="table-manager">
                                     <div class="table-button2">
-
-                                        <div class="btn-delete">
-
-                                            <button class="btn-delete-real" data-name=" <?= $post['name'] ?>" data-id="<?= $post['id'] ?>"> <i class="fa-solid fa-xmark"></i>&nbsp; &nbsp;Hủy </button>
-                                        </div>
-                                        <div class="btn-update">
-
-                                            <a href="./productupdate.php?id=<?= $post['id'] ?>"><button> <i class="fa-solid fa-check"></i>&nbsp; Duyệt</button> </a>
-                                        </div>
-
+                                    <?php  if( $record['status']==0){
+                                        require_once '../root/buttonD.php';
+                                        require_once '../root/buttonU.php';
+                                    } ?>
+                        
                                         <div class="btn-detail">
 
                                             <a href="./productdetail.php?id=<?= $post['id'] ?>"><button> <i class="fa-solid fa-ellipsis"></i>&nbsp; Chi tiết</button> </a>
@@ -206,11 +219,14 @@ $records = get_list($sql);
                     <div class="page">
                         <nav class="pagination-outer" aria-label="Page navigation">
                             <ul class="pagination">
-
-                                <li class="page-item active"><a class="page-link" href="#"></a></li>
-
-                                <li class="page-item"><a class="page-link" href="./?&search="> </a></li>
-
+                                <?php for ($i = 1; $i   <= $page_length; $i++) {
+                                    if ($i == $page) { ?>
+                                        <li class="page-item active"><a class="page-link" href="#"><?php echo $i; ?></a></li>
+                                    <?php } else { ?>
+                                        <li class="page-item"><a class="page-link" href="./?&search=<?php echo $search ?>&page=<?php echo $i ?>"><?php echo $i; ?></a></li>
+                                <?php
+                                    }
+                                } ?>
                             </ul>
                         </nav>
                     </div>

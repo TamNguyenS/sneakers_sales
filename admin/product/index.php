@@ -154,7 +154,7 @@ if ($delete !== false) {
                                         <p><?php echo $post['name']; ?> </p>
                                     </td>
                                     <td style=" width: 150px;">
-                                        <p><?php echo number_format($post['cost'], 0, '', '.'); ?> VND</p>
+                                        <p><?php echo number_format($post['cost'], 0, '', ','); ?> <span class="cost">đ</span></p>
                                     </td>
                                     <td style=" width: 150px;">
                                         <p><?php echo $post['sold']; ?></p>

@@ -160,11 +160,6 @@ main {
 }
 
 
-
-
-
-
-
 table {
     /* padding: 30px; */
     color: rgb(108, 106, 106);
@@ -179,7 +174,7 @@ table {
 td {
     border: 1px solid rgb(255, 255, 255);
     padding: 5px;
-    color: rgb(108, 106, 106);
+    color: rgb(39, 10, 97);
     border-bottom: 1px solid #dddddd;
     text-align: center;
 
@@ -193,17 +188,17 @@ th {
     border:none;
     padding-top: 12px;
     padding-bottom: 12px;
-    background-color: rgba(255, 198, 198, 0.5);
-    color: rgb(0, 0, 0);
-    font-size: 16px;
+    background-color: rgba(222, 219, 146, 0.155);
+    color: rgb(78, 13, 125);
+    font-size: 14px;
   
 }
 th:first-child {
-    border-radius: 15px 0 0 5px;
+    border-radius: 15px 0 0 15px;
 }
 
 th:last-child {
-    border-radius: 0 15px 5px 0 ;
+    border-radius: 0 15px 15px 0 ;
 }
 
 td {
@@ -559,4 +554,13 @@ pagination-outer {
     width: 80px;
     margin: auto;
     font-weight: bold;
+    
+}
+
+.cost {
+    color: rgb(255, 0, 0);
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: underline;
+    
 }
