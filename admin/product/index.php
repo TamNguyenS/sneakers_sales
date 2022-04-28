@@ -182,7 +182,7 @@ if ($delete !== false) {
                                             </div>
 
                                             <div class="btn-detail">
-
+                                          
                                                 <a href="./productdetail.php?id=<?php echo $post['id'] ?>"><button> <span class="fa-solid fa-square-up-right"></span> &nbsp; Chi tiết</button> </a>
                                             </div>
 

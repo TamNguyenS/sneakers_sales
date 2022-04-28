@@ -41,7 +41,9 @@ $records = get_list($query);
     <link rel="stylesheet" href="../css/cssmf.css?v=2">
     <script src="../js/mf.js"></script>
     <!-- icon -->
-    <script src="https://kit.fontawesome.com/945e1fd97f.js" crossorigin="anonymous"></script>
+     <script src="https://kit.fontawesome.com/945e1fd97f.js" crossorigin="anonymous"></script>
+     <script src="../lib/icon.js" crossorigin="anonymous"></script>
+    <!-- <link rel="stylesheet" href="../lib/icon.css"> -->
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/font-awesome-line-awesome/css/all.min.css">
 </head>
 
@@ -101,6 +103,7 @@ $records = get_list($query);
                             <span>Đơn đã hủy</span>
                         </div>
                         <div class="card-icon" style="background-color: #ffe9ed;">
+
                             <span class="fa-solid fa-sack-xmark" style="color: #f3272a;;"></span>
 
                         </div>
@@ -110,28 +113,39 @@ $records = get_list($query);
                 <div class="table-content">
                     <!-- <php echo $msg ?> -->
                     <div class="table-button">
+                    
                         <div class="btn-add">
 
-                            <a href="./manufactureadd.php"><button class="btn btn1" id="button"><span class="fas fa-plus-circle"></span>Đơn chưa duyệt</button> </a>
+                            <a href="./manufactureadd.php"><button class="btn btn1" id="button"><span class="fas fa-plus-circle"></span>&nbsp;Tạo đơn mới</button> </a>
                         </div>
                         <div class="btn-out">
 
                             <button> <span class="fa-solid fa-file-excel"></span> &nbsp; Xuất file Excel</button>
                         </div>
+                        
+                        <div class="fillter">
+                        <i class="fa-solid fa-arrow-down-a-z"></i>&nbsp;
+                        <input type="date" class="fillter-orders inputdate "></input>
+
+                        <i class="fa-solid fa-arrow-down-short-wide"></i>&nbsp;
+
+                            <select class="fillter-orders" >
+                                <option disabled selected value="">Loại đơn </option>
+                                <option value="">Đơn hủy</option>
+                                <option value="">Đơn duyệt</option>
+                                <option value="">Chờ duyệt</option>
+                            </select>
+                        </div>
 
                     </div>
-                    <div class="fillter">
-                        <select class="" value="Sắp xếp">
-                            <option value="">Sắp xếp1</option>
-                            <option value="">Sắp xếp2</option>
-                        </select>
-                    </div>
+
+                    
 
                     <table border="1px">
                         <thead>
                             <tr>
                                 <th>
-                                    <h3>ID  </h3>
+                                    <h3>ID </h3>
                                 </th>
                                 <th>
                                     <h3>Thời gian đặt &nbsp;<i class="fa-solid fa-caret-down"></i></h3>
@@ -156,63 +170,66 @@ $records = get_list($query);
                                 </th>
 
                             </tr>
-                            <?php foreach ($records as $record) {?>
+                            <?php foreach ($records as $record) { ?>
 
 
-                            <tr>
-                                <td>
-                                    <p><?= $record['id'] ?></p>
-                                </td>
-                                <td style="width: 150px;">
-                                    <p><?= $record['time_order'] ?></p>
-                                </td>
-                                <td>
-                                    <p><?= $record['recipent_name'] ?></p>
-                                   
-                                    <p><?= $record['recipent_address'] ?></p>
-                              
-                                    <p><?= $record['recipent_phone'] ?></p>
-                                </td>
-                                <td>
-                                    <p><?= $record['customer_name'] ?></p>
-                                    <p><?= $record['customer_address'] ?></p>
-                                    <p><?= $record['customer_phone'] ?></p>
-                                </td>
-                                <td style="width: 110px; ">
-                                    <?php $satuss = $record['status'];
-                                 
-                                    switch ($satuss){
-                                        case 0:echo '<p class="status1">Chờ duyệt</p>'; 
-                                        break;
-                                        case 1: echo '<p class="status2">Đã duyệt</p>'; 
-                                        break;
-                                        case 2: echo '<p class="status3">Đã Hủy</p>'; 
-                                        break;
-                                    }
-                                    ?>
-                                </td>
-                                <td>
-                                <p><?php echo number_format($record['total_cost'], 0, '', ','); ?> <span class="cost">đ</span></p>
-                                </td>
-                                <td>
-                                    <p><?= $record['note'] ?></p>
-                                </td>
-                                <td class="table-manager">
-                                    <div class="table-button2">
-                                    <?php  if( $record['status']==0){
-                                        require_once '../root/buttonD.php';
-                                        require_once '../root/buttonU.php';
-                                    } ?>
-                        
-                                        <div class="btn-detail">
+                                <tr>
+                                    <td>
+                                        <p><span style="color: rgb(250, 35, 189); font-weight:bold">#</span><?= encodeID($record['id']) ?></p>
+                                    </td>
+                                    <td style="width: 150px;">
+                                        <p><?= $record['time_order'] ?></p>
+                                    </td>
+                                    <td>
+                                        <p><?= $record['recipent_name'] ?></p>
 
-                                            <a href="./productdetail.php?id=<?= $post['id'] ?>"><button> <i class="fa-solid fa-ellipsis"></i>&nbsp; Chi tiết</button> </a>
+                                        <p><?= $record['recipent_address'] ?></p>
+
+                                        <p><?= $record['recipent_phone'] ?></p>
+                                    </td>
+                                    <td>
+                                        <p><?= $record['customer_name'] ?></p>
+                                        <p><?= $record['customer_address'] ?></p>
+                                        <p><?= $record['customer_phone'] ?></p>
+                                    </td>
+                                    <td style="width: 110px; ">
+                                        <?php $satuss = $record['status'];
+
+                                        switch ($satuss) {
+                                            case 0:
+                                                echo '<p class="status1">Chờ duyệt</p>';
+                                                break;
+                                            case 1:
+                                                echo '<p class="status2">Đã duyệt</p>';
+                                                break;
+                                            case 2:
+                                                echo '<p class="status3">Đã Hủy</p>';
+                                                break;
+                                        }
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <p><?php echo number_format($record['total_cost'], 0, '', ','); ?> <span class="cost">đ</span></p>
+                                    </td>
+                                    <td>
+                                        <p><?= $record['note'] ?></p>
+                                    </td>
+                                    <td class="table-manager" style="width: 90px; ">
+                                        <div class="table-button2">
+                                            <?php if ($record['status'] == 0) {
+                                                require '../root/buttonD.php';
+                                                require '../root/buttonU.php';
+                                            } ?>
+
+                                            <div class="btn-detail">
+                                             <a href="./orderdetail.php?id=<?= $record['id'] ?>"> <i class="fa-solid fa-arrow-up-right-from-square icon-detail"></i></a>
+                                                <!-- <a href="./productdetail.php?id=<?= $post['id'] ?>"><button> <i class="fa-solid fa-ellipsis"></i>&nbsp; Chi tiết</button> </a> -->
+                                            </div>
+
                                         </div>
-
-                                    </div>
-                                </td>
-                            </tr>
-<?php }?>
+                                    </td>
+                                </tr>
+                            <?php } ?>
                         </thead>
                     </table>
                     <br>

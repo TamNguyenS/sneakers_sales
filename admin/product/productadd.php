@@ -150,13 +150,13 @@ if (
                         <p>Số lượng </p>
                         <input type="int" name="quantity" placeholder="Nhập số lượng">
                         <p> Loại sản phẩm</p>
-                        <select name="type" id="type">
+                        <select name="type" id="type" class="select-1">
                             <?php foreach ($type_list as $post) { ?>
                                 <option value="<?php echo $post['id'] ?>"> <?php echo $post['name'] ?> </h1>
                                 <?php } ?>
                         </select>
                         <p> Nhà sản xuất</p>
-                        <select name="manufacture" id="manufacture">
+                        <select name="manufacture" id="manufacture" class="select-1">
                             <?php foreach ($manufacture_list as $post) { ?>
                                 <option value="<?php echo $post['id'] ?>"> <?php echo $post['name'] ?> </option>
                             <?php } ?>

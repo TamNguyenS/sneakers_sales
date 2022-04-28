@@ -22,15 +22,15 @@
         }
 
         .table-button-detail .btn-addd button {
-            background: rgba(255, 252, 164, 0.5);
-            color: rgb(185, 158, 8);
+            background: rgba(250, 249, 215, 0.5);
+            color: rgb(215, 186, 20);
             padding: 5px;
         }
 
         .table-button-detail .btn-out button {
             float: left;
-            background: rgb(188, 246, 197);
-            color: rgb(54, 144, 46);
+            background: rgb(217, 253, 222);
+            color: rgb(52, 192, 39);
             padding: 5px;
         }
 
@@ -52,8 +52,8 @@
         }
 
         .table-button-detail .btn-delete button {
-            background: rgb(255, 179, 175);
-            color: rgb(175, 21, 21);
+            background: rgb(249, 213, 211);
+            color: rgb(190, 41, 41);
             padding: 5px;
         }
         
@@ -62,7 +62,7 @@
             background: rgba(237, 205, 24, 0.8);
             padding: 5px;
             transition: all 0.8s;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
         }
 
         .table-button-detail .btn-out button:hover {

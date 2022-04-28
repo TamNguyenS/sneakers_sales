@@ -67,7 +67,7 @@ main {
     margin-top: 10px;
     background: rgb(255, 255, 255);
     width: 87%;
-    height: 600px;
+    height: 800px;
     border-radius: 10px;
     padding: 10px;
     overflow: scroll;
@@ -102,7 +102,9 @@ main {
 
 .table-button {
     margin-top: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+    /* background-color: #27f364; */
+  
 }
 
 .table-button button {
@@ -115,11 +117,12 @@ main {
     font-weight: bold;
     transition: all 0.8s;
 
+
 }
 
 .table-button .btn-add button:hover {
     color: rgb(255, 255, 255);
-    background: rgba(237, 205, 24, 0.8);
+    background: rgba(252, 202, 19, 0.8);
     padding: 5px;
     transition: all 0.8s;
 }
@@ -139,13 +142,13 @@ main {
 
 .table-button .btn-add button {
     background: rgba(249, 247, 187, 0.5);
-    color: rgb(185, 158, 8);
+    color: rgb(237, 193, 36);
     padding: 5px;
 }
 
 .table-button .btn-out button {
     background: rgb(195, 250, 204);
-    color: rgb(54, 144, 46);
+    color: rgb(40, 181, 27);
     padding: 5px;
 }
 
@@ -159,6 +162,42 @@ main {
     font-size: 1rem;
 }
 
+.fillter{
+    position: relative;
+    top: -30px;
+    float: right;
+    margin-right: 20px;
+    margin:0px;
+}
+.fillter-orders  {
+   
+   font-size: 13px;
+   font-weight: bold;
+   text-align: center;
+   position: relative;
+   height: 23px;
+   width:80px;
+   border-radius: 10px;
+   cursor: pointer;
+   color: rgb(30, 19, 69);
+   transition: border 1s, color 1.5s;
+}
+
+.fillter-orders:focus {
+    outline: none;
+    border: 1px solid #ff3010;
+    border-radius: 10px;
+    transition: border 1s, color 1.5s;
+    color: #f85f47;
+
+}
+.inputdate{
+   margin-right: 15px;
+   border-radius: 10px;
+   height: 23px;
+   border: 1px solid #000000;
+   width: 125px;
+}
 
 table {
     /* padding: 30px; */
@@ -188,7 +227,7 @@ th {
     border:none;
     padding-top: 12px;
     padding-bottom: 12px;
-    background-color: rgba(222, 219, 146, 0.155);
+    background-color: rgba(135, 166, 245, 0.155);
     color: rgb(78, 13, 125);
     font-size: 14px;
   
@@ -201,10 +240,24 @@ th:last-child {
     border-radius: 0 15px 15px 0 ;
 }
 
-td {
+ td {
     font-size: 17px;
     text-align: center;
 }
+/* .table-order{
+    background-color: red;
+}
+.table-order th{
+    border:none;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    background-color: rgba(135, 166, 245, 0.155);
+    color: rgb(78, 13, 125);
+    font-size: 14px;
+    align-items: left;
+
+} */
+
 
 
 .table-button2 button {
@@ -306,33 +359,6 @@ td {
     font-size: 20px;
     background: rgb(255, 255, 255);
 }
-
-/* .form-content input
-{
-    width: 100%;
-    height: 40px;
-    border-radius: 20px;
-    border: none;
-    padding: 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    font-size: 20px;
-    background: rgba(245, 140, 140, 0.2);
-    text-align: center; 
-    font-size: 18px;
-}
-.form-content input {
-    padding: .25rem;
-    box-sizing: border-box;
-    color: rgb(0, 0, 0);
-    transition: border 1s, color 1.5s;
-}
-.form-content input:focus {
-    outline: none;
-    border: 1px solid #ff3010;
-    transition: border 1s, color .5s;
-    color: #f04a30;
-} */
 .form-content p {
     margin-top: 10px;
     margin-bottom: 10px;
@@ -403,7 +429,7 @@ textarea {
     background: rgb(253, 115, 115);
 }
 
-select:focus {
+.select-1:focus {
     outline: none;
     border: 1px solid #ff3010;
     border-radius: 10px;
@@ -411,7 +437,7 @@ select:focus {
     color: #f85f47;
 }
 
-select {
+.select-1  {
     background-color: transparent;
     border: none;
     border: 1px solid rgb(232, 232, 232);
@@ -562,5 +588,21 @@ pagination-outer {
     font-weight: 600;
     font-size: 15px;
     text-decoration: underline;
+
+    
+}
+.icon-detail{
+    color: rgb(53, 59, 126);
+    transition: all 0.9s;
+    font-size: 20px;
+}
+.icon-detail:hover {
+    transition: all 0.9s;
+    color: rgb(250, 35, 189);
+    cursor: pointer;
+}
+.title-detail{
+    color: rgb(34, 31, 81);
+    font-size: 18px;
     
 }
