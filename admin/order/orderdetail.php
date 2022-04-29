@@ -186,9 +186,9 @@ if(count($records)==0){
                      
                                 <?php if ($record['status'] == 0) {
                                     echo '<div class="btn-addd">';
-                                    echo '<a href="./productadd.php"><button><span class="fa-solid fa-check"></span> Duyệt</button> </a> </div>';
+                                    echo '<a href="./updatestatus_detail.php?id='.$record['id'].'&status=1"><button><span class="fa-solid fa-check"></span> Duyệt</button> </a> </div>';
                                     echo '<div class="btn-delete">';
-                                    echo ' <a href="./productadd.php"><button><span class="fa-solid fa-xmark"></span> Hủy</button> </a> </div>';
+                                    echo '<a href="./updatestatus_detail.php?id='.$record['id'].'&status=2"><button><span class="fa-solid fa-xmark"></span> Hủy</button> </a> </div>';
                                 } ?>
 
                             </div>

@@ -9,6 +9,7 @@ require_once '../func.php';
 
 <?php
 $search = empty($_GET['search']) ? '' : $_GET['search'];
+$statusorder = isset($_GET['status']) ? $_GET['status'] : '';
 $search = validate($search);
 
 //page 
@@ -23,9 +24,10 @@ $page_skip =  $page_limit * ($page - 1);
 $query = "SELECT orders.* , customer.name as customer_name, 
 customer.phone as customer_phone, customer.address as customer_address 
 FROM orders INNER JOIN customer ON orders.recipient_id = customer.id
-WHERE recipent_name LIKE '%$search%' LIMIT  $page_limit OFFSET $page_skip";
+WHERE (status = '$statusorder')  OR (recipent_name LIKE '%$search%') ORDER BY id DESC LIMIT  $page_limit OFFSET $page_skip";
 
 $records = get_list($query);
+
 ?>
 
 <!DOCTYPE html>
@@ -45,6 +47,7 @@ $records = get_list($query);
      <script src="../lib/icon.js" crossorigin="anonymous"></script>
     <!-- <link rel="stylesheet" href="../lib/icon.css"> -->
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/font-awesome-line-awesome/css/all.min.css">
+
 </head>
 
 <body>
@@ -122,24 +125,27 @@ $records = get_list($query);
 
                             <button> <span class="fa-solid fa-file-excel"></span> &nbsp; Xuất file Excel</button>
                         </div>
-                        
+                        <form action=" " name="test" >
                         <div class="fillter">
                         <i class="fa-solid fa-arrow-down-a-z"></i>&nbsp;
                         <input type="date" class="fillter-orders inputdate "></input>
 
                         <i class="fa-solid fa-arrow-down-short-wide"></i>&nbsp;
-
-                            <select class="fillter-orders" >
-                                <option disabled selected value="">Loại đơn </option>
-                                <option value="">Đơn hủy</option>
-                                <option value="">Đơn duyệt</option>
-                                <option value="">Chờ duyệt</option>
-                            </select>
-                        </div>
-
-                    </div>
-
                     
+                            <select class="fillter-orders" name="statusorder" >
+                              
+                                <option disabled selected value="">Loại đơn </option>
+                                <option value="2">Đơn hủy</option>
+                                <option value="1">Đơn duyệt</option>
+                                <option value="0">Chờ duyệt</option>
+                         
+                            </select>
+                            
+                          <!-- <input type="submit" class=""></input> -->
+                        </div>
+                        </form>
+                    </div>
+                
 
                     <table border="1px">
                         <thead>

@@ -40,6 +40,8 @@ function update ($table, $data, $where) {
         $value_list .= "$key = '" . $conn->real_escape_string($value) . "',";
     }
     $sql = 'UPDATE ' . $table . ' SET ' . trim($value_list, ',') . ' WHERE ' . $where;
+    echo $sql;
+    // die();
     $result = mysqli_query($conn, $sql);
     disconnect($conn);
     return $result;
