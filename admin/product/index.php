@@ -51,6 +51,8 @@ if ($delete !== false) {
     <!-- icon -->
     <script src="https://kit.fontawesome.com/945e1fd97f.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/font-awesome-line-awesome/css/all.min.css">
+
+   
 </head>
 
 <body>
@@ -78,11 +80,11 @@ if ($delete !== false) {
 
                     <div class="card-single">
                         <div>
-                            <h1 > 15</h1>
-                            <span  >Số sản phẩm hiện tại</span>
+                            <h1> 15</h1>
+                            <span>Số sản phẩm hiện tại</span>
                         </div>
                         <div class="card-icon" style="background-color: rgb(252, 242, 210);">
-                        <span class="fa-solid fa-store" style="color: rgb(248, 225, 52)"></span>
+                            <span class="fa-solid fa-store" style="color: rgb(248, 225, 52)"></span>
                         </div>
                     </div>
 
@@ -91,8 +93,8 @@ if ($delete !== false) {
                             <h1> 13</h1>
                             <span>Số sản phẩm bán được trong tuần</span>
                         </div>
-                        <div class="card-icon"  style="  background-color: rgb(221, 230, 254);" >
-                        <span class="fa-regular fa-chart-bar" style=" color: rgb(30, 90, 255);"></span>
+                        <div class="card-icon" style="  background-color: rgb(221, 230, 254);">
+                            <span class="fa-regular fa-chart-bar" style=" color: rgb(30, 90, 255);"></span>
                         </div>
                     </div>
                     <div class="card-single">
@@ -100,8 +102,8 @@ if ($delete !== false) {
                             <h1> 13</h1>
                             <span>Số sản phẩm bán được trong tháng</span>
                         </div>
-                        <div class="card-icon"  style="background-color: rgb(249, 219, 237);" >
-                        <span class="fa-solid fa-chart-bar" style="color: rgb(252, 64, 176);"></span>
+                        <div class="card-icon" style="background-color: rgb(249, 219, 237);">
+                            <span class="fa-solid fa-chart-bar" style="color: rgb(252, 64, 176);"></span>
                         </div>
                     </div>
 
@@ -182,7 +184,7 @@ if ($delete !== false) {
                                             </div>
 
                                             <div class="btn-detail">
-                                          
+
                                                 <a href="./productdetail.php?id=<?php echo $post['id'] ?>"><button> <span class="fa-solid fa-square-up-right"></span> &nbsp; Chi tiết</button> </a>
                                             </div>
 
@@ -209,7 +211,7 @@ if ($delete !== false) {
                     </div>
                     <br>
                 </div>
-                </main>
+            </main>
         </div>
 
     </div>
@@ -222,6 +224,7 @@ if ($delete !== false) {
             let id = $(this).data('id');
             let name = $(this).data('name');
             let result = confirm('Bạn có chắc muốn xóa?: ' + name);
+            alert(name);
             if (result == true) {
                 $.ajax({
                     type: "GET",

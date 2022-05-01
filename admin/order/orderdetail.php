@@ -13,9 +13,9 @@ product.image AS product_image,
 orders_detail.quantity AS quantity, orders.* ,
 customer.name as customer_name, customer.email as customer_email,
 customer.phone as customer_phone, customer.address as customer_address 
-FROM ((((product INNER JOIN orders_detail ON product.id = orders_detail.product_id)
-INNER JOIN orders ON orders_detail.orders_id = orders.id))
-INNER JOIN customer ON orders.recipient_id = customer.id)
+FROM ((((product LEFT JOIN orders_detail ON product.id = orders_detail.product_id)
+LEFT JOIN orders ON orders_detail.orders_id = orders.id))
+LEFT JOIN customer ON orders.recipient_id = customer.id)
 WHERE orders.id = '$id_order'";
 
 $records = get_list($query);
@@ -381,7 +381,6 @@ if(count($records)==0){
   
     </div>
 </body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
 
 </script>
