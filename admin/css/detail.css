@@ -91,24 +91,25 @@
            
         }
         .product-title{
-            margin:30px;
-            margin-bottom: 40px;
+            margin:10px;
+            margin-bottom: 20px;
+            background-color: transparent !important;
            
-            
         }
         .product-title h1 {
-            font-size: 30px;
+            font-size: 20px;
             color: rgb(252, 140, 140);
-            text-align: center;
+            text-align: left;
         }
         .detail-img img{
             transition: all 2s;
             height: 30%;
             width: 30%;
-            text-align: center;
+            text-align: left;
             display: flex;
-            justify-content: center;
-            border-radius: 40px;
+            border-radius: 50px;
+            margin-left: -900px;
+          
         }
         .detail-img img:hover{
             transform: scaleX(-1);

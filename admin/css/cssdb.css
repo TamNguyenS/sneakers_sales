@@ -231,6 +231,8 @@ li {
   padding: 20px !important;
   border-radius: 15px 0px 0px 15px;
   background:  #FBF6F0;
+  overflow-x: hidden;
+  height: 100%;
 }
 .container-right { 
   grid-area: right; 
@@ -247,24 +249,24 @@ li {
   padding: 0px;
   height: 100vh;
   background: #fff;
- overflow-x: hidden;
+  overflow: hidden;
 }
 
 .grid-container > div {
 padding: 0;
 }
 
-.grid-container::-webkit-scrollbar {
+.container-main::-webkit-scrollbar {
   width:8px;
   background-color: #fcf7f0;
   border-radius: 50px;
 } 
-.grid-container::-webkit-scrollbar-track {max-height: 10%; height: 10%;}
-.grid-container::-webkit-scrollbar-thumb {
+
+.container-main::-webkit-scrollbar-thumb {
   background-color: #ff4e83;
   border-radius: 50px;
 }
-.grid-container::-webkit-scrollbar-track {
+.container-main::-webkit-scrollbar-track {
   background-color: #FBF6F0;
   border-radius: 30px;
 }

@@ -88,7 +88,6 @@ if(count($records)==0){
         .status {
             display: flex;
             justify-content: center;
-
             border-radius: 10px;
             font-size: 13px;
             width: 80px;
