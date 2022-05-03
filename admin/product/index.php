@@ -47,20 +47,21 @@ if ($delete !== false) {
     <title>Dashboard - Product</title>
     <link rel="stylesheet" href="../css/cssdb.css?v=2">
     <link rel="stylesheet" href="../css/cssmf.css?v=2">
+    <link rel="stylesheet" href="../css/toast.css?v=2">
     <script src="../js/mf.js"></script>
     <!-- icon -->
     <script src="https://kit.fontawesome.com/945e1fd97f.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/font-awesome-line-awesome/css/all.min.css">
     <style>
-       main{
-           height: auto;
-       }
-        </style>
-   
+        main {
+            height: auto;
+        }
+    </style>
+
 </head>
 
 <body>
-
+<div id="toast"></div>
     <div class="grid-container">
         <div class="container-header">
             <?php include '../root/header.php' ?>
@@ -220,6 +221,7 @@ if ($delete !== false) {
 
     </div>
 </body>
+<script src="../js/toast.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
@@ -228,18 +230,40 @@ if ($delete !== false) {
             let id = $(this).data('id');
             let name = $(this).data('name');
             let result = confirm('Bạn có chắc muốn xóa?: ' + name);
-            alert(name);
             if (result == true) {
                 $.ajax({
                     type: "GET",
                     url: "./?delete=" + id,
                     success: function(response) {
                         btn.parents('tr').remove();
+                        showSuccessToast();
+                    },
+                    enror: function(response) {
+                        showErrorToast();
                     }
                 });
             }
         })
     });
-</script>
 
+</script>
+<script>
+    function showSuccessToast() {
+      toast({
+        title: "Thành công!",
+        message: "Bạn đã xóa thành công",
+        type: "success",
+        duration: 5000
+      });
+    }
+
+    function showErrorToast() {
+      toast({
+        title: "Thất bại!",
+        message: "Có lỗi xảy ra, vui lòng liên hệ quản trị viên.",
+        type: "error",
+        duration: 5000
+      });
+    }
+  </script>
 </html>

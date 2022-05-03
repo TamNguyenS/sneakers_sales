@@ -86,6 +86,11 @@ $records = get_list($query);
                 transform: rotate(360deg);
             }
         }
+       
+       main{
+           height: auto;
+       }
+      
     </style>
 </head>
 

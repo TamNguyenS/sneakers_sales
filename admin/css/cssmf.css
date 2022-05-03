@@ -1,9 +1,9 @@
 main {
     padding: 0.5rem 1.5rem;
     min-height: calc(100vh - 85px);
-    margin-left: -31px;
+    margin-left: -39px;
     height: 100%;
-    width: 120%;
+    width: 121%;
 }
 
 main {
@@ -486,6 +486,8 @@ pagination-outer {
     width: 100%;
     object-fit: cover;
     margin-bottom: 20px;
+    max-width: 540px;
+    max-height: 540px;
 }
 .img-preview {
     padding: 30px;
@@ -500,7 +502,27 @@ pagination-outer {
     background-color: rgb(255, 255, 255);
     box-shadow: 0 0 20px rgba(170, 170, 170, 0.2);
   }
-
+.img-old img {
+   
+    width: 100%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    max-width: 540px;
+    max-height: 540px;
+}
+.img-old {
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    max-width: 550px;
+    max-height: 550px;
+    margin: auto;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 0 20px rgba(170, 170, 170, 0.2);
+  }
 /* animation */
 @keyframes scale-animation {
     0% {

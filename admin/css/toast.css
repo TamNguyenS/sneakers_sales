@@ -10,15 +10,15 @@
   .toast {
     display: flex;
     align-items: center;
-    background-color: #fff;
+    background-color: rgb(255, 246, 246);
     border-radius: 2px;
     padding: 20px 0;
-    min-width: 400px;
-    max-width: 450px;
+    min-width: 300px;
+    max-width: 350px;
     border-left: 4px solid;
     box-shadow: 0 5px 8px rgba(0, 0, 0, 0.08);
-    transition: all linear 0.3s;
-
+    transition: all linear 0.5s;
+  
   }
   
   @keyframes slideInLeft {
@@ -75,7 +75,7 @@
   }
   
   .toast__icon {
-    font-size: 24px;
+    font-size: 40px;
   }
   
   .toast__icon,
@@ -88,13 +88,13 @@
   }
   
   .toast__title {
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 600;
     color: #333;
   }
   
   .toast__msg {
-    font-size: 14px;
+    font-size: 16px;
     color: #888;
     margin-top: 6px;
     line-height: 1.5;

@@ -26,7 +26,7 @@ require_once '../process_root/check_session.php';
         </div>
 
         <div class="user-wrapper">
-            <img src="../img/sikimori.jpg" alt="anh">
+            <img src="../img/shikimori.gif" alt="anh">
             <div>
                 <input class="dropdown" type="checkbox" id="dropdown" name="dropdown" hidden />
                 <label class="for-dropdown" for="dropdown">

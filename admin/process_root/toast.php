@@ -43,4 +43,9 @@
   </script>
 </body>
 
-</html>l
+</html>
+
+
+<link rel="stylesheet" href="../css/toast.css?v=2">
+<script src="../js/toast.js"></script>
+<div id="toast"> </div>

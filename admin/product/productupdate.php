@@ -1,4 +1,3 @@
-
 <?php
 require '../root/checklogin.php';
 ?>
@@ -36,70 +35,6 @@ foreach ($product_info as $value) {
     $manufacture_id_selected = $value['manufacture_id'];
     $type_id_selected = $value['type_id'];
 }
-$name = isset($_POST['name']) ? $_POST['name'] : false;
-
-// $image_new = isset($_FILES['image-new']) ?  $_FILES['image-new']  : false ;
-
-$description = isset($_POST['description']) ? $_POST['description'] : false;
-$cost = isset($_POST['cost']) ? $_POST['cost'] : false;
-$quantity = isset($_POST['quantity']) ? $_POST['quantity'] : false;
-$manufacture_id = isset($_POST['manufacture']) ? $_POST['manufacture'] : false;
-$type_id = isset($_POST['type']) ? $_POST['type'] : false;
-
-$upload = false;
-$isSumit = false;
-$isError = false;
-$error = '';
-$msg = '';
-$file_name = '';
-
-
-if(isset($_FILES["image-new"])){
-    $product_image = $_FILES["image-new"];
-    // print_r($product_image);
-    // die();
-    if(strlen($product_image['tmp_name']) != 0 ){
-        $folder = '../photos/';
-        $file_extension = explode('.',$product_image['name'])[1];
-        $file_name =  time() . '.' . $file_extension;
-        $path_file = $folder . $file_name;
-        move_uploaded_file($product_image['tmp_name'], $path_file);
-    }else{
-        $file_name =  $image_old;
-    }
-    
-}
-
-
-if (
-    $name !== false
-    && $description !== false
-    && $cost !== false
-    && $quantity !== false
-    && $manufacture_id  !== false
-    && $type_id  !== false
-) {
-    $isSubmit = true;
-
-    //validate!!
-    if (!$isError) {
-        $result = update('product', array(
-            'name' => $name,
-            'image' => $file_name ,
-            'quantity' => $quantity,
-            'description' => $description,
-            'cost' => $cost,
-            'manufacture_id' => $manufacture_id,
-            'type_id'  => $type_id,
-
-        ), "id =$id");
-        if ($result) {
-            $msg = 'Chúc mừng bạn đã sửa thành công !<br>';
-        } else {
-            $error = 'Có lỗi xảy ra, vui lòng thử lại sau!<br>';
-        }
-    }
-}
 ?>
 
 <!DOCTYPE html>
@@ -113,7 +48,8 @@ if (
     <title>Add</title>
     <link rel="stylesheet" href="../css/cssdb.css">
     <link rel="stylesheet" href="../css/cssmf.css">
-    <script src="../js/uploadFile.js"></script>
+    <link rel="stylesheet" href="../css/toast.css?v=2">
+    <script src="../js/toast.js"></script>
     <!-- icon -->
     <script src="https://kit.fontawesome.com/945e1fd97f.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/font-awesome-line-awesome/css/all.min.css">
@@ -121,7 +57,7 @@ if (
 </head>
 
 <body>
-
+    
     <div class="grid-container">
         <div class="container-header">
             <?php include '../root/header.php' ?>
@@ -132,6 +68,13 @@ if (
         </div>
 
         <div class="container-main">
+            <div id="toast">
+
+            </div>
+
+
+
+            <script src="../js/toast.js"></script>
 
             <div class="container">
                 <div class="tag-name">
@@ -144,21 +87,29 @@ if (
 
             </div>
             <div class="container-content">
-                <h1> <?php echo $msg ?> </h1>
-                <h1> <?php echo $error ?></h1>
+
                 <div class="form-content">
                     <p><?php  ?></p>
-                    <form action="" method="POST" enctype="multipart/form-data">
+                    <form action="" method="POST" enctype="multipart/form-data" id="uploadFrom">
+                        <input value="<?=$id?>" hidden name="id">
                         <?php foreach ($product_info as $post) { ?>
-                            <p>Nhập tên sản phẩm </p>
+                            <p>Tên sản phẩm </p>
                             <input type="text" name="name" placeholder="Nhập tên nhà sản xuất" value="<?php echo $post['name'] ?>">
                             <p>Hình ảnh sản phẩm</p>
                             <div id="image-product-upload">
                                 <label for="image-product" id="image-upload"> <i class="fas fa-upload"></i>Tải ảnh lên </label>
                                 <input type="file" name="image-new" accept="image/png, image/jpeg, image/jpg" id="image-product" hidden>
                             </div>
+                            <div class="img-preview real">
+                                <img id="img-preview" src=" " />
+                            </div>
+
                             <p>Hình ảnh củ </p>
-                            <img src="../photos/<?php echo  $image_old ?> " alt="anh" style="width: 350px ; wight: 350px; border: 2px solid #ff3010; boder-radius: 100px ">
+
+                            <div class="img-preview old">
+                                <img src="../photos/<?php echo  $image_old ?> " alt="anh" style="width: 350px ; wight: 350px;">
+                            </div>
+
 
                             <br>
                             <p>Giá bán </p>
@@ -167,32 +118,26 @@ if (
                             <input type="int" name="quantity" placeholder="Nhập số lượng" value="<?php echo $post['quantity'] ?>">
                             <p> Loại sản phẩm</p>
 
-                            <select name="type" id="type">
+                            <select name="type" id="type" class="select-1">
                                 <?php foreach ($type_list as $post1) { ?>
                                     <option value="<?php echo $post1['id'] ?>" <?php if ($type_id_selected == $post1['id']) { ?> selected <?php } ?>> <?php echo $post1['name'] ?> </h1>
                                     <?php } ?>
                             </select>
                             <p> Nhà sản xuất</p>
-                            <select name="manufacture" id="manufacture">
+                            <select name="manufacture" id="manufacture" class="select-1">
                                 <?php foreach ($manufacture_list as $post2) { ?>
 
                                     <option value="<?php echo $post2['id'] ?>" <?php if ($manufacture_id_selected  == $post2['id']) { ?> selected <?php } ?>><?php echo $post2['name'] ?> </option>
                                 <?php } ?>
                             </select>
                             <p>Ngày thêm</p>
-                            <input type="date" name="date" id="datePicker"  value="<?php echo $post['date'] ?>" readonly>
+                            <input type="date" name="date" id="datePicker" value="<?php echo $post['date'] ?>" readonly>
                             <p>Mô tả</p>
-                            <textarea name="description" id="" cols="170" rows="10"> <?php echo $post['description'] ?></textarea>
-                          
+                            <textarea name="description" id="txarea" cols="170" rows="10"> <?php echo $post['description'] ?></textarea>
+
                             <div class="table-button">
                                 <div class="btn-ok">
                                     <button> OK </button>
-                                    <p>
-                                        <?php echo $msg ?>
-                                    </p>
-                                    <p>
-                                        <?php echo $error ?>
-                                    </p>
                                 </div>
 
                             </div>
@@ -203,5 +148,88 @@ if (
         </div>
     </div>
 </body>
+<script src="../js/previewImg.js"></script>
+<script type="text/javascript">
+    document.getElementById('datePicker').valueAsDate = new Date();
+</script>
+<script src="../js/previewImg.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#uploadFrom").on('submit', (function(e) {
+            e.preventDefault();
+            var submit = 0;
+            var id = $('input[name="id"]').val();
+            var name = $('input[name="name"]').val();
+            var image = $('input[name="image-product"]').val();
+            var cost = parseInt($('input[name="cost"]').val());
+            var quantity = parseInt($('input[name="quantity"]').val());
+            var type = $('#type').val();
+            var manufacture = $('#manufacture').val();
+            var date = $('input[name="date"]').val();
+            var description = $('#txarea').val();
+            if (cost / cost !== 1) {
+                // var submit = new Boolean(false);
+                showErrorToast("Nhập ngu vl thế", " Kiểm tra chổ GIÁ BÁN kìa bạn ơi!");
+                submit += 1;
+
+            }
+            if (quantity / quantity !== 1) {
+                // var submit = new Boolean(false);
+                showErrorToast("Nhập ngu vl thế", " Kiểm tra chổ SỐ LƯỢNG kìa bạn ơi!");
+                submit += 1;
+            }
+            if (name == null || type == null || manufacture == null || date == null || description == null) {
+                // var submit = new Boolean(false);
+                showErrorToast("Thất bại!1", "Đã có lỗi xảy ra ⊙﹏⊙∥");
+                submit += 1;
+            }
+            if (submit === 0) {
+                $.ajax({
+                    url: "../process_root/productupdate.php",
+                    type: "POST",
+                    data: new FormData(this),
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                }).done(function(data) {
+                    if (data == 1) {
+                        showSuccessToast("Thành công", "Sửa thành công sản phẩm!");
+                    }
+                    else  {
+                        showErrorToast("Thất bại2", "Đã có lỗi xãy ra zui lòng kiểm tra lại ⊙﹏⊙∥!");
+                        showErrorToast("Thất bại", data);
+                    }
+
+                });
+            }
+
+        }));
+    });
+</script>
+<script>
+    function showSuccessToast(type, message) {
+        toast({
+            title: type,
+            message: message,
+            type: "success",
+            duration: 5000
+        });
+    }
+
+    function showErrorToast(type, message) {
+        toast({
+            title: type,
+            message: message,
+            type: "error",
+            duration: 5000
+        });
+    }
+</script>
+<script>
+    if (window.history.replaceState) {
+        window.history.replaceState(null, null, window.location.href);
+    }
+</script>
 
 </html>

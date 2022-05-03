@@ -28,7 +28,7 @@
 			</li>
 
 			<li class="menu-item dropdown-content product">
-				<a href="../product/productadd.php" class="menu-link"> <i class="fa-solid fa-caret-right"></i> <span> Thêm sản phẩm</span> <i class=""></i> </a>
+				<a href="../product/productadd.php" class="menu-link"> <i class="fa-solid fa-caret-right"></i> <span> Thêm SP</span> <i class=""></i> </a>
 			</li>
 
 			<li class="menu-item dropdown-content product">
@@ -55,7 +55,7 @@
 			</li>
 
 			<li class="menu-item dropdown-content manufacturer" id="manufacturer">
-				<a href="../manufacture/manufactureadd.php" class="menu-link"> <i class="fa-solid fa-caret-right"></i> <span> Thêm nhà cung cấp</span> <i class=""></i></a>
+				<a href="../manufacture/manufactureadd.php" class="menu-link"> <i class="fa-solid fa-caret-right"></i> <span> Thêm NCC</span> <i class=""></i></a>
 			</li>
 			<li class="menu-item">
 				<a href="" class="menu-link"><i class="fa fa-info-circle"></i> <span>Thông tin</span> </a>

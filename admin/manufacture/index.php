@@ -58,6 +58,11 @@ if ($delete !== false) {
     <!-- icon -->
     <script src="https://kit.fontawesome.com/945e1fd97f.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/font-awesome-line-awesome/css/all.min.css">
+    <style>
+        main {
+            height: auto;
+        }
+    </style>
 </head>
 
 <body>

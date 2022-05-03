@@ -20,16 +20,16 @@ $date =isset($_POST['date']) ? $_POST['date'] : '';
 //page 
 $page = empty($_GET['page']) ? 1 : $_GET['page'];
 if (!is_numeric($page)) die();
-
+$satus = isset($_POST['satus ']) ? $_POST['satus '] : ''; 
 $page_limit = 6;
-$page_total_length = get_count('SELECT count(*) FROM orders WHERE recipent_name LIKE \'%' . $search . '%\'');
+$page_total_length = get_count("SELECT count(*) FROM orders WHERE recipent_name LIKE '%$search%' ");
 $page_length = ceil($page_total_length / $page_limit);
 $page_skip =  $page_limit * ($page - 1);
 
 $query = "SELECT orders.* , customer.name as customer_name, 
 customer.phone as customer_phone, customer.address as customer_address 
 FROM orders LEFT JOIN customer ON orders.recipient_id = customer.id
-WHERE (status = '$statusorder') OR (time_order = '$date') AND (recipent_name LIKE '%$search%')   ORDER BY id DESC LIMIT  $page_limit OFFSET $page_skip";
+WHERE (status = '$statusorder') OR (time_order = '$date') AND (recipent_name LIKE '%$search%')  ORDER BY id DESC LIMIT  $page_limit OFFSET $page_skip";
 // echo $query;
 // die();
 $records = get_list($query);
@@ -147,7 +147,7 @@ $records = get_list($query);
                                     if ($i == $page) { ?>
                                         <li class="page-item active"><a class="page-link" href="#"><?php echo $i; ?></a></li>
                                     <?php } else { ?>
-                                        <li class="page-item"><a class="page-link" href="./?&search=<?php echo $search ?>&page=<?php echo $i ?>"><?php echo $i; ?></a></li>
+                                        <li class="page-item"><a class="page-link" href="./?&search=<?php echo $search ?>$satus=<?=$statusorder?>&page=<?php echo $i ?>"><?php echo $i; ?></a></li>
                                 <?php
                                     }
                                 } ?>

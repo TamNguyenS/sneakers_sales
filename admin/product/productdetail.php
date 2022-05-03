@@ -125,7 +125,7 @@ $product_info = get_list($query);
                                     </tr>
                                     <tr>
                                         <th>Mô tả</th>
-                                        <td><textarea rows="5" readonly><?php echo $product['description']; ?></textarea></td>
+                                        <td><textarea rows="8" readonly><?php echo $product['description']; ?></textarea></td>
                                     </tr>
                                 <?php } ?>
                                 </table>
@@ -160,11 +160,28 @@ $product_info = get_list($query);
                 </div>
                 <div class="chart-data">
                     <?php
-                        $query_data = "SELECT orders_detail.quantity AS orders_detail_Quantity, day(time_accept) AS each_day 
-                        FROM orders INNER JOIN orders_detail ON orders_detail.orders_id = orders.id
-                        WHERE orders_detail.product_id = '$id' group by day(time_accept)";
-                        $chart_data = get_list($query_data);
-                        // print_r($chart_data);
+                    $this_month = date('m');
+                    // echo $this_month;
+                    $query_data = "SELECT orders_detail.quantity AS orders_detail_Quantity, DAY(time_accept) AS each_day 
+                    FROM orders INNER JOIN orders_detail ON orders_detail.orders_id = orders.id
+                    WHERE orders_detail.product_id = '$id' AND MONTH(time_accept) = '$this_month'";
+                    $connect = connect();
+                    $result_data = mysqli_query($connect, $query_data);
+                    $arr = [];
+                    $current_total_day = date("t");
+                    for($i = 1; $i <= $current_total_day; $i++){
+                        $arr[$i] = 0;
+                    }
+                    $max_product = 0;
+                    foreach ($result_data as $each) {
+                        $arr[$each['each_day']] = $each['orders_detail_Quantity'];
+                        if($each['orders_detail_Quantity'] > $max_product){
+                            $max_product = $each['orders_detail_Quantity'];
+                        }
+                    }
+                    $max_product_data = (int)($max_product);
+                
+                    $arr_data = array_values($arr);
 
                     ?>
                 </div>
@@ -218,7 +235,7 @@ $product_info = get_list($query);
             label: 'Số sản phẩm bán được',
             backgroundColor: 'rgb(255, 99, 132)',
             borderColor: 'rgb(255, 99, 132)',
-            data: [1, 10, 3, 4, 5, 6, 7, 8, 9, 10],
+            data: <?php echo json_encode($arr_data) ?>,
         }]
     };
 
@@ -240,7 +257,7 @@ $product_info = get_list($query);
             scales: {
                 y: {
                     min: 0,
-                    max: 100
+                    max: <?php echo $max_product_data + 1 ?>
                 }
             }
         }
@@ -251,6 +268,7 @@ $product_info = get_list($query);
         document.getElementById('myChart'),
         config
     );
+    
 </script>
 
 

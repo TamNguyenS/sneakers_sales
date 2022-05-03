@@ -27,6 +27,8 @@ function insert($table, $data)
     }
     $query = 'INSERT INTO ' . $table . '(' . trim($field_list, ',') . ') VALUES (' . trim($value_list, ',') . ')';
     // die($query);
+    // echo   $query;
+    // die();
     $result = $conn->query($query);
     // echo $result;
     if(!$result) die('[Database class - insert] Truy vấn sai');
@@ -40,8 +42,6 @@ function update ($table, $data, $where) {
         $value_list .= "$key = '" . $conn->real_escape_string($value) . "',";
     }
     $sql = 'UPDATE ' . $table . ' SET ' . trim($value_list, ',') . ' WHERE ' . $where;
-    echo $sql;
-    // die();
     $result = mysqli_query($conn, $sql);
     disconnect($conn);
     return $result;
