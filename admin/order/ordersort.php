@@ -1,7 +1,5 @@
-
 <?php
 sleep(1);
-require '../root/checklogin.php';
 ?>
 
 <?php
@@ -20,9 +18,9 @@ $date =isset($_POST['date']) ? $_POST['date'] : '';
 //page 
 $page = empty($_GET['page']) ? 1 : $_GET['page'];
 if (!is_numeric($page)) die();
-$satus = isset($_POST['satus ']) ? $_POST['satus '] : ''; 
+$status = isset($_POST['status ']) ? $_POST['status '] : ''; 
 $page_limit = 6;
-$page_total_length = get_count("SELECT count(*) FROM orders WHERE recipent_name LIKE '%$search%' ");
+$page_total_length = get_count("SELECT count(*) FROM orders WHERE recipent_name LIKE '%$search%' AND status ='$statusorder'  ");
 $page_length = ceil($page_total_length / $page_limit);
 $page_skip =  $page_limit * ($page - 1);
 
@@ -147,7 +145,7 @@ $records = get_list($query);
                                     if ($i == $page) { ?>
                                         <li class="page-item active"><a class="page-link" href="#"><?php echo $i; ?></a></li>
                                     <?php } else { ?>
-                                        <li class="page-item"><a class="page-link" href="./?&search=<?php echo $search ?>$satus=<?=$statusorder?>&page=<?php echo $i ?>"><?php echo $i; ?></a></li>
+                                        <li class="page-item"><a class="page-link" href="./?&search=<?php echo $search?>&status=<?=$statusorder?>&page=<?php echo $i ?>"><?php echo $i; ?></a></li>
                                 <?php
                                     }
                                 } ?>

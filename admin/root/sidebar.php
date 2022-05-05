@@ -32,10 +32,10 @@
 			</li>
 
 			<li class="menu-item dropdown-content product">
-				<a href="../product/productadd.php" class="menu-link"> <i class="fa-solid fa-caret-right"></i> <span> Thống kê</span> <i class=""></i> </a>
+				<a href="../productchart/" class="menu-link"> <i class="fa-solid fa-caret-right"></i> <span> Thống kê</span> <i class=""></i> </a>
 			</li>
 			<li class="menu-item">
-				<a href="" class="menu-link"><i class="fas fa-user-plus"></i><span>Tài khoản</span></a>
+				<a href="../account/" class="menu-link"><i class="fas fa-user-plus"></i><span>Tài khoản</span></a>
 				<button onclick="employee_child()" class="dropbtn"> <i class="fas fa-angle-down" id="employee_btn"></i>
 				</button>
 			</li>

@@ -17,7 +17,7 @@ main {
     margin-left: 100px;
     animation: scale-animation 0.5s ease;
     transition: all 0.8s;
-
+    
 }
 
 .card-single {
@@ -28,6 +28,7 @@ main {
     border-radius: 2rem;
     animation: scale-animation 0.5s ease;
     transition: all 0.8s;
+    box-shadow: 1px 1px 4px #d4d4d4;
 }
 
 .card-single h1+span {
@@ -71,6 +72,7 @@ main {
     border-radius: 10px;
     padding: 10px;
     animation: scale-animation 0.5s ease;
+    box-shadow: 1px 0.5px 4px #d4d4d4;
 }
 
 

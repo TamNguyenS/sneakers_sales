@@ -161,10 +161,9 @@ if ($delete !== false) {
 
                             </tr>
                             <?php foreach ($records as $post) { ?>
-
                                 <tr>
                                     <td>
-                                        <p><?php echo $post['id'] ?></p>
+                                        <p><span style="color: rgb(250, 35, 189); font-weight:bold">#</span><?php echo $post['id'] ?></p>
                                     </td>
                                     <td>
                                         <p><?php echo $post['name'] ?></p>

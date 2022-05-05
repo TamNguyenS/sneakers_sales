@@ -36,6 +36,15 @@ if ($delete !== false) {
     }
 }
 ?>
+
+<?php 
+$this_month = date('m');
+$this_year = date('Y');
+ 
+$count_product = get_count("SELECT count(*) FROM product");
+$count_product_sold_month = get_count_v2("SELECT SUM(quantity) AS TOTAL FROM orders_detail LEFT JOIN orders ON orders_detail.orders_id = orders.id WHERE MONTH(time_accept) = $this_month ");
+$count_product_sold_year = get_count_v2("SELECT SUM(quantity) AS TOTAL FROM orders_detail LEFT JOIN orders ON orders_detail.orders_id = orders.id WHERE YEAR(time_accept) = $this_year");
+?>
 <!DOCTYPE html>
 <html>
 </div>
@@ -74,7 +83,7 @@ if ($delete !== false) {
         <div class="container-main">
             <div class="container">
                 <div class="tag-name">
-                    <h2> Sản phẩm hiện tại </h2>
+                    <h2> <span style="color:grey">Home - </span><span> <span style="font-weight:bold"> Product </h2>
                 </div>
 
             </div>
@@ -85,8 +94,8 @@ if ($delete !== false) {
 
                     <div class="card-single">
                         <div>
-                            <h1> 15</h1>
-                            <span>Số sản phẩm hiện tại</span>
+                            <h1><?=$count_product?></h1>
+                            <span>Sản phẩm hiện tại</span>
                         </div>
                         <div class="card-icon" style="background-color: rgb(252, 242, 210);">
                             <span class="fa-solid fa-store" style="color: rgb(248, 225, 52)"></span>
@@ -95,8 +104,8 @@ if ($delete !== false) {
 
                     <div class="card-single">
                         <div>
-                            <h1> 13</h1>
-                            <span>Số sản phẩm bán được trong tuần</span>
+                            <h1> <?= $count_product_sold_month?></h1>
+                            <span>Sản phẩm bán được trong tháng này</span>
                         </div>
                         <div class="card-icon" style="  background-color: rgb(221, 230, 254);">
                             <span class="fa-regular fa-chart-bar" style=" color: rgb(30, 90, 255);"></span>
@@ -104,8 +113,8 @@ if ($delete !== false) {
                     </div>
                     <div class="card-single">
                         <div>
-                            <h1> 13</h1>
-                            <span>Số sản phẩm bán được trong tháng</span>
+                            <h1><?= $count_product_sold_year?></h1>
+                            <span>Sản phẩm bán được trong năm này</span>
                         </div>
                         <div class="card-icon" style="background-color: rgb(249, 219, 237);">
                             <span class="fa-solid fa-chart-bar" style="color: rgb(252, 64, 176);"></span>
@@ -131,6 +140,9 @@ if ($delete !== false) {
                         <thead>
                             <tr>
                                 <th>
+                                <h3>ID</h3>
+                                </th>
+                                <th>
                                     <h3>Image</h3>
                                 </th>
                                 <th>
@@ -154,6 +166,9 @@ if ($delete !== false) {
 
                             <?php foreach ($records as $post) {   ?>
                                 <tr>
+                                    <td>
+                                    <p><span style="color: rgb(250, 35, 189); font-weight:bold">#</span><?= encodeID($post['id']) ?></p>
+                                    </td>
                                     <td class="table-image">
                                         <img src="../photos/<?php echo $post['image']; ?>" style="width: 150px; height 150px; border-radius: 5px;">
                                     </td>

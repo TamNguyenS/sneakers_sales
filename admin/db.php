@@ -96,6 +96,16 @@ function get_count ($sql) {
 
     return $result;
 }
+function get_count_v2 ($sql) {
+    $conn = connect();
+
+    $result = mysqli_query($conn, $sql);
+    if (!$result) die('[Database class - get_count] Truy vấn sai');
+
+    $result = mysqli_fetch_array($result)['TOTAL'];
+
+    return $result;
+}
 
 function remove ($table, $where) {
     $conn = connect();

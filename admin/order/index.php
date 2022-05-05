@@ -10,8 +10,8 @@ require_once '../func.php';
 <?php
 $search = empty($_GET['search']) ? '' : $_GET['search'];
 $search = validate($search);
-$statusorder = isset($_GET['status']) ? $_GET['status'] : '';
-$statusorder = validate($statusorder);
+$status = isset($_POST['status']) ? $_POST['status'] : '';
+$status = validate($status);
 $search = validate($search);
 $status_order_query = '';
 
@@ -108,7 +108,7 @@ $records = get_list($query);
         <div class="container-main">
             <div class="container">
                 <div class="tag-name">
-                    <h1> Đơn hàng hiện tại </h1>
+                    <h1><span style="color:grey">Home - </span><span> <span style="font-weight:bold"> Order  </h1>
                     
                 </div>
 
@@ -225,13 +225,13 @@ $records = get_list($query);
                                 <!-- <td colspan="8" style="text-align: center; " > <div class="loader" ></div> </td> -->
                                 </tr>
                                 <?php foreach ($records as $record) { ?>
-
+                                    <span style="color: rgb(250, 35, 189); font-weight:bold"> </span>
                                     <tr class="remove">
                                         <td>
                                             <p><span style="color: rgb(250, 35, 189); font-weight:bold">#</span><?= encodeID($record['id']) ?></p>
                                         </td>
                                         <td style="width: 150px;">
-                                            <p><?= $record['time_order'] ?></p>
+                                            <p> <span style="color: rgb(72, 72, 72); font-weight:bold"> <?= $record['time_order'] ?></span></p>
                                         </td>
                                         <td>
                                             <p><?= $record['recipent_name'] ?></p>
@@ -357,26 +357,5 @@ $records = get_list($query);
         });
     });
 </script>
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('#datesorder').change(function() {
-            var value = $(this).val();
-            // alert(value);
-            $ajax = $.ajax({
-                url: './ordersort.php',
-                type: 'POST',
-                data: 'date=' + value,
-                beforeSend: function() {
-                    $('.remove').remove();
-                    $('.loader-add').html('<td colspan="8" style="text-align: center"> <div class="loader" ></div> </td>');
-                    
-                },
-                success: function(data) {
-                    $('.container-table').html(data);
-                }
-            })
 
-        });
-    });
-</script>
 </html>

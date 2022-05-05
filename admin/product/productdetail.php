@@ -6,7 +6,6 @@ require_once '../db.php';
 require_once '../func.php';
 ?>
 <?php
-
 $id = $_GET['id'];
 
 $query = "SELECT product.* , manufacture.name AS manufacture_name, manufacture.address AS manufacture_address,
@@ -248,7 +247,7 @@ $product_info = get_list($query);
             },
             animations: {
                 tension: {
-                    duration: 1000,
+                    duration: 300,
                     easing: 'linear',
                     from: 1,
                     to: 0,
