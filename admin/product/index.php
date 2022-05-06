@@ -185,7 +185,7 @@ $count_product_sold_year = get_count_v2("SELECT SUM(quantity) AS TOTAL FROM orde
                                    <p><php echo $post['manufacture_id']; ?> </p>
                                 </td> -->
                                     <td class="table-description">
-                                        <p><?php echo mb_strimwidth($post['description'], 0, 94, "...");; ?> </p>
+                                        <p><?php echo mb_strimwidth($post['description'], 0, 94, "..."); ?> </p>
 
 
                                     </td>

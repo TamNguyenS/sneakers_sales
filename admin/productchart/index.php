@@ -12,6 +12,10 @@ $records = get_list($query);
 $max = 0;
 $min = 0;
 
+$query_best_seler = "SELECT  name, sold,id
+FROM product
+ORDER BY sold DESC  LIMIT 4";
+$bestseler = get_list($query_best_seler);
 
 ?>
 
@@ -92,13 +96,32 @@ $min = 0;
     .highcharts-data-table tr:hover {
       background: #f1f7ff;
     }
-     .small{
-      height:40px;
+
+    .small {
+      height: 40px;
       width: 40px;
     }
-   td:first-child {
-       width: 40px;
 
+    td:first-child {
+      width: 40px;
+
+    }
+
+    .table-img img {
+      width: 40px;
+      height: 40px;
+    }
+
+    .one {
+      background: #abe41b;
+    }
+
+    .two {
+      background: #e41ba4;
+    }
+
+    .three {
+      background: #1ba4e4;
     }
   </style>
 </head>
@@ -199,34 +222,79 @@ $min = 0;
               </select>
             </div>
             <div class="content-bestseler">
-              <table>
+            <a href="../product/productdetail.php?id=<?php echo $bestseler[0]['id'] ?>"> 
+              <div class="productbest">
 
-                <tr>
-                  <td>
-                    <div class="card-icon small" style="background-color: #ffe9ed;"><span style="color: #f3272a;">1</span>
-                    </div>
-                  </td>
-                  <td>Best</td>
-                  <td>Best</td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="card-icon small" style="background-color: #ffe9ed;"><span style="color: #f3272a;">1</span>
-                    </div>
-                  </td>
-                  <td>Best</td>
-                  <td>Best</td>
-                </tr>
-              </table>
+                <div class="line one"></div>
+                <div>
+
+                  <label class="for-dropdown">
+                    <h4> <?php echo mb_strimwidth($bestseler[0]['name'], 0, 40, "..."); ?> </h4>
+                  </label>
+                  <small> Đã bán <?= $bestseler[0]['sold'] ?></small>
+                  <div class="arrow"><i class="fa-solid fa-angle-right"></i></div>
+                </div>
+
+              </div>
+            </a>
+              <br><br>
+              <a href="../product/productdetail.php?id=<?php echo $bestseler[1]['id'] ?>"> 
+              <div class="productbest">
+                <div class="line"></div>
+                <div>
+
+                  <label class="for-dropdown">
+                    <h4> <?php echo mb_strimwidth($bestseler[1]['name'], 0, 40, "..."); ?> </h4>
+                  </label>
+                  <small> Đã bán <?= $bestseler[1]['sold'] ?></small>
+                  <div class="arrow"><i class="fa-solid fa-angle-right"></i></div>
+                </div>
+              </div>
+  </a>
+              <br><br>
+            
+              <div class="productbest">
+               
+                <div class="line two"></div>
+               
+                <div>
+                  <label class="for-dropdown">
+                    <h4> <?php echo mb_strimwidth($bestseler[2]['name'], 0, 40, "..."); ?> </h4>
+                  </label>
+                  <small> Đã bán <?= $bestseler[2]['sold'] ?></small>
+                  <div class="arrow"><i class="fa-solid fa-angle-right"></i></div>
+                 
+                </div>
+               
+              </div>
+              </a>
+              <br><br>
+              <a href="../product/productdetail.php?id=<?php echo $bestseler[3]['id'] ?>"> 
+              <div class="productbest">
+                <div class="line three"></div>
+                <div>
+
+                  <label class="for-dropdown">
+                    <h4> <?php echo mb_strimwidth($bestseler[3]['name'], 0, 40, "..."); ?> </h4>
+                  </label>
+                  <small> Đã bán <?= $bestseler[3]['sold'] ?></small>
+                  <div class="arrow"><i class="fa-solid fa-angle-right"></i></div>
+                </div>
+              </div>
+  </a>
             </div>
+
+
           </div>
         </div>
         <div class="container-row2">
-          <h1><i class="fa-solid fa-receipt"></i>&nbsp; Thông tin kho hàng </h1>
-        </div>
-
-      </main>
+      <h1><i class="fa-solid fa-receipt"></i>&nbsp; Thông tin kho hàng </h1>
     </div>
+    </div>
+    
+
+    </main>
+  </div>
   </div>
 
 </body>

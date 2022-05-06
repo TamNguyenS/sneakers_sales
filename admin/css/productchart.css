@@ -16,14 +16,14 @@ main{
 }
 .product-bestseler{
     margin-top: 20px;
-    margin-left: 10px;
+    margin-left: 25px;
     background: rgb(255, 255, 255);
     width: 86%;
     border-radius: 20px;
     padding: 10px;
     animation: scale-animation 0.5s ease;
     box-shadow: 1px 1px 4px #d4d4d4;
-    width: 30%;
+    width: 28%;
     float: left;
 }
 .container-row1{
@@ -50,4 +50,57 @@ main{
 }
 .container-row2 h1 {
     color:rgb(38, 55, 113);
+}
+
+.productbest{
+    margin-top: -5px;
+    display: flex;
+    border-radius:30px;
+    box-shadow: 1px 1px 10px #f1f0f0;
+    height: 50px;
+    width: 100%;
+    border-radius:0px 8px 8px 0px;
+    cursor: pointer;
+  }
+  
+  .line{
+      width: 5px;
+      height: 88%;
+      background: #ec7a7a;
+    
+      margin-right: 20px;
+      border-radius:30px;
+      margin-top: auto;
+      margin-bottom: auto;
+  }
+  
+  .productbest p {
+      display: inline-block;
+      color: black;
+      margin-right: 1.1rem;
+      margin-top: - 30px !important;
+      font-size: 13px;
+  }
+ 
+  .productbest small {
+    display: inline-block;
+    color: black;
+    margin-right: 1.1rem;
+    margin-top: 10px !important;
+    font-size: 13px;
+    font-style: italic;
+}
+.productbest:hover .arrow i{
+    margin-left: 18px;
+    transition: all 0.9s;
+  }
+.arrow{
+    position: relative;
+    top: -32px;
+    left: 320px;
+  
+}
+.arrow i{
+    transition: all 0.5s;
+  
 }
