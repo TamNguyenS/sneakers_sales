@@ -42,7 +42,7 @@ if ($delete !== false) {
 }
 ?>
 
-<?php 
+<?php
 $this_month = date('m');
 $this_year = date('Y');
 $count_product = get_count("SELECT count(*) FROM product");
@@ -74,7 +74,7 @@ $count_product_sold_year = get_count_v2("SELECT SUM(quantity) AS TOTAL FROM orde
 </head>
 
 <body>
-<div id="toast"></div>
+    <div id="toast"></div>
     <div class="grid-container">
         <div class="container-header">
             <?php include '../root/header.php' ?>
@@ -98,7 +98,7 @@ $count_product_sold_year = get_count_v2("SELECT SUM(quantity) AS TOTAL FROM orde
 
                     <div class="card-single">
                         <div>
-                            <h1><?=$count_product?></h1>
+                            <h1><?= $count_product ?></h1>
                             <span>Sản phẩm hiện tại</span>
                         </div>
                         <div class="card-icon" style="background-color: rgb(252, 242, 210);">
@@ -108,7 +108,7 @@ $count_product_sold_year = get_count_v2("SELECT SUM(quantity) AS TOTAL FROM orde
 
                     <div class="card-single">
                         <div>
-                            <h1> <?= $count_product_sold_month?></h1>
+                            <h1> <?= $count_product_sold_month ?></h1>
                             <span>Sản phẩm bán được trong tháng này</span>
                         </div>
                         <div class="card-icon" style="  background-color: rgb(221, 230, 254);">
@@ -117,7 +117,7 @@ $count_product_sold_year = get_count_v2("SELECT SUM(quantity) AS TOTAL FROM orde
                     </div>
                     <div class="card-single">
                         <div>
-                            <h1><?= $count_product_sold_year?></h1>
+                            <h1><?= $count_product_sold_year ?></h1>
                             <span>Sản phẩm bán được trong năm này</span>
                         </div>
                         <div class="card-icon" style="background-color: rgb(249, 219, 237);">
@@ -137,14 +137,30 @@ $count_product_sold_year = get_count_v2("SELECT SUM(quantity) AS TOTAL FROM orde
 
                             <button> <span class="fa-solid fa-file-excel"></span> &nbsp; Xuất file Excel</button>
                         </div>
+                        <form action=" " name="test">
+                            <div class="fillter">
+                            
+                                <i class="fa-solid fa-arrow-up-short-wide"></i>&nbsp;
 
+                                <select class="fillter-orders" name="statusorder" id="statusorder">
+
+                                    <option disabled selected value="">Loại giày </option>
+                                    <option value="2">Tông lào</option>
+                                    <option value="1">Sneaker</option>
+                                    <option value="0">Dress shoes</option>
+                                    <option value="2">Bosst</option>
+                                </select>
+
+                                <!-- <input type="submit" class=""></input> -->
+                            </div>
+                        </form>
                     </div>
 
                     <table border="1px">
                         <thead>
                             <tr>
                                 <th>
-                                <h3>ID</h3>
+                                    <h3>ID</h3>
                                 </th>
                                 <th>
                                     <h3>Image</h3>
@@ -171,7 +187,7 @@ $count_product_sold_year = get_count_v2("SELECT SUM(quantity) AS TOTAL FROM orde
                             <?php foreach ($records as $post) {   ?>
                                 <tr>
                                     <td>
-                                    <p><span style="color: rgb(250, 35, 189); font-weight:bold">#</span><?= encodeID($post['id']) ?></p>
+                                        <p><span style="color: rgb(250, 35, 189); font-weight:bold">#</span><?= encodeID($post['id']) ?></p>
                                     </td>
                                     <td class="table-image">
                                         <img src="../photos/<?php echo $post['image']; ?>" style="width: 150px; height 150px; border-radius: 5px;">
@@ -264,25 +280,25 @@ $count_product_sold_year = get_count_v2("SELECT SUM(quantity) AS TOTAL FROM orde
             }
         })
     });
-
 </script>
 <script>
     function showSuccessToast() {
-      toast({
-        title: "Thành công!",
-        message: "Bạn đã xóa thành công",
-        type: "success",
-        duration: 5000
-      });
+        toast({
+            title: "Thành công!",
+            message: "Bạn đã xóa thành công",
+            type: "success",
+            duration: 5000
+        });
     }
 
     function showErrorToast() {
-      toast({
-        title: "Thất bại!",
-        message: "Có lỗi xảy ra, vui lòng liên hệ quản trị viên.",
-        type: "error",
-        duration: 5000
-      });
+        toast({
+            title: "Thất bại!",
+            message: "Có lỗi xảy ra, vui lòng liên hệ quản trị viên.",
+            type: "error",
+            duration: 5000
+        });
     }
-  </script>
+</script>
+
 </html>

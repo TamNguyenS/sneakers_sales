@@ -9,7 +9,6 @@ require_once '../func.php';
 
 $id_order = $_GET['id'];
 $query = "SELECT product.id AS product_id, product.name AS product_name,product.cost AS product_cost,
-product.image AS product_image,
 orders_detail.quantity AS quantity, orders.* ,
 customer.name as customer_name, customer.email as customer_email,
 customer.phone as customer_phone, customer.address as customer_address 
@@ -310,8 +309,13 @@ if(count($records)==0){
                                     <?php foreach ($records as $record) { ?>
                                     <tr>
                             
-                                        <td> <span style="color: rgb(250, 35, 189); font-weight:bold">#</span><?= $record['product_id'] ?></td>
-                                        <td><img src="../photos/<?php echo $record['product_image']; ?>" style="width: 150px; height 150px; border-radius: 5px;"></td>
+                                        <td> <span style="color: rgb(250, 35, 189); font-weight:bold">#</span><?= $id_p = $record['product_id'] ?></td>
+                                        <?php $query_img = "SELECT * FROM product_img WHERE product_id = '$id_p' limit 1"; 
+                                              $result_img = get_list($query_img);
+                                            foreach ($result_img as $img) {
+                                        ?>
+                                        <td><img src="../photos/<?php echo $img['img']; ?>" style="width: 150px; height 150px; border-radius: 5px;"></td>
+                                        <?php } ?>
                                         <td><?=$record['product_name'] ?></td>
                                         <td><?= number_format($record['product_cost'] , 0, '', ','); ?> <span class="cost">đ</span></td>
                                         <td><?=$record['quantity'] ?></td>
