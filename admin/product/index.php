@@ -45,7 +45,6 @@ if ($delete !== false) {
 <?php 
 $this_month = date('m');
 $this_year = date('Y');
- 
 $count_product = get_count("SELECT count(*) FROM product");
 $count_product_sold_month = get_count_v2("SELECT SUM(quantity) AS TOTAL FROM orders_detail LEFT JOIN orders ON orders_detail.orders_id = orders.id WHERE MONTH(time_accept) = $this_month ");
 $count_product_sold_year = get_count_v2("SELECT SUM(quantity) AS TOTAL FROM orders_detail LEFT JOIN orders ON orders_detail.orders_id = orders.id WHERE YEAR(time_accept) = $this_year");
