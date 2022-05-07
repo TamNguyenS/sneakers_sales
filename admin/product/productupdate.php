@@ -27,11 +27,13 @@ INNER JOIN manufacture ON product.manufacture_id = manufacture.id
 INNER JOIN type ON product.type_id = type.id
 WHERE product.id = '$id'";
 $product_info = get_list($query);
+
+$query_img = "SELECT img FROM product_img WHERE product_id = '$id'";
+$product_img = get_list($query_img);
 // print_r($product_info); 
 ?>
 <?php
 foreach ($product_info as $value) {
-    $image_old = $value['image'];
     $manufacture_id_selected = $value['manufacture_id'];
     $type_id_selected = $value['type_id'];
 }
@@ -53,11 +55,26 @@ foreach ($product_info as $value) {
     <!-- icon -->
     <script src="https://kit.fontawesome.com/945e1fd97f.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/font-awesome-line-awesome/css/all.min.css">
+    <style>
+        #result {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 10px 0;
+        }
 
+        .thumbnail {
+            height: 192px;
+        }
+        .old-img {
+            height: 192px;
+            border-radius:20px;
+        }
+    </style>
 </head>
 
 <body>
-    
+
     <div class="grid-container">
         <div class="container-header">
             <?php include '../root/header.php' ?>
@@ -91,23 +108,23 @@ foreach ($product_info as $value) {
                 <div class="form-content">
                     <p><?php  ?></p>
                     <form action="" method="POST" enctype="multipart/form-data" id="uploadFrom">
-                        <input value="<?=$id?>" hidden name="id">
+                        <input value="<?= $id ?>" hidden name="id">
                         <?php foreach ($product_info as $post) { ?>
                             <p>Tên sản phẩm </p>
                             <input type="text" name="name" placeholder="Nhập tên nhà sản xuất" value="<?php echo $post['name'] ?>">
                             <p>Hình ảnh sản phẩm</p>
                             <div id="image-product-upload">
-                                <label for="image-product" id="image-upload"> <i class="fas fa-upload"></i>Tải ảnh lên </label>
-                                <input type="file" name="image-new" accept="image/png, image/jpeg, image/jpg" id="image-product" hidden>
+                                <label for="image-product"> <i class="fas fa-upload"></i>Tải ảnh lên </label>
+                                <input type="file" name="files[]" multiple="multiple" multiple accept="image/jpeg, image/png, image/jpg" id="image-product" hidden>
                             </div>
-                            <div class="img-preview real">
-                                <img id="img-preview" src=" " />
-                            </div>
+                            <output id="result"> </output>
 
                             <p>Hình ảnh củ </p>
 
                             <div class="img-preview old">
-                                <img src="../photos/<?php echo  $image_old ?> " alt="anh" style="width: 350px ; wight: 350px;">
+                             <?php  foreach ($product_img as $img) { ?>
+                                <img src="../photos/<?php echo $img['img'] ?>" alt="" class="old-img">
+                            <?php } ?>
                             </div>
 
 
@@ -195,8 +212,7 @@ foreach ($product_info as $value) {
                 }).done(function(data) {
                     if (data == 1) {
                         showSuccessToast("Thành công", "Sửa thành công sản phẩm!");
-                    }
-                    else  {
+                    } else {
                         showErrorToast("Thất bại2", "Đã có lỗi xãy ra zui lòng kiểm tra lại ⊙﹏⊙∥!");
                         showErrorToast("Thất bại", data);
                     }
@@ -231,5 +247,26 @@ foreach ($product_info as $value) {
         window.history.replaceState(null, null, window.location.href);
     }
 </script>
-
+<script>
+    document.querySelector("#image-product").addEventListener("change", (e) => { //CHANGE EVENT FOR UPLOADING PHOTOS
+        if (window.File && window.FileReader && window.FileList && window.Blob) { //CHECK IF FILE API IS SUPPORTED
+            const files = e.target.files; //FILE LIST OBJECT CONTAINING UPLOADED FILES
+            const output = document.querySelector("#result");
+            output.innerHTML = "";
+            for (let i = 0; i < files.length; i++) { // LOOP THROUGH THE FILE LIST OBJECT
+                if (!files[i].type.match("image")) continue; // ONLY PHOTOS (SKIP CURRENT ITERATION IF NOT A PHOTO)
+                const picReader = new FileReader(); // RETRIEVE DATA URI 
+                picReader.addEventListener("load", function(event) { // LOAD EVENT FOR DISPLAYING PHOTOS
+                    const picFile = event.target;
+                    const div = document.createElement("div");
+                    div.innerHTML = `<img class="thumbnail" src="${picFile.result}" title="${picFile.name}"/>`;
+                    output.appendChild(div);
+                });
+                picReader.readAsDataURL(files[i]); //READ THE IMAGE
+            }
+        } else {
+            alert("Your browser does not support File API");
+        }
+    });
+</script>
 </html>

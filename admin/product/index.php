@@ -20,15 +20,20 @@ $page_total_length = get_count('SELECT count(*) FROM product WHERE NAME LIKE \'%
 $page_length = ceil($page_total_length / $page_limit);
 $page_skip =  $page_limit * ($page - 1);
 
-$query = "SELECT * FROM product WHERE NAME LIKE '%$search%' LIMIT  $page_limit OFFSET $page_skip";
-
+$query = "SELECT product.*, product_img.img AS image FROM product INNER JOIN product_img
+ON product.id = product_img.product_id WHERE NAME LIKE'%$search%' GROUP BY name LIMIT  $page_limit OFFSET $page_skip";
 $records = get_list($query);
+
+// print_r($records);
+// die();
 ?>
 
 <?php
 $delete = empty($_GET['delete']) ? 'false' : $_GET['delete'];
 if ($delete !== false) {
+    $remove_chill = remove1('product_img', $delete);
     $result = remove('product', $delete);
+
     if ($result) {
         $msg = 'Xóa thành công';
     } else {

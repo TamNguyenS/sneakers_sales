@@ -14,10 +14,8 @@ INNER JOIN manufacture ON product.manufacture_id = manufacture.id
 INNER JOIN type ON product.type_id = type.id
 WHERE product.id = '$id'";
 $product_info = get_list($query);
-// SELECT orders_detail.quantity AS orders_detail_Quantity, day(time_accept) AS each_Day 
-// FROM orders INNER JOIN orders_detail ON orders_detail.orders_id = orders.id
-// WHERE orders_detail.product_id = '1' group by day(time_accept)
-
+$query_img = "SELECT img FROM product_img WHERE product_id = '$id'";
+$product_img = get_list($query_img);
 ?>
 
 <!DOCTYPE html>
@@ -36,7 +34,11 @@ $product_info = get_list($query);
     <!-- icon -->
     <script src="https://kit.fontawesome.com/945e1fd97f.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/font-awesome-line-awesome/css/all.min.css">
-
+    <style>
+        td {
+            text-align: left
+        }
+    </style>
 </head>
 
 <body>
@@ -66,64 +68,83 @@ $product_info = get_list($query);
 
 
                 <!-- containner connetent -->
-                <?php foreach ($product_info as $product) { ?>
-                    <div class="table-button-detail">
-                        <div class="btn-out">
-                            <a> <button> <span class="fa-solid fa-file-excel"></span> &nbsp; Excel</button> </a>
-                        </div>
-                        <div class="btn-addd">
-                            <a href="./productadd.php"><button><span class="fa-regular fa-pen-to-square"></span> Sửa</button> </a>
-                        </div>
-                        <div class="btn-delete">
-                            <a href="./productadd.php"><button><span class="fa-solid fa-eraser"></span> Xóa</button> </a>
+
+                <div class="table-button-detail">
+                    <div class="btn-out">
+                        <a> <button> <span class="fa-solid fa-file-excel"></span> &nbsp; Excel</button> </a>
+                    </div>
+                    <div class="btn-addd">
+                        <a href="./productadd.php"><button><span class="fa-regular fa-pen-to-square"></span> Sửa</button> </a>
+                    </div>
+                    <div class="btn-delete">
+                        <a href="./productadd.php"><button><span class="fa-solid fa-eraser"></span> Xóa</button> </a>
+                    </div>
+                </div>
+                <div class="featured">
+
+                    <div class="row">
+
+                        <div class="image-container">
+
+                            <div class="small-image">
+                                <?php foreach ($product_img as $img) { ?>
+                                    <img src="../photos/<?= $img['img'] ?>" alt="" class="featured-image-1">
+                                <?php } ?>
+                            </div>
+                            <div class="big-image">
+                                <img src="../photos/<?= $img['img'] ?>" alt="" class="big-image-1">
+
+                            </div>
+                            <?php foreach ($product_info as $product) { ?>
+                                <div class="content">
+                                    <h3><?php echo $product['name']; ?></h3>
+                                    <div class="stars">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <p>
+                                        Thương hiệu: <?php echo $product['manufacture_name']; ?>
+                                    </p>
+                                    <p>
+                                        Giá bán: <?php echo number_format($product['cost'], 0, '', ','); ?> <span class="cost">đ</span>
+                                    </p>
+                                    <p>
+                                        Loại sản phẩm: <?php echo $product['type_name']; ?>
+                                    </p>
+                                </div>
+
+
                         </div>
                     </div>
                     <div class="product-detail">
-                        <div class="product-title">
-                            <h1><?php echo $product['name']; ?><h1>
-                                    <div class="detail-img">
-                                        <img src="../photos/<?php echo $product['image']; ?>" alt="">
-                                    </div>
 
-
-                        </div>
                         <div class="product-content">
 
                             <div class="table-detail">
                                 <table>
 
                                     <tr>
-                                        <th>Tên sản phẩm</th>
-                                        <td><?php echo $product['name']; ?></td>
-                                    </tr>
-
-                                    <tr>
-                                        <th>Đã bán</th>
+                                        <th style="background-color: white; text-align: left">Đã bán</th>
                                         <td><?php echo $product['sold']; ?> </td>
                                     </tr>
 
                                     <tr>
-                                        <th>Số lượng hiện có</th>
+                                        <th style="background-color: white; text-align: left">Số lượng hiện có</th>
                                         <td><?php echo $product['quantity']; ?> </td>
                                     </tr>
                                     <tr>
-                                        <th>Nhà sản xuất</th>
-                                        <td><?php echo $product['manufacture_name']; ?> </td>
-                                    </tr>
-                                    <tr>
-                                        <th>Loại sản phẩm</th>
-                                        <td><?php echo $product['type_name']; ?> </td>
-                                    </tr>
-                                    <tr>
-                                        <th>Xuất sứ</th>
+                                        <th style="background-color: white; text-align: left">Xuất sứ</th>
                                         <td><?php echo $product['manufacture_address']; ?> </td>
                                     </tr>
                                     <tr>
-                                        <th>Ngày thêm</th>
+                                        <th style="background-color: white; text-align: left">Ngày thêm</th>
                                         <td><?php echo $product['date']; ?> </td>
                                     </tr>
                                     <tr>
-                                        <th>Mô tả</th>
+                                        <th style="background-color: white; text-align: left">Mô tả</th>
                                         <td><textarea rows="8" readonly><?php echo $product['description']; ?></textarea></td>
                                     </tr>
                                 <?php } ?>
@@ -135,65 +156,66 @@ $product_info = get_list($query);
 
                     </div>
 
-            </div>
-
-            <div class="chart-detail-product">
-                <br>
-                <h1>Biểu đồ sản phẩm bán được: </h1>
-                <div class="table-button">
-                    <form action=" " name="test">
-                        <div class="fillter">
-                            <i class="fa-solid fa-arrow-down-short-wide"></i>&nbsp;
-
-                            <select class="fillter-orders" name="statusorder" id="statusorder">
-
-                                <option value="">Tuần này </option>
-                                <option selected value="2">Tháng này</option>
-                                <option value="1">Năm này</option>
-
-                            </select>
-
-                            <!-- <input type="submit" class=""></input> -->
-                        </div>
-                    </form>
                 </div>
-                <div class="chart-data">
-                    <?php
-                    $this_month = date('m');
-                    // echo $this_month;
-                    $query_data = "SELECT orders_detail.quantity AS orders_detail_Quantity, DAY(time_accept) AS each_day 
+
+                <div class="chart-detail-product">
+                    <br>
+                    <h1>Biểu đồ sản phẩm bán được: </h1>
+                    <div class="table-button">
+                        <form action=" " name="test">
+                            <div class="fillter">
+                                <i class="fa-solid fa-arrow-down-short-wide"></i>&nbsp;
+
+                                <select class="fillter-orders" name="statusorder" id="statusorder">
+
+                                    <option value="">Tuần này </option>
+                                    <option selected value="2">Tháng này</option>
+                                    <option value="1">Năm này</option>
+
+                                </select>
+
+                                <!-- <input type="submit" class=""></input> -->
+                            </div>
+                        </form>
+                    </div>
+                    <div class="chart-data">
+                        <?php
+                        $this_month = date('m');
+                        // echo $this_month;
+                        $query_data = "SELECT orders_detail.quantity AS orders_detail_Quantity, DAY(time_accept) AS each_day 
                     FROM orders INNER JOIN orders_detail ON orders_detail.orders_id = orders.id
                     WHERE orders_detail.product_id = '$id' AND MONTH(time_accept) = '$this_month'";
-                    $connect = connect();
-                    $result_data = mysqli_query($connect, $query_data);
-                    $arr = [];
-                    $current_total_day = date("t");
-                    for($i = 1; $i <= $current_total_day; $i++){
-                        $arr[$i] = 0;
-                    }
-                    $max_product = 0;
-                    foreach ($result_data as $each) {
-                        $arr[$each['each_day']] = $each['orders_detail_Quantity'];
-                        if($each['orders_detail_Quantity'] > $max_product){
-                            $max_product = $each['orders_detail_Quantity'];
+                        $connect = connect();
+                        $result_data = mysqli_query($connect, $query_data);
+                        $arr = [];
+                        $current_total_day = date("t");
+                        for ($i = 1; $i <= $current_total_day; $i++) {
+                            $arr[$i] = 0;
                         }
-                    }
-                    $max_product_data = (int)($max_product);
-                
-                    $arr_data = array_values($arr);
+                        $max_product = 0;
+                        foreach ($result_data as $each) {
+                            $arr[$each['each_day']] = $each['orders_detail_Quantity'];
+                            if ($each['orders_detail_Quantity'] > $max_product) {
+                                $max_product = $each['orders_detail_Quantity'];
+                            }
+                        }
+                        $max_product_data = (int)($max_product);
 
-                    ?>
-                </div>
-                <div class="chart-detail-product-content" id="chart-detail-product-content">
-                    <canvas id="myChart" style="height:100%;max-height:400px;"></canvas>
+                        $arr_data = array_values($arr);
+
+                        ?>
+                    </div>
+                    <div class="chart-detail-product-content" id="chart-detail-product-content">
+                        <canvas id="myChart" style="height:100%;max-height:400px;"></canvas>
+                    </div>
                 </div>
             </div>
-        </div>
 
-    </div>
+        </div>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"> </script>
+<script src="../js/selectimg.js"> </script>
 
 <script>
     const get_day_of_month = (year, month) => {
@@ -267,7 +289,6 @@ $product_info = get_list($query);
         document.getElementById('myChart'),
         config
     );
-    
 </script>
 
 

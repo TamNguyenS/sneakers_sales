@@ -1,133 +1,227 @@
+.table-button-detail {
+    margin-bottom: 20px;
 
-        .table-button-detail {
-            margin-bottom: 20px;
+}
 
-        }
+.table-button-detail button {
 
-        .table-button-detail button {
+    border: none;
+    border-radius: 30px;
+    width: 70px;
+    font-size: 13px;
+    height: 25px;
+    font-weight: bold;
+    margin-right: 10px;
+    transition: all 0.8s;
 
-            border: none;
-            border-radius: 30px;
-            width: 70px;
-            font-size: 13px;
-            height: 25px;
-            font-weight: bold;
-            margin-right: 10px;
-            transition: all 0.8s;
+}
 
-        }
+.table-button-detail .btn-addd {
+    float: left;
+}
 
-        .table-button-detail .btn-addd {
-            float: left;
-        }
+.table-button-detail .btn-addd button {
+    background: rgba(250, 249, 215, 0.5);
+    color: rgb(215, 186, 20);
+    padding: 5px;
+}
 
-        .table-button-detail .btn-addd button {
-            background: rgba(250, 249, 215, 0.5);
-            color: rgb(215, 186, 20);
-            padding: 5px;
-        }
-
-        .table-button-detail .btn-out button {
-            float: left;
-            background: rgb(217, 253, 222);
-            color: rgb(52, 192, 39);
-            padding: 5px;
-        }
-
+.table-button-detail .btn-out button {
+    float: left;
+    background: rgb(217, 253, 222);
+    color: rgb(52, 192, 39);
+    padding: 5px;
+}
 
 
-        .table-button-detail .btn-addd span {
-            display: inline;
-            font-size: 1rem;
-        }
 
-        .table-button-detail .btn-out span {
-            display: inline;
-            font-size: 1rem;
-        }
+.table-button-detail .btn-addd span {
+    display: inline;
+    font-size: 1rem;
+}
 
-        .table-button-detail .btn-delete span {
-            display: inline;
-            font-size: 1rem;
-        }
+.table-button-detail .btn-out span {
+    display: inline;
+    font-size: 1rem;
+}
 
-        .table-button-detail .btn-delete button {
-            background: rgb(249, 213, 211);
-            color: rgb(190, 41, 41);
-            padding: 5px;
-        }
-        
-        .table-button-detail .btn-addd button:hover {
-            color: rgb(255, 255, 255);
-            background: rgba(237, 205, 24, 0.8);
-            padding: 5px;
-            transition: all 0.8s;
-            letter-spacing: 1px;
-        }
+.table-button-detail .btn-delete span {
+    display: inline;
+    font-size: 1rem;
+}
 
-        .table-button-detail .btn-out button:hover {
-            color: rgb(255, 255, 255);
-            background: rgba(0, 248, 83, 0.8);
-            padding: 5px;
-            transition: all 0.8s;
-            letter-spacing: 1px;
+.table-button-detail .btn-delete button {
+    background: rgb(249, 213, 211);
+    color: rgb(190, 41, 41);
+    padding: 5px;
+}
 
-        }
-        .table-button-detail .btn-delete button:hover {
-            color: rgb(255, 255, 255);
-            background: rgba(255, 0, 0, 0.8);
-            padding: 5px;
-            transition: all 0.8s;
-            letter-spacing: 2px;
-        }
+.table-button-detail .btn-addd button:hover {
+    color: rgb(255, 255, 255);
+    background: rgba(237, 205, 24, 0.8);
+    padding: 5px;
+    transition: all 0.8s;
+    letter-spacing: 1px;
+}
 
-        .detail-img{
-            margin:20px;
-            text-align: center;
-            display: flex;
-            justify-content: center;
+.table-button-detail .btn-out button:hover {
+    color: rgb(255, 255, 255);
+    background: rgba(0, 248, 83, 0.8);
+    padding: 5px;
+    transition: all 0.8s;
+    letter-spacing: 1px;
 
-       
-           
-        }
-        .product-title{
-            margin:10px;
-            margin-bottom: 20px;
-            background-color: transparent !important;
-           
-        }
-        .product-title h1 {
-            font-size: 20px;
-            color: rgb(252, 140, 140);
-            text-align: left;
-        }
-        .detail-img img{
-            transition: all 2s;
-            height: 30%;
-            width: 30%;
-            text-align: left;
-            display: flex;
-            border-radius: 50px;
-            margin-left: -900px;
-          
-        }
-        .detail-img img:hover{
-            transform: scaleX(-1);
-           
-        }
-        
-        .text {
-          color: rgb(91, 85, 85);
-          font-size: 18px;
-          font-weight: 400;
-        }
-        .table-detail table{
-            border-collapse: separate;
-            border-spacing: 15px;
+}
 
-           }
-        .table-detail th{
-         width: 20% ;
-         background: rgb(251, 216, 216);
-         border-radius: 10px;
-        }
+.table-button-detail .btn-delete button:hover {
+    color: rgb(255, 255, 255);
+    background: rgba(255, 0, 0, 0.8);
+    padding: 5px;
+    transition: all 0.8s;
+    letter-spacing: 2px;
+}
+
+.detail-img {
+    margin: 20px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+
+
+
+}
+
+.product-title {
+    margin: 10px;
+    margin-bottom: 20px;
+    background-color: transparent !important;
+
+}
+
+.product-title h1 {
+    font-size: 20px;
+    color: rgb(252, 140, 140);
+    text-align: left;
+}
+
+.detail-img img {
+    transition: all 2s;
+    height: 30%;
+    width: 30%;
+    text-align: left;
+    display: flex;
+    border-radius: 50px;
+    margin-left: -900px;
+
+}
+
+.detail-img img:hover {
+    transform: scaleX(-1);
+
+}
+
+.text {
+    color: rgb(91, 85, 85);
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.table-detail table {
+    border-collapse: separate;
+    border-spacing: 15px;
+
+}
+
+.table-detail th {
+    width: 20%;
+    background: rgb(251, 216, 216);
+    border-radius: 10px;
+}
+.featured .row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .1rem;
+    border: .1rem solid rgba(0, 0, 0, .1);
+    border-radius: .5rem;
+    background: #ffffff;
+    /* padding: 2rem; */
+    align-items: center;
+}
+
+.featured .row .content {
+    flex: 1 1 40rem;
+}
+
+.featured .row .image-container {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    flex: 1 1 50rem;
+}
+
+.featured .row .image-container .small-image {
+    width: 60px;
+    margin-left: 30px;
+    transition: all .4s ease-in-out;
+}
+
+.featured .row .image-container .big-image {
+    width: 300px;
+    padding: 1rem;
+    transition: all .4s ease-in-out;
+}
+
+.featured .row .image-container .small-image img {
+    width:  100%;
+    padding: 5px;
+    border: .1rem solid rgba(0, 0, 0, .1);
+    transition: all .2s ease-in-out;
+    cursor: pointer;
+}
+
+.featured .row .image-container .small-image img:hover {
+    background: rgb(252, 143, 143);
+    transition: all .2s ease-in-out;
+}
+
+.featured .row .image-container .big-image img {
+    width: 100%;
+    transition: all .5s ease-in-out;
+}
+
+.featured .row .image-container .big-image img:hover {
+    transform: scale(1.4);
+    transition: all .9s ease-in-out;
+}
+
+.featured .row .content h3 {
+    font-size: 25px;
+    color: rgb(212, 98, 98);
+}
+
+.featured .row .content .stars i {
+    font-size: 20px;
+    color: orange;
+    padding: .5rem 0;
+}
+
+.featured .row .content p {
+    font-size: 1.5rem;
+    color: #666;
+    padding: 1rem 0;
+}
+
+.featured .row .content .price {
+    font-size: 2.5rem;
+    color: rgb(24, 24, 71);
+    font-weight: bolder;
+}
+
+.featured .row .content .price span {
+    font-size: 1.5rem;
+    color: orange;
+    text-decoration: line-through;
+}
+p{
+    color: rgb(24, 24, 71);
+}

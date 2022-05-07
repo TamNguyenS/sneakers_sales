@@ -2,7 +2,7 @@
 define('DB_SERVER', 'localhost');
 define('DB_USERNAME', 'root');
 define('DB_PASSWORD', 'nguyenchitam123');
-define('DB_NAME', 'hikkyshop');
+define('DB_NAME', 'hikkyshop2');
 
 function connect()
 {
@@ -31,14 +31,16 @@ function insert($table, $data)
     // die();
     $result = $conn->query($query);
     // echo $result;
-    if(!$result) die('[Database class - insert] Truy vấn sai');
+    if (!$result) die('[Database class - insert] Truy vấn sai');
     disconnect($conn);
     return $result;
 }
-function update ($table, $data, $where) {
+
+function update($table, $data, $where)
+{
     $conn = connect();
-    $value_list='';
-    foreach($data as $key => $value) {
+    $value_list = '';
+    foreach ($data as $key => $value) {
         $value_list .= "$key = '" . $conn->real_escape_string($value) . "',";
     }
     $sql = 'UPDATE ' . $table . ' SET ' . trim($value_list, ',') . ' WHERE ' . $where;
@@ -47,32 +49,35 @@ function update ($table, $data, $where) {
     return $result;
 }
 
-
 //get all data from database
-function get_data($table){
+function get_data($table)
+{
     $conn = connect();
     $query = 'SELECT * FROM ' . $table;
     $result = $conn->query($query);
-    if(!$result) die('[Database class - get_data] Truy vấn sai');
+    if (!$result) die('[Database class - get_data] Truy vấn sai');
     $return = array();
-    while($row = mysqli_fetch_assoc($result)){
+    while ($row = mysqli_fetch_assoc($result)) {
         $return[] = $row;
     }
     mysqli_free_result($result);
-    disconnect($conn);  
+    disconnect($conn);
     return $return;
 }
 
-function get_list($sql){
+function get_list($sql)
+{
     $conn = connect();
     $result = $conn->query($sql);
-    if(!$result) die('[Database class - get_list] Truy vấn sai');
+    // echo $sql;
+    // die();
+    if (!$result) die('[Database class - get_list] Truy vấn sai');
     $return = array();
-    while($row = mysqli_fetch_assoc($result)){
+    while ($row = mysqli_fetch_assoc($result)) {
         $return[] = $row;
     }
     mysqli_free_result($result);
-    disconnect($conn);  
+    disconnect($conn);
     return $return;
 }
 // function count_records($table){
@@ -86,7 +91,8 @@ function get_list($sql){
 //     return $total_records;
 // }
 
-function get_count ($sql) {
+function get_count($sql)
+{
     $conn = connect();
 
     $result = mysqli_query($conn, $sql);
@@ -96,7 +102,8 @@ function get_count ($sql) {
 
     return $result;
 }
-function get_count_v2 ($sql) {
+function get_count_v2($sql)
+{
     $conn = connect();
 
     $result = mysqli_query($conn, $sql);
@@ -107,12 +114,22 @@ function get_count_v2 ($sql) {
     return $result;
 }
 
-function remove ($table, $where) {
+function remove($table, $where)
+{
     $conn = connect();
-    
+
     $sql = "DELETE FROM $table WHERE id = '$where'";
     $result = mysqli_query($conn, $sql);
+    disconnect($conn);
+    return $result;
+}
 
+function remove1($table, $where)
+{
+    $conn = connect();
+
+    $sql = "DELETE FROM $table WHERE product_id = '$where'";
+    $result = mysqli_query($conn, $sql);
     disconnect($conn);
     return $result;
 }

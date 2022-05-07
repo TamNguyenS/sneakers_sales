@@ -169,7 +169,7 @@ li {
     display: flex;
     justify-content: space-between;
     padding: .5rem;
-    background: linear-gradient(-120deg, #f3f3f3, #f8f8f8);
+    background: linear-gradient(-120deg, #f1f1f1, #f7f7f7);
      /* box-shadow: 9px 1px 1px rgb(4 0 0 / 10%); */
     height: 50px;
     margin-left: -20px;
@@ -259,7 +259,7 @@ li {
   grid-area: main; 
   padding: 20px !important;
 
-  background: linear-gradient(-120deg, #f3f3f3, #f8f8f8);
+  background: linear-gradient(-120deg, #f1f1f1, #f7f7f7);
   overflow-x: hidden;
   height: 100%;
 }

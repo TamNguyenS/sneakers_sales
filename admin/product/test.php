@@ -1,4 +1,42 @@
-document.querySelector("#image-product").addEventListener("change", (e) => { //CHANGE EVENT FOR UPLOADING PHOTOS
+<style> 
+#result{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 10px 0;
+}
+
+.thumbnail {
+  height: 192px;
+}
+</style>
+
+<!-- <label for="image-product">Select multiple files</label>
+<input id="image-product" type="file" multiple="multiple" accept="image/jpeg, image/png, image/jpg">
+
+
+  <output id="result"> </output> -->
+  <div id="image-product-upload">
+
+<label for="image-product"> <i class="fas fa-upload"></i>Tải ảnh lên </label>
+<input type="file" name="image-product" multiple="multiple" accept="image/jpeg, image/png, image/jpg" id="image-product" hidden>
+    <!-- <div class="img-preview" style="height: 400px;"> -->
+    <output id="result"></output>
+        dsds
+    <!-- </div> -->
+
+
+<br>
+
+
+<br><br>
+</div>
+
+
+
+
+  <script>
+      document.querySelector("#image-product").addEventListener("change", (e) => { //CHANGE EVENT FOR UPLOADING PHOTOS
   if (window.File && window.FileReader && window.FileList && window.Blob) { //CHECK IF FILE API IS SUPPORTED
     const files = e.target.files; //FILE LIST OBJECT CONTAINING UPLOADED FILES
     const output = document.querySelector("#result");
@@ -18,3 +56,4 @@ document.querySelector("#image-product").addEventListener("change", (e) => { //C
     alert("Your browser does not support File API");
   }
 });
+  </script>

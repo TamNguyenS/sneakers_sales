@@ -1,5 +1,5 @@
 <?php
-require '../root/checklogin.php';
+// require '../root/checklogin.php';
 ?>
 
 <?php
@@ -33,10 +33,23 @@ $type_list = get_list($query);
     <link rel="stylesheet" href="../css/cssdb.css">
     <link rel="stylesheet" href="../css/cssmf.css">
     <link rel="stylesheet" href="../css/toast.css?v=2">
+    <!-- <script src="../js/previewImg.js"></script> -->
     <!-- icon -->
     <script src="https://kit.fontawesome.com/945e1fd97f.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/font-awesome-line-awesome/css/all.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        #result {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 10px 0;
+        }
+
+        .thumbnail {
+            height: 192px;
+        }
+    </style>
 </head>
 
 <body>
@@ -75,26 +88,27 @@ $type_list = get_list($query);
 
                 <div class="form-content">
                     <p><?php  ?></p>
-                    <form action="" method="POST" enctype="multipart/form-data" id="uploadFrom">
 
+                    <form action="" method="POST" enctype="multipart/form-data" id="uploadFrom">
+                        <input type="text" name="token" hidden value="<?php echo $token = uniqid("product" . '_', true); ?>">
                         <p>Nhập tên sản phẩm </p>
                         <input type="text" name="name" placeholder="Nhập tên sản phẩm" required>
                         <p>Hình ảnh sản phẩm</p>
 
+                        <!-- background -->
                         <div id="image-product-upload">
-
                             <label for="image-product"> <i class="fas fa-upload"></i>Tải ảnh lên </label>
-                            <input type="file" name="image-product" accept="image/png, image/jpeg, image/jpg" id="image-product" hidden>
+                            <input type="file" name="files[]" multiple="multiple" multiple accept="image/jpeg, image/png, image/jpg" id="image-product" hidden>
                         </div>
-                        <div class="img-preview">
-                            <img id="img-preview" src=" " />
-                        </div>
+                        <output id="result"></output>
+
+
 
                         <br>
                         <p>Giá bán </p>
                         <input type="text" name="cost" placeholder="" required>
                         <p>Số lượng </p>
-                        <input type="int" name="quantity" placeholder="Nhập số lượng" required>
+                        <input type="text" name="quantity" placeholder="Nhập số lượng" required>
                         <p> Loại sản phẩm</p>
                         <select name="type" id="type" class="select-1">
                             <?php foreach ($type_list as $post) { ?>
@@ -128,7 +142,7 @@ $type_list = get_list($query);
 <script type="text/javascript">
     document.getElementById('datePicker').valueAsDate = new Date();
 </script>
-<script src="../js/previewImg.js"></script>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
@@ -136,7 +150,7 @@ $type_list = get_list($query);
             e.preventDefault();
             var submit = 0;
             var name = $('input[name="name"]').val();
-            var image = $('input[name="image-product"]').val();
+            var image = $('input[name="files[]"]').val();
             var cost = parseInt($('input[name="cost"]').val());
             var quantity = parseInt($('input[name="quantity"]').val());
             var type = $('#type').val();
@@ -179,11 +193,10 @@ $type_list = get_list($query);
                     // },
                 }).done(function(data) {
                     if (data == 1) {
-                        $('#uploadFrom').find('input').val('');
+                        $('#uploadFrom').find('input[type="text"]').val('');
                         $('#uploadFrom').find('textarea').val('');
                         showSuccessToast("Thành công", "Thêm thành công sản phẩm!")
-                    }
-                    else if (data == 0) {
+                    } else if (data == 0) {
                         showErrorToast("Thất bại", "Đã có lỗi xãy ra zui lòng kiểm tra lại ⊙﹏⊙∥!")
                     }
 
@@ -216,6 +229,28 @@ $type_list = get_list($query);
     if (window.history.replaceState) {
         window.history.replaceState(null, null, window.location.href);
     }
+</script>
+<script>
+    document.querySelector("#image-product").addEventListener("change", (e) => { //CHANGE EVENT FOR UPLOADING PHOTOS
+        if (window.File && window.FileReader && window.FileList && window.Blob) { //CHECK IF FILE API IS SUPPORTED
+            const files = e.target.files; //FILE LIST OBJECT CONTAINING UPLOADED FILES
+            const output = document.querySelector("#result");
+            output.innerHTML = "";
+            for (let i = 0; i < files.length; i++) { // LOOP THROUGH THE FILE LIST OBJECT
+                if (!files[i].type.match("image")) continue; // ONLY PHOTOS (SKIP CURRENT ITERATION IF NOT A PHOTO)
+                const picReader = new FileReader(); // RETRIEVE DATA URI 
+                picReader.addEventListener("load", function(event) { // LOAD EVENT FOR DISPLAYING PHOTOS
+                    const picFile = event.target;
+                    const div = document.createElement("div");
+                    div.innerHTML = `<img class="thumbnail" src="${picFile.result}" title="${picFile.name}"/>`;
+                    output.appendChild(div);
+                });
+                picReader.readAsDataURL(files[i]); //READ THE IMAGE
+            }
+        } else {
+            alert("Your browser does not support File API");
+        }
+    });
 </script>
 
 </html>

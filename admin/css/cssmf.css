@@ -330,6 +330,7 @@ th:last-child {
     margin-left: 30px;
     font-size: 20px;
     background: rgb(255, 255, 255);
+    height:auto;
 }
 .form-content p {
     margin-top: 10px;
@@ -483,27 +484,15 @@ pagination-outer {
     /* box-shadow: 2px 2px rgba(0, 0, 0, 0.2), 4px 4px rgba(0,0,0,0.1); */
 }
 
-.img-preview img {
+output img {
    
     width: 100%;
     object-fit: cover;
     margin-bottom: 20px;
     max-width: 540px;
     max-height: 540px;
+    border-radius: 10px;
 }
-.img-preview {
-    padding: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    width: 100%;
-    max-width: 550px;
-    max-height: 550px;
-    margin: auto;
-    background-color: rgb(255, 255, 255);
-    box-shadow: 0 0 20px rgba(170, 170, 170, 0.2);
-  }
 .img-old img {
    
     width: 100%;
