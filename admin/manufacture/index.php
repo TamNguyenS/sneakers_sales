@@ -79,7 +79,9 @@ if ($delete !== false) {
         <div class="container-main">
             <div class="container">
                 <div class="tag-name">
-                    <h2> Nhà cung cấp</h2>
+                <h1> <a href="../main/"> <span class="link-1"> Home-</span> </a> Manufacture
+          </h1>
+          <br>
                 </div>
 
             </div>
@@ -180,7 +182,7 @@ if ($delete !== false) {
                                     <td>
                                         <p><?php echo $post['datee'] ?></p>
                                     </td>
-                                    <td>
+                                    <td style="width: 250px">
                                         <p><?php echo $post['note'] ?></p>
                                     </td>
                                     <td>

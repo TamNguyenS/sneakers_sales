@@ -66,13 +66,9 @@ $type_list = get_list($query);
 
             <div class="container">
                 <div class="tag-name">
-                    <a href="./index.php">
-                        <h2> <span class="fa fa-arrow-circle-left"></span> Thêm sản phẩm</h2>
-
-
+                <h1> <a href="../main/"> <span class="link-1"> Home-</span> </a> <a href="./index.php"> <span class="link-1"> Product-</span> </a>
+                        <span style="color: rgb(250, 35, 189); font-weight:bold"></span>Add</h1>
                         <br>
-
-                    </a>
                 </div>
 
             </div>

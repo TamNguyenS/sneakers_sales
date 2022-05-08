@@ -30,8 +30,11 @@ FROM orders LEFT JOIN customer ON orders.recipient_id = customer.id
 WHERE (recipent_name LIKE '%$search%')   ORDER BY id DESC LIMIT  $page_limit OFFSET $page_skip";
 // echo $query;
 $records = get_list($query);
-
-
+$this_day = date('d');
+$count_order = get_count("SELECT count(*) FROM orders");
+$count_order_this_day = get_count("SELECT count(*) FROM orders WHERE DAY(time_order) = $this_day ");
+$count_order_pedding = get_count("SELECT count(*) FROM orders WHERE status = '0'");
+$count_order_cannel = get_count("SELECT count(*) FROM orders WHERE status = '2'");
 ?>
 
 <!DOCTYPE html>
@@ -63,7 +66,7 @@ $records = get_list($query);
             /* Safari */
             animation: spin 2s linear infinite;
             margin-left: 600px;
-          
+
         }
 
         /* Safari */
@@ -86,11 +89,10 @@ $records = get_list($query);
                 transform: rotate(360deg);
             }
         }
-       
-       main{
-           height: auto;
-       }
-      
+
+        main {
+            height: auto;
+        }
     </style>
 </head>
 
@@ -108,8 +110,10 @@ $records = get_list($query);
         <div class="container-main">
             <div class="container">
                 <div class="tag-name">
-                    <h1><span style="color:grey">Home - </span><span> <span style="font-weight:bold"> Order  </h1>
-                    
+                    <h1> <a href="../main/"> <span class="link-1"> Home-</span> </a>  Order
+                    </h1>
+                    <br>
+
                 </div>
 
             </div>
@@ -118,7 +122,7 @@ $records = get_list($query);
 
                     <div class="card-single">
                         <div>
-                            <h1> 15</h1>
+                            <h1> <?=$count_order ?></h1>
                             <span>Tổng số đơn</span>
                         </div>
                         <div class="card-icon" style="background-color: rgb(252, 242, 210);">
@@ -128,7 +132,7 @@ $records = get_list($query);
 
                     <div class="card-single">
                         <div>
-                            <h1> 13</h1>
+                            <h1><?=$count_order_this_day ?></h1>
                             <span>Tổng số đơn hôm nay</span>
                         </div>
                         <div class="card-icon" style="  background-color: rgb(221, 230, 254);">
@@ -138,7 +142,7 @@ $records = get_list($query);
                     </div>
                     <div class="card-single">
                         <div>
-                            <h1> 13</h1>
+                            <h1> <?=$count_order_pedding?></h1>
                             <span>Đơn đang chờ xử lý</span>
                         </div>
                         <div class="card-icon" style="background-color: rgb(249, 219, 237);">
@@ -147,7 +151,7 @@ $records = get_list($query);
                     </div>
                     <div class="card-single">
                         <div>
-                            <h1> 13</h1>
+                            <h1> <?=$count_order_cannel?></h1>
                             <span>Đơn đã hủy</span>
                         </div>
                         <div class="card-icon" style="background-color: #ffe9ed;">
@@ -221,8 +225,8 @@ $records = get_list($query);
                                     </th>
 
                                 </tr>
-                                <tr class="loader-add" >
-                                <!-- <td colspan="8" style="text-align: center; " > <div class="loader" ></div> </td> -->
+                                <tr class="loader-add">
+                                    <!-- <td colspan="8" style="text-align: center; " > <div class="loader" ></div> </td> -->
                                 </tr>
                                 <?php foreach ($records as $record) { ?>
                                     <span style="color: rgb(250, 35, 189); font-weight:bold"> </span>
@@ -325,7 +329,7 @@ $records = get_list($query);
                 beforeSend: function() {
                     $('.remove').remove();
                     $('.loader-add').html('<td colspan="8" style="text-align: center"> <div class="loader" ></div> </td>');
-                    
+
                 },
                 success: function(data) {
                     $('.container-table').html(data);
@@ -347,7 +351,7 @@ $records = get_list($query);
                 beforeSend: function() {
                     $('.remove').remove();
                     $('.loader-add').html('<td colspan="8" style="text-align: center"> <div class="loader" ></div> </td>');
-                    
+
                 },
                 success: function(data) {
                     $('.container-table').html(data);

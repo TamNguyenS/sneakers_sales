@@ -165,12 +165,9 @@ if(count($records)==0){
            
                 <div class="container">
                     <div class="tag-name">
-                        <a href="./index.php">
-                            <h2> <span class="fa fa-arrow-circle-left"></span> Chi tiết mã đơn/
-                                <span style="color: rgb(250, 35, 189); font-weight:bold">#</span><?= encodeID($id_order) ?>
-                            </h2>
-                            <br>
-                        </a>
+                        <h1> <a href="../main/"> <span class="link-1"> Home-</span> </a> <a href="./index.php"> <span class="link-1"> Order-</span> </a>
+                        <span style="color: rgb(250, 35, 189); font-weight:bold">#</span>Bill <?= encodeID($id_order)?> </h1>
+                        <br>
                     </div>
                 </div>
              

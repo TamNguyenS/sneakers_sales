@@ -114,10 +114,10 @@ if (
 
             <div class="container">
                 <div class="tag-name">
-                    <a href="./index.php">
-                        <h2> <span class="fa fa-arrow-circle-left"></span> Thêm nhà cung cấp</h2>
-                        <br>
-                    </a>
+                <h1> <a href="../main/"> <span class="link-1"> Home-</span> </a> <a href="./"> <span class="link-1"> Manufacture-</span> </a>
+                 <span style="color: rgb(250, 35, 189); font-weight:bold"></span>Update
+          </h1>
+          <br>
                 </div>
 
             </div>

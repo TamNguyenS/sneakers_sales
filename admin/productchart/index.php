@@ -144,11 +144,10 @@ $bestseler = get_list($query_best_seler);
     <div class="container-main">
       <div class="container">
         <div class="tag-name">
-          <a href="./index.php">
-            <h2> <span class="fa fa-arrow-circle-left"></span> Thống kê</h2>
-            <br>
-
-          </a>
+          <h1> <a href="../main/"> <span class="link-1"> Home-</span> </a> <a href="../product"> <span class="link-1"> Order-</span> </a>
+            <span style="color: rgb(250, 35, 189); font-weight:bold"></span>Chart
+          </h1>
+          <br>
         </div>
       </div>
       <main>
@@ -222,76 +221,76 @@ $bestseler = get_list($query_best_seler);
               </select>
             </div>
             <div class="content-bestseler">
-            <a href="../product/productdetail.php?id=<?php echo $bestseler[0]['id'] ?>"> 
-              <div class="productbest">
+              <a href="../product/productdetail.php?id=<?php echo $bestseler[0]['id'] ?>">
+                <div class="productbest">
 
-                <div class="line one"></div>
-                <div>
+                  <div class="line one"></div>
+                  <div>
 
-                  <label class="for-dropdown">
-                    <h4> <?php echo mb_strimwidth($bestseler[0]['name'], 0, 40, "..."); ?> </h4>
-                  </label>
-                  <small> Đã bán <?= $bestseler[0]['sold'] ?></small>
-                  <div class="arrow"><i class="fa-solid fa-angle-right"></i></div>
+                    <label class="for-dropdown">
+                      <h4> <?php echo mb_strimwidth($bestseler[0]['name'], 0, 40, "..."); ?> </h4>
+                    </label>
+                    <small> Đã bán <?= $bestseler[0]['sold'] ?></small>
+                    <div class="arrow"><i class="fa-solid fa-angle-right"></i></div>
+                  </div>
+
                 </div>
-
-              </div>
-            </a>
+              </a>
               <br><br>
-              <a href="../product/productdetail.php?id=<?php echo $bestseler[1]['id'] ?>"> 
-              <div class="productbest">
-                <div class="line"></div>
-                <div>
+              <a href="../product/productdetail.php?id=<?php echo $bestseler[1]['id'] ?>">
+                <div class="productbest">
+                  <div class="line"></div>
+                  <div>
 
-                  <label class="for-dropdown">
-                    <h4> <?php echo mb_strimwidth($bestseler[1]['name'], 0, 40, "..."); ?> </h4>
-                  </label>
-                  <small> Đã bán <?= $bestseler[1]['sold'] ?></small>
-                  <div class="arrow"><i class="fa-solid fa-angle-right"></i></div>
+                    <label class="for-dropdown">
+                      <h4> <?php echo mb_strimwidth($bestseler[1]['name'], 0, 40, "..."); ?> </h4>
+                    </label>
+                    <small> Đã bán <?= $bestseler[1]['sold'] ?></small>
+                    <div class="arrow"><i class="fa-solid fa-angle-right"></i></div>
+                  </div>
                 </div>
-              </div>
-  </a>
+              </a>
               <br><br>
-            
+
               <div class="productbest">
-               
+
                 <div class="line two"></div>
-               
+
                 <div>
                   <label class="for-dropdown">
                     <h4> <?php echo mb_strimwidth($bestseler[2]['name'], 0, 40, "..."); ?> </h4>
                   </label>
                   <small> Đã bán <?= $bestseler[2]['sold'] ?></small>
                   <div class="arrow"><i class="fa-solid fa-angle-right"></i></div>
-                 
+
                 </div>
-               
+
               </div>
               </a>
               <br><br>
-              <a href="../product/productdetail.php?id=<?php echo $bestseler[3]['id'] ?>"> 
-              <div class="productbest">
-                <div class="line three"></div>
-                <div>
+              <a href="../product/productdetail.php?id=<?php echo $bestseler[3]['id'] ?>">
+                <div class="productbest">
+                  <div class="line three"></div>
+                  <div>
 
-                  <label class="for-dropdown">
-                    <h4> <?php echo mb_strimwidth($bestseler[3]['name'], 0, 40, "..."); ?> </h4>
-                  </label>
-                  <small> Đã bán <?= $bestseler[3]['sold'] ?></small>
-                  <div class="arrow"><i class="fa-solid fa-angle-right"></i></div>
+                    <label class="for-dropdown">
+                      <h4> <?php echo mb_strimwidth($bestseler[3]['name'], 0, 40, "..."); ?> </h4>
+                    </label>
+                    <small> Đã bán <?= $bestseler[3]['sold'] ?></small>
+                    <div class="arrow"><i class="fa-solid fa-angle-right"></i></div>
+                  </div>
                 </div>
-              </div>
-  </a>
+              </a>
             </div>
 
 
           </div>
         </div>
         <div class="container-row2">
-      <h1><i class="fa-solid fa-receipt"></i>&nbsp; Thông tin kho hàng </h1>
+          <h1><i class="fa-solid fa-receipt"></i>&nbsp; Thông tin kho hàng </h1>
+        </div>
     </div>
-    </div>
-    
+
 
     </main>
   </div>

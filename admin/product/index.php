@@ -87,7 +87,9 @@ $count_product_sold_year = get_count_v2("SELECT SUM(quantity) AS TOTAL FROM orde
         <div class="container-main">
             <div class="container">
                 <div class="tag-name">
-                    <h2> <span style="color:grey">Home - </span><span> <span style="font-weight:bold"> Product </h2>
+                <h1> <a href="../main/"> <span class="link-1"> Home-</span> </a>
+                 Product</h1>
+                        <br>
                 </div>
 
             </div>

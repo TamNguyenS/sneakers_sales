@@ -51,7 +51,9 @@ try {
             for($i = 0 ; count($fileNames) > $i ; $i++){
                
                $file_extension = pathinfo($fileNames[$i], PATHINFO_EXTENSION);
-              
+                if($file_extension =='webp'){
+                    $file_extension= 'png';
+                }
                $folder = '../photos/';
               if($file_extension != 'jpg' && $file_extension != 'png' && $file_extension != 'jpeg' && $file_extension != 'gif'){
                   echo 1;
