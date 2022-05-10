@@ -11,8 +11,9 @@
 <body>
 	<div class="sidebar">
 		<div class="sidebar-header">
-			<img class="sidebar-header-logo" src="../img/logo.png" alt="logo-hikky">
-			<p class="menu-webname">Hikky's shop</p>
+			<img class="sidebar-header-logo" style="width:80px; height:80px; border-radius:50%;
+			"src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSX0uq0KZE1RRBR3FtXBim12dve_l0hvqhotSMj1ehfKjtrpg3YOJWjIispmGzxICdYbM4&usqp=CAU" alt="logo-hikky">
+			<p class="menu-webname">Hikkywannafly</p>
 		</div>
 		<ul class="sidebar-menu">
 			<li class="menu-item">
