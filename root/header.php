@@ -8,7 +8,16 @@
 
                 <li class="click-user"><a href="#"><i class='bx bx-user-circle'></i></a></li>
                 <li class="click-cart"><a href="#"><i class='bx bx-cart'></i></a></li>
-                <span class="count">0</span>
+                <span class="count"><?php 
+                $total = 0;
+                if (isset($_SESSION['cart'])) {
+                    $cart = $_SESSION['cart'];
+                    foreach ($cart as $value) {
+                        $total += $value['quantity'];
+                    }
+                }
+                echo $total;
+                ?></span>
             </ul>
         </div>
     </div>
@@ -64,7 +73,7 @@
                     <li><a href=""><i class='bx bx-bell'></i></a></li>
                     <li class="click-user"><i class='bx bx-user-circle'> </i></li>
                     <li class="click-cart"><i class='bx bx-cart'></i></li>
-                    <span class="count2">0</span>
+                    <span class="count2"><?php echo $total; ?></span>
                 </ul>
             </div>
 

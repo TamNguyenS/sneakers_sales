@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap');
+
+.sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: #fff;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 .5rem 1rem rgba(97, 97, 97, 0.1);
+    margin-left: -180px;
+
+}
+
+.logo-bottom {
+    position: relative;
+    top: 0px;
+    right: 280px;
+    font-size: 10px;
+    display: none;
+}
+
+.row-title {
+    float: left;
+    margin-left: 100px;
+}
+
+.row-select {
+    display: flex;
+    float: right;
+    position: relative;
+    left: 20px;
+}
+
+.cart-second {
+    position: absolute;
+    top: 10px;
+    right: 18px;
+
+    font-size: 5px;
+    display: none;
+}
+
+.count2 {
+    position: absolute;
+    top: -7px;
+    right: -10px;
+    background: rgb(245, 59, 59);
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 1;
+    padding: 2px 4px;
+    -webkit-border-radius: 20px;
+    border-radius: 20px;
+    justify-content: center;
+}

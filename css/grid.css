@@ -34,7 +34,9 @@
     border-radius: 20px;
     /* height: 250px; */
 }
-
+.col-51 {
+    width: 25%;
+}
 .col-5 {
     width: 41.66%;
 }

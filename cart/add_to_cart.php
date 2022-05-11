@@ -1,3 +1,26 @@
+<?php
+require_once '../admin/db.php';
+?>
+
+<?php
+
+session_start();
+$id = $_POST['id'];
+if (empty($_SESSION['cart'][$id])) {
+    $query = "SELECT product.*, product_img.img AS image FROM product
+     INNER JOIN product_img ON product.id = product_img.product_id WHERE product.id = $id LIMIT 1";
+
+    $result = get_list($query);
+    $_SESSION['cart'][$id]['id'] = $id;
+    $_SESSION['cart'][$id]['quantity'] = 1;
+    $_SESSION['cart'][$id]['image'] = $result[0]['image'];
+    $_SESSION['cart'][$id]['name'] = $result[0]['name'];
+    $_SESSION['cart'][$id]['cost'] = $result[0]['cost'];
+} else {
+    $_SESSION['cart'][$id]['quantity']++;
+}
+
+?>
 <div class="site-cart">
     <div class="cart-view">
         <table id="cart-view">

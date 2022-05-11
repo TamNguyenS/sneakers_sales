@@ -664,7 +664,8 @@ footer ul li {
     background-color: #f5f3f3;
     width: 200%;
     margin-left: -30px;
-    padding: 10px;
+    padding: 8px;
+    font-size: 14px;
 }
 
 .breadcumb a {
@@ -1006,7 +1007,7 @@ footer .col-md-6 {
     background: rgb(255, 255, 255);
     padding: 3rem;
     width: 30rem;
-    transition: all 0.7s ease-in-out;
+    transition: all 0.5s ease-in-out;
 
 }
 
@@ -1068,7 +1069,7 @@ footer .col-md-6 {
     margin-left: -12%;
     margin-top: -8px;
     /* background: rgb(245, 59, 59); */
-    height:auto;
+    height: auto;
     max-height: 550px;
     overflow: scroll;
 }
@@ -1100,10 +1101,15 @@ footer .col-md-6 {
 }
 
 .cart-view table {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: bold;
     width: 95%;
     margin: 0 auto;
+
+}
+
+.cart-view td {
+    border-bottom: 1px solid #DCDCD9;
 }
 
 .button {
@@ -1165,4 +1171,28 @@ footer .col-md-6 {
     transform-origin: right center;
     -webkit-transform: scale(0, 1);
     transform: scale(0, 1);
+}
+
+.pro-title-view {
+    font-size: 14px;
+    color: #5d1313;
+    font-weight: bold;
+}
+
+.text-left {
+    width: 250px;
+    text-align: left;
+    font-size: 13px;
+}
+
+.text-right {
+    width: 300px;
+    text-align: right;
+    font-weight: bold;
+    font-size: 13px;
+
+}
+
+ .remove-cart {
+    cursor: pointer;
 }

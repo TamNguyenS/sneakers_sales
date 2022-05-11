@@ -1,4 +1,17 @@
-<div class="container">
+<div class="box">
+        <div class="breadcumb" style=" padding: 30px">
+            <div class="text-bread" style=" margin-left: 100px">
+                <i class="fa fa-phone "></i>
+                &nbsp;&nbsp;
+                <a href="./index.html">Liên hệ</a>
+                <span><i class="fa-solid fa-angle-right"></i></span>
+                <a href="./products.html">Hổ trợ : <span style="color: red">Hikkywannafly</span></a>
+            </div>
+
+        </div>
+    </div>
+    <footer class="bg-second">
+    <div class="container">
             <div class="row">
                 <div class="col-3 col-md-6">
                     <h3 class="footer-head">Products</h3>
@@ -57,3 +70,5 @@
                 </div>
             </div>
         </div>
+    </footer>
+

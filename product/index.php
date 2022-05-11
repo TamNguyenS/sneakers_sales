@@ -1,4 +1,5 @@
 <?php
+require_once '../admin/process_root/check_session.php';
 require_once '../admin/db.php';
 require_once '../admin/func.php';
 ?>
@@ -30,7 +31,7 @@ $records = get_list($query);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ATShop</title>
+    <title>Hikkywannafly</title>
     <!-- google font -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
 
@@ -40,70 +41,7 @@ $records = get_list($query);
     <link rel="stylesheet" href="../css/grid.css?v=2">
     <link rel="stylesheet" href="../css/app.css?v=2">
     <script src="https://kit.fontawesome.com/945e1fd97f.js" crossorigin="anonymous"></script>
-    <script src="../lib/icon.js" crossorigin="anonymous"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap');
-
-        .sticky {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            background: #fff;
-            padding: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 .5rem 1rem rgba(97, 97, 97, 0.1);
-            margin-left: -180px;
-
-        }
-
-        .logo-bottom {
-            position: relative;
-            top: 0px;
-            right: 280px;
-            font-size: 10px;
-            display: none;
-        }
-
-        .row-title {
-            float: left;
-            margin-left: 100px;
-        }
-
-        .row-select {
-            display: flex;
-            float: right;
-            position: relative;
-            left: 20px;
-        }
-
-        .cart-second {
-            position: absolute;
-            top: 10px;
-            right: 18px;
-            
-            font-size: 5px;
-            display: none;
-        }
-
-        .count2 {
-            position: absolute;
-            top: -7px;
-            right: -10px;
-            background: rgb(245, 59, 59);
-            color: white;
-            font-size: 12px;
-            font-weight: bold;
-            line-height: 1;
-            padding: 2px 4px;
-            -webkit-border-radius: 20px;
-            border-radius: 20px;
-            justify-content: center;
-        }
-    </style>
+    <link rel="stylesheet" href="../css/cart.css?v=2">
 </head>
 
 <body>
@@ -113,16 +51,68 @@ $records = get_list($query);
         <?php require_once '../root/header.php' ?>
     </header>
     <!-- nav -->
-    <?php require_once '../root/nav-cart-user.php' ?>
+    <nav class="navbar">
+
+        <div id="close">&nbsp;<i class="fas fa-times"></i></div>
+        <p class="ttbold">Giỏ hàng</p>
+
+        <div class="cart">
+            <?php
+            if (!isset($_SESSION['cart'])) {
+
+                echo '<br><br>
+               <img  style="width:90px; margin-left: 190px"src="https://i.pinimg.com/originals/15/4f/df/154fdf2f2759676a96e9aed653082276.png">
+    <h4 style="margin-left:115px">Không có sản phẩm nào trong đây cả :((</h4><br><br>';
+            } else {
+                require_once '../root/nav-cart-user.php';
+            }
+
+            ?>
+
+
+
+        </div>
+
+        <table class="table-total">
+            <tr>
+                <td class="text-left">TỔNG TIỀN:</td>
+                <td class="text-right" id="total-view-cart"><span style="color:red">
+                <?php 
+                $total = 0;
+                if(isset($_SESSION['cart'])){
+                    $cart = $_SESSION['cart'];
+                    
+                    foreach($cart as $value){
+                        $total += $value['cost'] * $value['quantity'];
+                    }
+                   
+                }
+                echo number_format($total, 0, '', ',');
+                ?>
+                
+                ₫ </span></td>
+            </tr>
+        </table>
+
+        <a href="/cart" class="linktocart button dark">Xem giỏ hàng</a>
+        &emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;
+        <a href="/checkout" class="linktocheckout button dark">Thanh toán</a>
+
+
+
+
+
+    </nav>
+
 
     <!-- products content -->
-    <div class="bg-main">
+    <div class="bg-main close-cart">
         <div class="container">
             <div class="box">
                 <div class="breadcumb">
                     <a href="./index.html">home</a>
                     <span><i class="fa-solid fa-angle-right"></i></span>
-                    <a href="./products.html">Tất cả sản phẩm</a>
+                    <a href="./products.html" style="font-style:italic">Tất cả sản phẩm</a>
                 </div>
             </div>
             <img src="https://file.hstatic.net/200000346037/file/mockup_web_2_b93d6d62704c4cb3a0579d71c863683f.png">
@@ -240,10 +230,13 @@ $records = get_list($query);
                                             </div>
                                             <div class="product-card-info">
                                                 <div class="product-btn">
-                                                    <a href="./product-detail.html" class="btn-flat btn-hover btn-shop-now">Chi tiết </a>
-                                                    <button class="btn-flat btn-hover btn-cart-add">
+                                                    <a href="../productdetail/?id=<?= $record['id'] ?>" class="btn-flat btn-hover btn-shop-now">Chi tiết </a>
+
+                                                    <button class="btn-flat btn-hover btn-cart-add btn-cart-add-to" id="cart-add-id" value="<?= $record['id'] ?>">
                                                         <i class='bx bxs-cart-add'></i>
                                                     </button>
+
+
                                                     <button class="btn-flat btn-hover btn-cart-add">
                                                         <i class='bx bxs-heart'></i>
                                                     </button>
@@ -281,58 +274,56 @@ $records = get_list($query);
         </div>
     </div>
     <!-- end products content -->
-    <div class="box">
-        <div class="breadcumb" style=" padding: 30px">
-            <div class="text-bread" style=" margin-left: 100px">
-                <i class="fa fa-phone "></i>
-                &nbsp;&nbsp;
-                <a href="./index.html">Liên hệ</a>
-                <span><i class="fa-solid fa-angle-right"></i></span>
-                <a href="./products.html">Hổ trợ : <span style="color: red">Hikkywannafly</span></a>
-            </div>
-
-        </div>
-    </div>
-    <footer class="bg-second">
+   
+    
         <?php require_once '../root/footer.php' ?>
-    </footer>
+  
 
     <!-- app js -->
-    <script src="./js/app.js"></script>
-    <script src="./js/products.js"></script>
-    <script src="./js/index.js"></script>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script>
-    var yourNavigation = $(".bottom-header");
-    var logo = $('.logo-bottom');
-    stickyDiv = "sticky";
-    yourHeader = $('.mid-header').height();
-
-    $(window).scroll(function() {
-        if ($(this).scrollTop() > yourHeader) {
-            yourNavigation.addClass(stickyDiv);
-
-            $(".logo-bottom").css("display", "block");
-            $(".cart-second ").css("display", "block");
-            
-        } else {
-            yourNavigation.removeClass(stickyDiv);
-            $(".logo-bottom").css("display", "none");
-            $(".cart-second ").css("display", "none");
-
-        }
-    });
-</script>
-<script>
-    var nav_cart_user = $('.navbar');
+<script src="../js/headersticky.js"></script>
+<script src="../js/cart.js"></script>
+<script type="text/javascript">
     $(document).ready(function() {
-        $('.click-user').click(function() {
-            nav_cart_user.addClass("active");
+        $('.btn-cart-add-to').click(function() {
+            let id = $(this).val();
+            console.log(id);
+            $.ajax({
+                type: "POST",
+                url: "../cart/add_to_cart.php",
+                data: "id=" + id,
+                beforeSend: function() {
+
+                },
+                success: function(response) {
+                    console.log(response);
+                    $('.cart').html(response);
+                    $('.navbar').addClass('active');
+                }
+            });
+            $.ajax({
+                type: "POST",
+                url: "../cart/count_product.php",
+                data: "id=" + id,
+                success: function(data) {
+                    console.log(data);
+                    $('.count').html(data);
+                    $('.count2').html(data);
+                }
+            });
+            $.ajax({
+                type: "POST",
+                url: "../cart/cart_total_cost.php",
+                data: "id=" + id,
+                success: function(data) {
+                    console.log(data);
+                    $('.text-right').html(data);
+                  
+                }
+            });
         });
-        $('#close').click(function() {
-            nav_cart_user.removeClass("active");
-        });
+
     });
 </script>
 

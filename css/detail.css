@@ -1,0 +1,42 @@
+.hold-img{
+    margin-top: 20px;
+    border-radius: 10px;
+    /* background: rgb(244, 244, 244) ; */
+    position: sticky;
+    top: 70px;
+    left: 5px;
+    padding: 0;
+    min-width: calc(15% - 15px);
+    margin-bottom: 30px;
+    visibility: visible;
+    z-index: 0;
+    font-size: 14px;
+}
+.hold-img img{
+    border: 1px solid rgb(205, 204, 204);
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+.buttonadd{
+    width: 400px;
+    padding:18px;
+    font-weight:700;
+}
+
+.hold-des{
+    margin-top: 20px;
+    border-radius: 10px;
+    /* background: rgb(244, 244, 244) ; */
+    position: sticky;
+    top: 70px;
+    left: 5px;
+    padding: 0;
+    min-width: calc(15% - 15px);
+    margin-bottom: 30px;
+    visibility: visible;
+    z-index: 0;
+    font-size: 14px;
+}
+.img-mid img{
+    width: 956px;
+}
