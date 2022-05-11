@@ -15,7 +15,7 @@
 .hold-img img{
     border: 1px solid rgb(205, 204, 204);
     border-radius: 8px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 .buttonadd{
     width: 400px;
@@ -39,4 +39,8 @@
 }
 .img-mid img{
     width: 956px;
+}
+.boder-b  td{
+    border-bottom: 1px solid rgb(90, 80, 80);
+    margin: 10px;
 }

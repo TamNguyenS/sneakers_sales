@@ -95,7 +95,7 @@ $records = get_list($query);
         </table>
 
         <a href="/cart" class="linktocart button dark">Xem giỏ hàng</a>
-        &emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;
+        &emsp;&emsp;&emsp;&emsp;&nbsp;
         <a href="/checkout" class="linktocheckout button dark">Thanh toán</a>
 
 
@@ -110,9 +110,12 @@ $records = get_list($query);
         <div class="container">
             <div class="box">
                 <div class="breadcumb">
+                    <div class="text-b" style="margin-left:50px;">
                     <a href="./index.html">home</a>
                     <span><i class="fa-solid fa-angle-right"></i></span>
                     <a href="./products.html" style="font-style:italic">Tất cả sản phẩm</a>
+                    </div>
+                    
                 </div>
             </div>
             <img src="https://file.hstatic.net/200000346037/file/mockup_web_2_b93d6d62704c4cb3a0579d71c863683f.png">
@@ -197,9 +200,9 @@ $records = get_list($query);
                     </div>
 
                     <div class="col-9 col-md-12">
-                        <div class="row-title">
-                            <h2>Tất cả sản phẩm</h2>
-                            <br><br>
+                        <div class="row-title" style="margin-top:30px;">
+                            <h3>Tất cả sản phẩm <span style="font-size:15px; font-weight:normal; color:gey">(34)</span></h3>
+                            <br>
                         </div>
 
                         <div class="row-select">

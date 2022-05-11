@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap');
 
 
 :root {
@@ -150,6 +150,7 @@ img {
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 14px;
 }
 
 .main-menu {
@@ -683,7 +684,7 @@ footer ul li {
 .filter-header {
     display: block;
     margin: 10px 0;
-    font-weight: 1000;
+    font-weight: 600;
     text-transform: uppercase;
     font-size: 13px;
 }
@@ -932,7 +933,7 @@ footer ul li {
 
 .filter-col {
     /* border: 1px solid rgb(167, 161, 161); */
-    margin-top: 90px;
+    margin-top: 20px;
     border-radius: 10px;
     height: 30%;
     width: 10%;
