@@ -44,3 +44,35 @@
     border-bottom: 1px solid rgb(90, 80, 80);
     margin: 10px;
 }
+.text-tit {
+    color: grey;
+    font-weight:normal;
+    margin-bottom: 3px;
+}
+.btn-size{
+    padding:8px;
+    margin: 5px;
+    background-color:white;
+    border: 1px solid black;
+    border-radius: 10px;
+    transition: all 1s;
+    font-weight: bold;
+}
+.btn-size:hover{
+    color:white;
+    background-color:rgb(55, 55, 55);
+    transition: all 1s;
+   
+}
+.btn{
+    padding:5px 10px;
+    margin: 5px;
+    background-color:white;
+    border: 1px solid black;
+    transition: all 1s;
+    font-weight: bold;
+}
+.active1{
+    color:white;
+    background-color:rgb(55, 55, 55);
+}

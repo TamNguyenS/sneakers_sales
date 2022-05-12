@@ -49,9 +49,22 @@ $product_info = get_list($query);
 
         .text-description p {
 
-            letter-spacing:1px;
+            letter-spacing: 1px;
             line-height: 1.5;
 
+        }
+
+        .discound-s {
+            background-color: rgb(220, 220, 220);
+            color: rgb(239, 49, 80);
+            padding: 3px 5px;
+            font-weight: bold;
+            border-radius: 6px;
+        }
+
+        img {
+            max-width: 100%;
+            max-height: 100%;
         }
     </style>
 </head>
@@ -95,7 +108,7 @@ $product_info = get_list($query);
                             $cart = $_SESSION['cart'];
 
                             foreach ($cart as $value) {
-                                $total += $value['cost'] * $value['quantity'];
+                                $total += $value['cost'] * $value['quantity'] * (1 - (int)$value['sale'] / 100);
                             }
                         }
                         echo number_format($total, 0, '', ',');
@@ -156,75 +169,92 @@ $product_info = get_list($query);
                             ?>
                                 <div class="row1-text">
                                     <h2><?= $value['name'] ?></h2>
-                                    <p style="color:gey"><?= encodeID($value['id']) ?></p>
+                                    <p style="color:gey; text-transform:uppercase">MS: <?= encodeID($value['id']) ?></p>
                                 </div>
                                 <div class="row1-text bottomm ">
                                 </div>
 
                                 <div class="row1-text">
                                     <div class="product-card-price">
+
+                                        <span class="discound-s">-
+                                            <?php
+                                            if ($value['sale'] == null) echo 0;
+                                            echo $value['sale'];
+
+                                            ?>%</span>
+                                        &emsp;
+                                        <span class="curr-price"><?php echo number_format($value['cost'], 0, '', ','); ?>
+                                            <span class="cost">đ</span></span>
                                         <span><del><?php echo number_format($value['cost'], 0, '', ','); ?></del></span>
 
-                                        <span class="curr-price"><?php echo number_format($value['cost'], 0, '', ','); ?> <span class="cost">đ</span></span>
+
                                     </div>
+                                </div>
+                                <div class="row1-text bottomm ">
+                                </div>
+                               
+                                <div class="row1-text">
+                                    <h4 class="text-tit">Loại sản phẩm</h4>
+
+                                    <h3><?= $value['type_name'] ?> </h3>
                                 </div>
                                 <div class="row1-text bottomm ">
                                 </div>
                                 <div class="row1-text">
-                                    <h3 style="color:gey; font-weight: 300;"> Màu sắc</h3>
-                                    <br>
-                                    <div class="radio-color">
+                                    <h4 class="text-tit"> Thương hiệu</h4>
 
-                                        <input type="radio" id="color-3" name="color" value="color-3" class="btn-color" style="background-color: #f5f5f5;">
-                                        <label for="color-3">
-                                            <input type="radio" class="btn-color" style="background-color: #f5f5f5;">
-                                            <input type="radio" class="btn-color" style="background-color: #f5f5f5;">
-                                            <input type="radio" class="btn-color" style="background-color: #f5f5f5;">
-                                    </div>
+                                    <h3><?= $value['manufacture_name'] ?> </h3>
                                 </div>
                                 <div class="row1-text bottomm ">
-                                    <div class="row1-text">
-                                        <h3 style="color:gey; font-weight: 300;"> </h3>
-                                        <br>
-                                        d
-                                    </div>
-                                    <div class="row1-text bottomm ">
-                                    </div>
-                                    <div class="row1-text">
-                                        <h3 style="color:gey; font-weight: 300;"> </h3>
-                                        <br>
-                                        d
-                                    </div>
-                                    <div class="row1-text bottomm ">
-                                    </div>
-                                    <br>
-                                    <div class="row-btn">
-                                        <p><button type="button" id="add-to-cart" class="button dark buttonadd btn-cart-add-to"
-                                         value="<?= $value['id']?>">Thêm vào giỏ</button></p>
-                                    </div>
-                                    <br>
-                                    <div class="row1-text">
-                                        <h4 style="color:gey; "> Mô tả</h4>
-                                        <br>
-                                        <div class="text-description">
-                                            <p><?= $value['description'] ?></p>
-                                        </div>
-
-                                    </div>
-                                    <img src="https://file.hstatic.net/200000346037/file/image_0c5592294cbc4853af843f6e97be5a5b_grande.png">
-
-                                <?php } ?>
+                                </div>
+                                <div class="row1-text">
+                                     <h4 class="text-tit"> Size</h4>
+                                    <button class="btn-size 1" >39</button>
+                                    <button class="btn-size 2" >40</button>
+                                    <button class="btn-size 3" >41</button>
+                                    <button class="btn-size 4" >42</button>
+                                    <button class="btn-size 5" >43</button>
+                            
+                                </div>
+                                <div class="row1-text bottomm ">
+                                </div>
+                                <div class="row1-text">
+                                     <h4 class="text-tit"> </h4>
+                                    <button class="btn incre" >-</button>
+                                    <input type="text" id="quantity" name="quantity" value="1" min="1" class="quantity-selector">
+                                    <button class="btn decre" >+</button>
+                            
+                                </div>
+                                <div class="row1-text bottomm ">
+                                </div>
+                                <br>
+                                <div class="row-btn">
+                                    <p><button type="button" id="add-to-cart" class="button dark buttonadd btn-cart-add-to" value="<?= $value['id'] ?>">Thêm vào giỏ</button></p>
                                 </div>
 
+                                <div class="row1-text">
+                                    <h4 style="color:gey; "> Mô tả</h4>
+                                    <br>
+                                    <div class="text-description">
+                                        <p><?= $value['description'] ?></p>
+                                    </div>
+
+                                </div>
+                                <img src="https://file.hstatic.net/200000346037/file/image_0c5592294cbc4853af843f6e97be5a5b_grande.png">
+
+                            <?php } ?>
                         </div>
+
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- end products content -->
-        <?php require_once '../root/footer.php' ?>
-        <!-- app js -->
+    <!-- end products content -->
+    <?php require_once '../root/footer.php' ?>
+    <!-- app js -->
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="../js/headersticky.js"></script>
@@ -264,11 +294,38 @@ $product_info = get_list($query);
                 success: function(data) {
                     console.log(data);
                     $('.text-right').html(data);
-                  
+
                 }
             });
         });
 
     });
+</script>
+<script> 
+$(document).ready(function () {
+    let access="false";
+    $('.5').click(function () {
+        if(access =="true"){
+            $('.5').removeClass('active1');
+            access ="false";
+        }
+       
+       
+    });
+    $('.5').click(function () {
+        setTimeout(function () {
+           
+        if(access=="false"){
+        $('.5').addClass('active1');
+        access ="true";
+        console.log(access);
+        }
+       
+        }, 1000);
+       
+       
+    });
+   
+});
 </script>
 </html>

@@ -26,7 +26,7 @@
                                 <div class="pro-quantity-view">
                                     <span class="qty-value">Số lượng: <?= $value['quantity'] ?></span>
                                 </div>
-                                <div class="pro-price-view">Giá :<?= number_format($value['cost'], 0, '', ','); ?>₫</div>
+                                <div class="pro-price-view">Giá :<?= number_format($value['cost'] *(1-(int)$value['sale']/100), 0, '', ','); ?>₫</div>
                             </div>
                         </td>
                         <td class="">X</td>

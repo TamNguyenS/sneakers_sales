@@ -13,6 +13,7 @@
     justify-content: center;
     box-shadow: 0 .5rem 1rem rgba(97, 97, 97, 0.1);
     margin-left: -180px;
+    transition: all .5s ease-in-out;
 
 }
 

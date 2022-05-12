@@ -16,6 +16,7 @@ if (empty($_SESSION['cart'][$id])) {
     $_SESSION['cart'][$id]['image'] = $result[0]['image'];
     $_SESSION['cart'][$id]['name'] = $result[0]['name'];
     $_SESSION['cart'][$id]['cost'] = $result[0]['cost'];
+    $_SESSION['cart'][$id]['sale'] = $result[0]['sale'];
 } else {
     $_SESSION['cart'][$id]['quantity']++;
 }
@@ -49,7 +50,7 @@ if (empty($_SESSION['cart'][$id])) {
                                 <div class="pro-quantity-view">
                                     <span class="qty-value">Số lượng: <?= $value['quantity'] ?></span>
                                 </div>
-                                <div class="pro-price-view">Giá :<?= number_format($value['cost'], 0, '', ','); ?>₫</div>
+                                <div class="pro-price-view">Giá :<?= number_format($value['cost'] *(1-(int)$value['sale']/100), 0, '', ','); ?>₫</div>
                             </div>
                         </td>
                         <td class="">X</td>

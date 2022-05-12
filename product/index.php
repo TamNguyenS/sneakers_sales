@@ -16,8 +16,8 @@ $page_total_length = get_count('SELECT count(*) FROM product WHERE NAME LIKE \'%
 $page_length = ceil($page_total_length / $page_limit);
 $page_skip =  $page_limit * ($page - 1);
 
-$query = "SELECT product.* FROM product 
- WHERE NAME LIKE'% %'";
+$query = "SELECT product.* ,MONTH(date) as month, DAY(date) as day FROM product 
+ WHERE NAME LIKE'% %' ORDER BY id DESC";
 $records = get_list($query);
 
 // print_r($records);
@@ -42,6 +42,11 @@ $records = get_list($query);
     <link rel="stylesheet" href="../css/app.css?v=2">
     <script src="https://kit.fontawesome.com/945e1fd97f.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../css/cart.css?v=2">
+    <style>
+        .activeimg{
+            border: 1 solid black;
+        }
+    </style>
 </head>
 
 <body>
@@ -77,20 +82,19 @@ $records = get_list($query);
             <tr>
                 <td class="text-left">TỔNG TIỀN:</td>
                 <td class="text-right" id="total-view-cart"><span style="color:red">
-                <?php 
-                $total = 0;
-                if(isset($_SESSION['cart'])){
-                    $cart = $_SESSION['cart'];
-                    
-                    foreach($cart as $value){
-                        $total += $value['cost'] * $value['quantity'];
-                    }
-                   
-                }
-                echo number_format($total, 0, '', ',');
-                ?>
-                
-                ₫ </span></td>
+                        <?php
+                        $total = 0;
+                        if (isset($_SESSION['cart'])) {
+                            $cart = $_SESSION['cart'];
+
+                            foreach ($cart as $value) {
+                                $total += $value['cost'] * $value['quantity']*(1-(int)$value['sale']/100);
+                            }
+                        }
+                        echo number_format($total, 0, '', ',');
+                        ?>
+
+                        ₫ </span></td>
             </tr>
         </table>
 
@@ -111,11 +115,11 @@ $records = get_list($query);
             <div class="box">
                 <div class="breadcumb">
                     <div class="text-b" style="margin-left:50px;">
-                    <a href="./index.html">home</a>
-                    <span><i class="fa-solid fa-angle-right"></i></span>
-                    <a href="./products.html" style="font-style:italic">Tất cả sản phẩm</a>
+                        <a href="./index.html">home</a>
+                        <span><i class="fa-solid fa-angle-right"></i></span>
+                        <a href="./products.html" style="font-style:italic">Tất cả sản phẩm</a>
                     </div>
-                    
+
                 </div>
             </div>
             <img src="https://file.hstatic.net/200000346037/file/mockup_web_2_b93d6d62704c4cb3a0579d71c863683f.png">
@@ -147,7 +151,7 @@ $records = get_list($query);
                                     <div class="group-checkbox">
                                         <input type="checkbox" id="status1">
                                         <label for="status1">
-                                            <span style="color:grey; font-weight:bold">Dưới 1,000,000₫</span>
+                                            <span style="color:grey; font: weight 300px;">Dưới 1,000,000₫</span>
                                             <i class='bx bx-check'></i>
                                         </label>
                                     </div>
@@ -156,7 +160,7 @@ $records = get_list($query);
                                     <div class="group-checkbox">
                                         <input type="checkbox" id="status2">
                                         <label for="status2">
-                                            <span style="color:grey; font-weight:bold">1tr -5,000,000₫</span>
+                                            <span style="color:grey; font: weight 300px;">1tr -5,000,000₫</span>
                                             <i class='bx bx-check'></i>
                                         </label>
                                     </div>
@@ -165,7 +169,7 @@ $records = get_list($query);
                                     <div class="group-checkbox">
                                         <input type="checkbox" id="status3">
                                         <label for="status3">
-                                            <span style="color:grey; font-weight:bold">Dưới 10,000,000₫</span>
+                                            <span style="color:grey; font: weight 300px;">Dưới 10,000,000₫</span>
                                             <i class='bx bx-check'></i>
                                         </label>
                                     </div>
@@ -174,7 +178,7 @@ $records = get_list($query);
                                     <div class="group-checkbox">
                                         <input type="checkbox" id="status4">
                                         <label for="status4">
-                                            <span style="color:grey; font-weight:bold">Trên 10,000,000₫</span>
+                                            <span style="color:grey; font: weight 300px;">Trên 10,000,000₫</span>
                                             <i class='bx bx-check'></i>
                                         </label>
                                     </div>
@@ -221,15 +225,51 @@ $records = get_list($query);
                             <div class="row products-d" id="products">
 
                                 <?php foreach ($records as $record) {
+                                
                                     $id = $record['id'];
                                     $query_img = "SELECT img FROM product_img WHERE product_id =  $id ";
                                     $get_list_img = get_list($query_img);
                                 ?>
-                                    <div class="col-4 col-md-6 col-sm-12">
+                                    <div class="col-4 showimg">
                                         <div class="product-card">
+                                            <?php  
+                                             $this_day = date('d');
+                                             $this_month = date('m');
+                                             $product_day = (int)$record['day'];
+                                             $product_month = (int)$record['month'];
+                                        if((int)$this_month == $product_month){
+                                            echo'
+                                                <div class="discount">
+                                                 <p>New</p>
+                                                </div>
+                                            ';}
+                                        if($record['sale'] != null){
+                                            echo'
+                                            <div class="discount blue">
+                                             <p>Sale</p>
+                                            </div>
+                                        ';
+                                        }
+                                            ?>
+                                            <!-- <div class="discount">
+                                                <p>New</p>
+                                            </div> -->
+                                            <div class="sale">
+                                                <p>- <?php
+                                                if($record['sale']== null) echo 0;
+                                                echo $record['sale'];
+                                                
+                                                ?>%</p>
+                                            </div>
                                             <div class="product-card-img">
-                                                <img src="../admin/photos/<?= $get_list_img[0]['img'] ?>" alt="">
-                                                <img src="../admin/photos/<?= $get_list_img[1]['img'] ?>" alt="">
+                                            <picture>
+                                            <img   src="../admin/photos/<?= $get_list_img[0]['img'] ?>" alt="">
+                                            </picture>
+                                              <picture>
+                                              <img  src="../admin/photos/<?= $get_list_img[1]['img'] ?>" alt="">
+                                              </picture>
+                                             
+
                                             </div>
                                             <div class="product-card-info">
                                                 <div class="product-btn">
@@ -248,9 +288,14 @@ $records = get_list($query);
                                                     <?= $record['name'] ?>
                                                 </div>
                                                 <div class="product-card-price">
-                                                    <span><del><?php echo number_format($record['cost'], 0, '', ','); ?></del></span>
+                                                    <span><del><?php echo number_format($record['cost'], 0, '', ','); ?></del></span> 
                                                     <br>
-                                                    <span class="curr-price"><?php echo number_format($record['cost'], 0, '', ','); ?> <span class="cost">đ</span></span>
+                                                    <span class="curr-price"><?php
+                                                    $discount = (int)$record['sale'];
+                                                    $cost = (float) $record['cost'] *(1-$discount/100);
+                                                   
+                                                    echo number_format($cost, 0, '', ','); ?> <span class="cost">đ</span></span>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -277,10 +322,10 @@ $records = get_list($query);
         </div>
     </div>
     <!-- end products content -->
-   
-    
-        <?php require_once '../root/footer.php' ?>
-  
+
+
+    <?php require_once '../root/footer.php' ?>
+
 
     <!-- app js -->
 </body>
@@ -322,7 +367,7 @@ $records = get_list($query);
                 success: function(data) {
                     console.log(data);
                     $('.text-right').html(data);
-                  
+
                 }
             });
         });

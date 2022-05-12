@@ -50,8 +50,8 @@
                 </li>
 
                 <li><a href="#">Hướng dẫn</a></li>
-                <li class="mega-dropdown"><a href="./products.html">Thương hiệu<i class='bx bxs-chevron-down'></i></a>
-                    <div class="mega-content">
+                <li class="mega-dropdown active-menu"><a href="./products.html">Thương hiệu<i class='bx bxs-chevron-down'></i></a>
+                    <div class="mega-content active-menu">
                         <div class="row">
                             <div class="cmd-12">
                                 <div class="box">

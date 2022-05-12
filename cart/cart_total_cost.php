@@ -7,7 +7,7 @@
         $cart = $_SESSION['cart'];
 
         foreach ($cart as $value) {
-            $total += $value['cost'] * $value['quantity'];
+            $total += $value['cost'] * $value['quantity']*(1-(int)$value['sale']/100);
         }
     }
     echo number_format($total, 0, '', ',');
