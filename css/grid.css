@@ -34,8 +34,18 @@
     border-radius: 20px;
     /* height: 250px; */
 }
+.col-41{
+    width: 25%;
+    text-align: center;
+     margin: 10px;
+   
+}
+
 .col-51 {
     width: 28.6%;
+}
+.col-52 {
+    width: 35%;
 }
 .col-5 {
     width: 41.66%;

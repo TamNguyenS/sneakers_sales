@@ -34,6 +34,7 @@ $product_info = get_list($query);
     <script src="https://kit.fontawesome.com/945e1fd97f.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../css/cart.css?v=2">
     <link rel="stylesheet" href="../css/detail.css?v=2">
+    <link rel="stylesheet" href="../admin/css/toast.css?v=2">
     <style>
         .row1-text {
             margin-bottom: 10px;
@@ -76,6 +77,7 @@ $product_info = get_list($query);
         <?php require_once '../root/header.php' ?>
     </header>
     <!-- nav -->
+    <div id="toast"></div>
     <nav class="navbar">
 
         <div id="close">&nbsp;<i class="fas fa-times"></i></div>
@@ -118,7 +120,7 @@ $product_info = get_list($query);
             </tr>
         </table>
 
-        <a href="/cart" class="linktocart button dark">Xem giỏ hàng</a>
+        <a href="../cart/" class="linktocart button dark">Xem giỏ hàng</a>
         &emsp;&emsp;&emsp;&emsp;&nbsp;
         <a href="/checkout" class="linktocheckout button dark">Thanh toán</a>
 
@@ -186,14 +188,16 @@ $product_info = get_list($query);
                                         &emsp;
                                         <span class="curr-price"><?php echo number_format($value['cost'], 0, '', ','); ?>
                                             <span class="cost">đ</span></span>
-                                        <span><del><?php echo number_format($value['cost'], 0, '', ','); ?></del></span>
+                                        <span><del><?php
+
+                                                    echo number_format($value['cost'] * (1 - (int)$value['sale'] / 100), 0, '', ','); ?></del></span>
 
 
                                     </div>
                                 </div>
                                 <div class="row1-text bottomm ">
                                 </div>
-                               
+
                                 <div class="row1-text">
                                     <h4 class="text-tit">Loại sản phẩm</h4>
 
@@ -209,29 +213,29 @@ $product_info = get_list($query);
                                 <div class="row1-text bottomm ">
                                 </div>
                                 <div class="row1-text">
-                                     <h4 class="text-tit"> Size</h4>
-                                    <button class="btn-size 1" >39</button>
-                                    <button class="btn-size 2" >40</button>
-                                    <button class="btn-size 3" >41</button>
-                                    <button class="btn-size 4" >42</button>
-                                    <button class="btn-size 5" >43</button>
-                            
+                                    <h4 class="text-tit"> Size</h4>
+                                    <button class="btn-size 1">39</button>
+                                    <button class="btn-size 2">40</button>
+                                    <button class="btn-size 3">41</button>
+                                    <button class="btn-size 4">42</button>
+                                    <button class="btn-size 5">43</button>
+
                                 </div>
                                 <div class="row1-text bottomm ">
                                 </div>
                                 <div class="row1-text">
-                                     <h4 class="text-tit"> </h4>
-                                    <button class="btn incre" >-</button>
+                                    <br>
+                                    <h4 class="text-tit"> </h4>
+                                    <input type="button" value="-" onclick="minusQuantity()" class="qty-btn">
                                     <input type="text" id="quantity" name="quantity" value="1" min="1" class="quantity-selector">
-                                    <button class="btn decre" >+</button>
-                            
+                                    <input type="button" value="+" onclick="plusQuantity()" class="qty-btn">
+
                                 </div>
-                                <div class="row1-text bottomm ">
-                                </div>
-                                <br>
+                                <br><br><br>
                                 <div class="row-btn">
                                     <p><button type="button" id="add-to-cart" class="button dark buttonadd btn-cart-add-to" value="<?= $value['id'] ?>">Thêm vào giỏ</button></p>
                                 </div>
+                                <br>
 
                                 <div class="row1-text">
                                     <h4 style="color:gey; "> Mô tả</h4>
@@ -263,6 +267,8 @@ $product_info = get_list($query);
     $(document).ready(function() {
         $('.btn-cart-add-to').click(function() {
             let id = $(this).val();
+            let quantity = $('#quantity').val();
+
             console.log(id);
             $.ajax({
                 type: "POST",
@@ -301,31 +307,74 @@ $product_info = get_list($query);
 
     });
 </script>
-<script> 
-$(document).ready(function () {
-    let access="false";
-    $('.5').click(function () {
-        if(access =="true"){
-            $('.5').removeClass('active1');
-            access ="false";
-        }
-       
-       
+<script>
+    $(document).ready(function() {
+        let access = "false";
+        $('.5').click(function() {
+            if (access == "true") {
+                $('.5').removeClass('active1');
+                access = "false";
+            }
+
+
+        });
+        $('.5').click(function() {
+            setTimeout(function() {
+
+                if (access == "false") {
+                    $('.5').addClass('active1');
+                    access = "true";
+                    console.log(access);
+                }
+
+            }, 1000);
+
+
+        });
+
     });
-    $('.5').click(function () {
-        setTimeout(function () {
-           
-        if(access=="false"){
-        $('.5').addClass('active1');
-        access ="true";
-        console.log(access);
-        }
-       
-        }, 1000);
-       
-       
-    });
-   
-});
 </script>
+<script src="../admin/js/toast.js"></script>
+<script>
+    function plusQuantity() {
+        let quantity = $('#quantity').val();
+        if (quantity >= 5) {
+            showErrorToast("Bạn đặt giày chi lắm vậy!");
+            return;
+        }
+        quantity++;
+        $('#quantity').val(quantity);
+    }
+
+    function minusQuantity() {
+        let quantity = $('#quantity').val();
+        if (quantity <= 0) {
+            showErrorToast("Bạn hack game à");
+            return;
+        }
+        quantity--;
+
+        $('#quantity').val(quantity);
+    }
+</script>
+<script>
+    function showSuccessToast() {
+        toast({
+            title: "Thành công!",
+            message: "Bạn đã xóa thành công",
+            type: "success",
+            duration: 5000
+        });
+    }
+
+    function showErrorToast($message) {
+        toast({
+            title: "DCM Bạn",
+            message: $message,
+            type: "error",
+            duration: 5000
+        });
+    }
+</script>
+
 </html>

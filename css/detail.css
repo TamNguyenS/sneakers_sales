@@ -65,14 +65,42 @@
    
 }
 .btn{
-    padding:5px 10px;
-    margin: 5px;
-    background-color:white;
-    border: 1px solid black;
+    padding:6px 15px;
+    background-color:rgb(205, 205, 205);
+    color:rgb(0, 0, 0);
+    border: 1px solid rgb(255, 255, 255);
     transition: all 1s;
     font-weight: bold;
 }
 .active1{
     color:white;
     background-color:rgb(55, 55, 55);
+}
+
+ input#quantity {
+	background: #fff;
+	font-weight: 600;
+	height: 32px;
+	padding: 0;
+	text-align: center;
+	width: 70px;
+	border: 1px solid #f5f5f5;
+	border-left: none;
+	border-right: none;
+	border-radius: 1px;
+	float: left;
+	-webkit-appearance: none;
+}
+ input.qty-btn {
+	float: left;
+	background: #f5f5f5;
+	border: solid 1px #f5f5f5;
+	cursor: pointer;
+	font-weight: 600;
+	font-size: 16px;
+	outline: none;
+	height: 32px;
+	width: 32px;
+	text-align: center;
+	border-radius: 0;
 }

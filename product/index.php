@@ -98,7 +98,7 @@ $records = get_list($query);
             </tr>
         </table>
 
-        <a href="/cart" class="linktocart button dark">Xem giỏ hàng</a>
+        <a href="../cart/" class="linktocart button dark">Xem giỏ hàng</a>
         &emsp;&emsp;&emsp;&emsp;&nbsp;
         <a href="/checkout" class="linktocheckout button dark">Thanh toán</a>
 
