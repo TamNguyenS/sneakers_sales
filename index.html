@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        /* Video Explanation - https://youtu.be/MZq5zFSpUlo */
+        body {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        *,
+        *::after,
+        *::before {
+            box-sizing: border-box;
+        }
+
+        .custom-radio-btn {
+            --size: 25px;
+            min-width: var(--size);
+            height: var(--size);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+
+            margin: 0 10px;
+            position: relative;
+            padding-left: var(--size);
+        }
+
+        .custom-radio-btn input {
+            display: none;
+        }
+
+        .custom-radio-btn.left {
+            padding-left: 0;
+            padding-right: var(--size);
+        }
+        .custom-radio-btn .label {
+            margin-left: 5px;
+        }
+
+        .custom-radio-btn.left .label {
+            margin: 0 5px;
+        }
+
+        .custom-radio-btn[aria-label]::after {
+            content: attr(aria-label);
+            display: inline-block;
+            margin-left: 5px;
+        }
+
+        /* checkmark */
+
+        .custom-radio-btn .checkmark {
+            --gap: 3px;
+            --border: 2px;
+            --check-color: #ff5722;
+            width: var(--size);
+            height: var(--size);
+            border-radius: 50%;
+            display: inline-block;
+            transition: opacity 0.3s ease;
+            /* changes from the video  */
+
+            border: var(--border) solid #444;
+            padding: var(--gap);
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .custom-radio-btn.left .checkmark {
+            left: auto;
+            right: 0;
+        }
+
+        .custom-radio-btn input:checked~.checkmark {
+            /* changes from the video  */
+
+            /*  content box origin will make sure the bg-image only stays inside content area in between padding  */
+            background-origin: content-box;
+            background-repeat: no-repeat;
+            background-image: radial-gradient(circle at center,
+            var(--check-color)
+            calc((var(10px) - (var(1px) * 2) - (var(--gap) * 2)) / 2),
+                rgba(255, 255, 255, 0) 0);
+        }
+    </style>
+</head>
+
+<body>
+    <label class="custom-radio-btn">
+        <input type="radio" name="sample" checked>
+        <span class="checkmark"></span>
+    </label>
+    <label class="custom-radio-btn left">
+        <input type="radio" name="sample">
+        <span class="checkmark"></span>
+    </label>
+
+    <label class="custom-radio-btn" aria-label="Choice C">
+        <input type="radio" name="sample">
+        <span class="checkmark"></span>
+    </label>
+
+</body>
+
+</html>

@@ -186,11 +186,13 @@ $product_info = get_list($query);
 
                                             ?>%</span>
                                         &emsp;
-                                        <span class="curr-price"><?php echo number_format($value['cost'], 0, '', ','); ?>
+                                        <span class="curr-price"><?php echo number_format($value['cost'] * (1 - (int)$value['sale'] / 100), 0, '', ',');   ?>
                                             <span class="cost">đ</span></span>
                                         <span><del><?php
 
-                                                    echo number_format($value['cost'] * (1 - (int)$value['sale'] / 100), 0, '', ','); ?></del></span>
+                                                   
+                                                    echo number_format($value['cost'], 0, '', ',');
+                                                    ?></del></span>
 
 
                                     </div>

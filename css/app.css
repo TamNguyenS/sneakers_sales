@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
 
 
 :root {
@@ -881,7 +881,7 @@ footer .col-md-6 {
     margin-top: -8px;
     /* background: rgb(245, 59, 59); */
     height: auto;
-    max-height: 550px;
+    max-height: 500px;
     overflow: scroll;
 }
 
@@ -1034,7 +1034,7 @@ footer .col-md-6 {
     left: 15px;
     width: 37px;
     height: 15px;
-    font-size: 13px;
+    font-size: 12px;
     text-align: center;
     color: rgb(255, 0, 0);
     background-color: #ffffff;
@@ -1042,7 +1042,11 @@ footer .col-md-6 {
     z-index: 100;
     font-weight: 600;
  }
-
+ .sale p{
+    margin-top: 0px;
+    font-size: 11px;
+    font-weight:bold;
+ }
  .blue{
     color: rgb(247, 247, 247);
     background-color: #4a19bb;
