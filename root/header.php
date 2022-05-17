@@ -2,24 +2,44 @@
 
     <div class="bg-main">
         <div class="mid-header container"><img style="width:180px" src="https://file.hstatic.net/200000346037/file/toptokago_b47efd92e9634fac8ed8e2583d341e60.png">
-            <div class="search"><input type="text" placeholder="Search"><i class='bx bx-search-alt'></i></div>
+            <?php $search = empty($_GET['search']) ? '' : $_GET['search'];
+            $search = validate($search); ?>
+
+            <form method="get" action="">
+
+                <div class="search">
+
+
+
+                    <input placeholder="search" name="search" type="search" value="<?php echo  $search ?>">
+
+
+
+
+                </div>
+            </form>
+
+
+
             <ul class="user-menu">
                 <li><a href="#"><i class='bx bx-bell'></i></a></li>
 
                 <li class="click-user"><a href="#"><i class='bx bx-user-circle'></i></a></li>
+
                 <li class="click-cart"><a href="#"><i class='bx bx-cart'></i></a></li>
-                <span class="count"><?php 
-                $total = 0;
-                if (isset($_SESSION['cart'])) {
-                    $cart = $_SESSION['cart'];
-                    foreach ($cart as $value) {
-                        $total += $value['quantity'];
-                    }
-                }
-                echo $total;
-                ?></span>
+                <span class="count"><?php
+                                    $total = 0;
+                                    if (isset($_SESSION['cart'])) {
+                                        $cart = $_SESSION['cart'];
+                                        foreach ($cart as $value) {
+                                            $total += $value['quantity'];
+                                        }
+                                    }
+                                    echo $total;
+                                    ?></span>
             </ul>
         </div>
+
     </div>
 
     <div class="bg-second">
@@ -29,6 +49,7 @@
                 <li><a href="#">home</a></li>
 
                 <li class="mega-dropdown"><a href="./products.html">Sản phẩm<i class='bx bxs-chevron-down'></i></a>
+                    <span class="bar"></span>
                     <div class="mega-content">
                         <div class="row">
                             <div class="cmd-12">
@@ -75,7 +96,11 @@
                     <li class="click-cart"><i class='bx bx-cart'></i></li>
                     <span class="count2"><?php echo $total; ?></span>
                 </ul>
+
+
+
             </div>
+
 
         </div>
     </div>

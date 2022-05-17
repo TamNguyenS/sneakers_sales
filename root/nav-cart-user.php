@@ -18,7 +18,7 @@
                             <p class="pro-title">
                                 <a class="pro-title-view" href="">SP: <?= $value['name'] ?></a>
                                 <br>
-                                <span class="variant">
+                                <span >
                                    Size: 43
                                 </span>
                             </p>

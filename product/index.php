@@ -11,13 +11,14 @@ $search = validate($search);
 $page = empty($_GET['page']) ? 1 : $_GET['page'];
 if (!is_numeric($page)) die();
 
-$page_limit = 6;
+$page_limit = 20;
 $page_total_length = get_count('SELECT count(*) FROM product WHERE NAME LIKE \'%' . $search . '%\'');
+
 $page_length = ceil($page_total_length / $page_limit);
 $page_skip =  $page_limit * ($page - 1);
 
 $query = "SELECT product.* ,MONTH(date) as month, DAY(date) as day FROM product 
- WHERE NAME LIKE'% %' ORDER BY id DESC";
+ WHERE NAME LIKE'%$search %' ORDER BY id DESC  LIMIT  $page_limit OFFSET $page_skip";
 $records = get_list($query);
 
 // print_r($records);
@@ -42,19 +43,29 @@ $records = get_list($query);
     <link rel="stylesheet" href="../css/app.css?v=2">
     <script src="https://kit.fontawesome.com/945e1fd97f.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../css/cart.css?v=2">
+    <link rel="stylesheet" href="../css/loading.css?v=2">
     <style>
-        .activeimg{
+        .activeimg {
             border: 1 solid black;
         }
     </style>
 </head>
 
-<body>
+<body onload="slider()">
 
-
+    <div class="loading" hidden>
+        <div>
+            <div class="c1"></div>
+            <div class="c2"></div>
+            <div class="c3"></div>
+            <div class="c4"></div>
+        </div>
+        <span>loading</span>
+    </div>
     <header>
         <?php require_once '../root/header.php' ?>
     </header>
+    <?php require_once '../root/user.php' ?>
     <!-- nav -->
     <nav class="navbar">
 
@@ -78,6 +89,8 @@ $records = get_list($query);
 
         </div>
 
+
+
         <table class="table-total">
             <tr>
                 <td class="text-left">TỔNG TIỀN:</td>
@@ -88,7 +101,7 @@ $records = get_list($query);
                             $cart = $_SESSION['cart'];
 
                             foreach ($cart as $value) {
-                                $total += $value['cost'] * $value['quantity']*(1-(int)$value['sale']/100);
+                                $total += $value['cost'] * $value['quantity'] * (1 - (int)$value['sale'] / 100);
                             }
                         }
                         echo number_format($total, 0, '', ',');
@@ -122,36 +135,44 @@ $records = get_list($query);
 
                 </div>
             </div>
-            <img src="https://file.hstatic.net/200000346037/file/mockup_web_2_b93d6d62704c4cb3a0579d71c863683f.png">
+
+            <!-- <img src="https://file.hstatic.net/200000346037/file/mockup_web_2_b93d6d62704c4cb3a0579d71c863683f.png"> -->
+            <!-- <div class="slider">
+                <div class="slider-banner">
+                    <img id="slideImg" class="zoom" style="width: 100%; height: 500px; max-height: 500px;" src="./6.jpg">
+                </div>
+            </div> -->
+            <img id="slide" class="zoom" style="width: 100%;  max-height: 500px;" src="https://file.hstatic.net/200000346037/file/mockup_web_2_b93d6d62704c4cb3a0579d71c863683f.png">
+
             <br><br>
             <div class="box">
                 <div class="row">
                     <div class="col-3 filter-col" id="filter-col">
 
                         <div class="box" style="border-bottom: 1px solid rgb(207, 206, 206) ">
-                            <span class="filter-header">
-                                <i class="fa-solid fa-angle-right"></i> Danh mục sản phẩm
+                            <span class="filter-header filter-1" data-id="filter-1">
+                                <i class="fa-solid fa-angle-right"></i>&emsp; Danh mục sản phẩm
                             </span>
-                            <ul class="filter-list">
-                                <?php $query_type = "SELECT name FROM type";
+                            <ul class="filter-list" id="filter-1">
+                                <?php $query_type = "SELECT * FROM type";
                                 foreach (get_list($query_type) as $type) {
                                 ?>
-                                    <li> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="#"><?= $type['name'] ?></a></li>
+                                    <li class="filter-product-type" data-name="<?= $type['name'] ?>" data-id="<?= $type['id'] ?>"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a><?= $type['name'] ?></a></li>
                                 <?php } ?>
                             </ul>
 
                         </div>
 
                         <div class="box" style="border-bottom: 1px solid rgb(207, 206, 206) ">
-                            <span class="filter-header">
-                                <i class="fa-solid fa-angle-right"></i> Giá tiền
+                            <span class="filter-header filter-2" data-id="filter-2">
+                                <i class="fa-solid fa-angle-right"></i>&emsp; Giá tiền
                             </span>
-                            <ul class="filter-list">
+                            <ul class="filter-list" id="filter-2">
                                 <li>
                                     <div class="group-checkbox">
                                         <input type="checkbox" id="status1">
                                         <label for="status1">
-                                            <span style="color:grey; font: weight 300px;">Dưới 1,000,000₫</span>
+                                            <span style=" font: weight 300px;">Dưới 1,000,000₫</span>
                                             <i class='bx bx-check'></i>
                                         </label>
                                     </div>
@@ -160,7 +181,7 @@ $records = get_list($query);
                                     <div class="group-checkbox">
                                         <input type="checkbox" id="status2">
                                         <label for="status2">
-                                            <span style="color:grey; font: weight 300px;">1tr -5,000,000₫</span>
+                                            <span style=" font: weight 300px;">1tr -5,000,000₫</span>
                                             <i class='bx bx-check'></i>
                                         </label>
                                     </div>
@@ -169,7 +190,7 @@ $records = get_list($query);
                                     <div class="group-checkbox">
                                         <input type="checkbox" id="status3">
                                         <label for="status3">
-                                            <span style="color:grey; font: weight 300px;">Dưới 10,000,000₫</span>
+                                            <span style=" font: weight 300px;">Dưới 10,000,000₫</span>
                                             <i class='bx bx-check'></i>
                                         </label>
                                     </div>
@@ -178,7 +199,7 @@ $records = get_list($query);
                                     <div class="group-checkbox">
                                         <input type="checkbox" id="status4">
                                         <label for="status4">
-                                            <span style="color:grey; font: weight 300px;">Trên 10,000,000₫</span>
+                                            <span style=" font: weight 300px;">Trên 10,000,000₫</span>
                                             <i class='bx bx-check'></i>
                                         </label>
                                     </div>
@@ -188,15 +209,17 @@ $records = get_list($query);
                         </div>
 
                         <div class="box" style="border-bottom: 1px solid rgb(207, 206, 206) ">
-                            <span class="filter-header">
-                                <i class="fa-solid fa-angle-right"></i> Thương hiệu
+                            <span class="filter-header filter-3" data-id="filter-3"> 
+                                <i class="fa-solid fa-angle-right"></i> &emsp;Thương hiệu
                             </span>
-                            <ul class="filter-list">
+                            <ul class="filter-list" id="filter-3">
                                 <?php $query_type = "SELECT name FROM manufacture";
                                 foreach (get_list($query_type) as $type) {
                                 ?>
-                                    <li> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="#"><?= $type['name'] ?></a></li>
+                                    <li class="filter-product-brand"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a ><?= $type['name'] ?></a></li>
                                 <?php } ?>
+
+
                             </ul>
 
                         </div>
@@ -204,15 +227,17 @@ $records = get_list($query);
                     </div>
 
                     <div class="col-9 col-md-12">
-                        <div class="row-title" style="margin-top:30px;">
-                            <h3>Tất cả sản phẩm <span style="font-size:15px; font-weight:normal; color:gey">(34)</span></h3>
+                        <div class="row-title title-product" style="margin-top:30px;">
+                            <h3>Tất cả sản phẩm <span style="font-size:15px; font-weight:normal; color:gey"></span></h3>
                             <br>
                         </div>
 
                         <div class="row-select">
 
                             <select class="">
-                                <option>Giá: Tăng dần</option>
+
+                                <!-- <option>Sắp xếp <i class="fa-solid fa-angles-down"></i>< /option> -->
+                                <option>Giá: Tăng dần &#xf103;</option>
                                 <option>Tên: Z-A</option>
                                 <option>Tên: Z-A</option>
                                 <option>Tên: Z-A</option>
@@ -222,99 +247,113 @@ $records = get_list($query);
                         <div class="box">
 
 
-                            <div class="row products-d" id="products">
+                            <div id="product-zone">
 
-                                <?php foreach ($records as $record) {
-                                
-                                    $id = $record['id'];
-                                    $query_img = "SELECT img FROM product_img WHERE product_id =  $id ";
-                                    $get_list_img = get_list($query_img);
-                                ?>
-                                    <div class="col-4 showimg">
-                                        <div class="product-card">
-                                            <?php  
-                                             $this_day = date('d');
-                                             $this_month = date('m');
-                                             $product_day = (int)$record['day'];
-                                             $product_month = (int)$record['month'];
-                                        if((int)$this_month == $product_month){
-                                            echo'
-                                                <div class="discount">
-                                                 <p>New</p>
+
+
+                                <div class="row products-d " id="products">
+
+                                    <?php foreach ($records as $record) {
+
+                                        $id = $record['id'];
+                                        $query_img = "SELECT img FROM product_img WHERE product_id =  $id ";
+                                        $get_list_img = get_list($query_img);
+                                    ?>
+                                        <div class="col-4 showimg">
+                                            <div class="product-card">
+                                                <?php
+                                                $this_day = date('d');
+                                                $this_month = date('m');
+                                                $product_day = (int)$record['day'];
+                                                $product_month = (int)$record['month'];
+                                                if ((int)$this_month == $product_month) {
+                                                    echo '
+                <div class="discount">
+                 <p>New</p>
+                </div>
+            ';
+                                                }
+                                                if ($record['sale'] != null) {
+                                                    echo '
+            <div class="discount blue">
+             <p>Sale</p>
+            </div>
+        ';
+                                                }
+                                                ?>
+                                                <!-- <div class="discount">
+                <p>New</p>
+            </div> -->
+                                                <div class="sale">
+                                                    <p>- <?php
+                                                            if ($record['sale'] == null) echo 0;
+                                                            echo $record['sale'];
+
+                                                            ?>%</p>
                                                 </div>
-                                            ';}
-                                        if($record['sale'] != null){
-                                            echo'
-                                            <div class="discount blue">
-                                             <p>Sale</p>
-                                            </div>
-                                        ';
-                                        }
-                                            ?>
-                                            <!-- <div class="discount">
-                                                <p>New</p>
-                                            </div> -->
-                                            <div class="sale">
-                                                <p>- <?php
-                                                if($record['sale']== null) echo 0;
-                                                echo $record['sale'];
-                                                
-                                                ?>%</p>
-                                            </div>
-                                            <div class="product-card-img">
-                                            <picture>
-                                            <img   src="../admin/photos/<?= $get_list_img[0]['img'] ?>" alt="">
-                                            </picture>
-                                              <picture>
-                                              <img  src="../admin/photos/<?= $get_list_img[1]['img'] ?>" alt="">
-                                              </picture>
-                                             
-
-                                            </div>
-                                            <div class="product-card-info">
-                                                <div class="product-btn">
-                                                    <a href="../productdetail/?id=<?= $record['id'] ?>" class="btn-flat btn-hover btn-shop-now">Chi tiết </a>
-
-                                                    <button class="btn-flat btn-hover btn-cart-add btn-cart-add-to" id="cart-add-id" value="<?= $record['id'] ?>">
-                                                        <i class='bx bxs-cart-add'></i>
-                                                    </button>
+                                                <div class="product-card-img">
+                                                    <picture>
+                                                        <img src="../admin/photos/<?= $get_list_img[0]['img'] ?>" alt="">
+                                                    </picture>
+                                                    <picture>
+                                                        <img src="../admin/photos/<?= $get_list_img[1]['img'] ?>" alt="">
+                                                    </picture>
 
 
-                                                    <button class="btn-flat btn-hover btn-cart-add">
-                                                        <i class='bx bxs-heart'></i>
-                                                    </button>
                                                 </div>
-                                                <div class="product-card-name">
-                                                    <?= $record['name'] ?>
-                                                </div>
-                                                <div class="product-card-price">
-                                                    <span><del><?php echo number_format($record['cost'], 0, '', ','); ?></del></span> 
-                                                    <br>
-                                                    <span class="curr-price"><?php
-                                                    $discount = (int)$record['sale'];
-                                                    $cost = (float) $record['cost'] *(1-$discount/100);
-                                                   
-                                                    echo number_format($cost, 0, '', ','); ?> <span class="cost">đ</span></span>
+                                                <div class="product-card-info">
+                                                    <div class="product-btn">
+                                                        <a href="../productdetail/?id=<?= $record['id'] ?>" class="btn-flat btn-hover btn-shop-now">Chi tiết </a>
 
+                                                        <button class="btn-flat btn-hover btn-cart-add btn-cart-add-to" id="cart-add-id" value="<?= $record['id'] ?>">
+                                                            <i class='bx bxs-cart-add'></i>
+                                                        </button>
+
+
+                                                        <button class="btn-flat btn-hover btn-cart-add">
+                                                            <i class='bx bxs-heart'></i>
+                                                        </button>
+                                                    </div>
+                                                    <div class="product-card-name">
+                                                        <?= $record['name'] ?>
+                                                    </div>
+                                                    <div class="product-card-price">
+                                                        <span><del><?php echo number_format($record['cost'], 0, '', ','); ?></del></span>
+                                                        <br>
+                                                        <span class="curr-price"><?php
+                                                                                    $discount = (int)$record['sale'];
+                                                                                    $cost = (float) $record['cost'] * (1 - $discount / 100);
+
+                                                                                    echo number_format($cost, 0, '', ','); ?> <span class="cost">đ</span></span>
+
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                <?php } ?>
+                                    <?php } ?>
+                                </div>
+                                <div class="box pagee">
+                                    <ul class="pagination">
+                                        <li><a href="#"><i class='bx bxs-chevron-left'></i></a></li>
+                                        <?php for ($i = 1; $i <= $page_length; $i++) {
+                                            if ($i == $page) { ?>
+                                                <li><a class="active" href="#"><?php echo $i; ?></a></li>
+                                            <?php } else { ?>
+                                                <li><a href="./?&search=<?php echo $search ?>&page=<?php echo $i ?>"><?php echo $i; ?></a></li>
+                                        <?php
+                                            }
+                                        } ?>
+                                        <!-- <li><a href="#" class="active">1</a></li>
+                                <li><a href="#">2</a></li> -->
+                                        <li><a href="#"><i class='bx bxs-chevron-right'></i></a></li>
+                                    </ul>
+                                </div>
+
+
+
+
+
                             </div>
-
-
-                        </div>
-                        <div class="box">
-                            <ul class="pagination">
-                                <li><a href="#"><i class='bx bxs-chevron-left'></i></a></li>
-                                <li><a href="#" class="active">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#">5</a></li>
-                                <li><a href="#"><i class='bx bxs-chevron-right'></i></a></li>
-                            </ul>
                         </div>
                     </div>
                 </div>
@@ -374,5 +413,110 @@ $records = get_list($query);
 
     });
 </script>
+<script>
+    var $loading = $('.loading').hide();
 
+    $(document).ready(function() {
+        $('.filter-product-type').click(function() {
+            let type_id = $(this).data('id');
+            console.log(type_id);
+            // $loading.show();
+            $.ajax({
+                type: "POST",
+                url: "../content/product.php",
+                data: "type_id=" + type_id,
+                beforeSend: function() {
+                    $loading.show();
+
+                },
+                success: function(response) {
+                    setTimeout(function() {
+                        $loading.hide();
+
+                        $('#product-zone').html(response);
+
+                    }, 2000);
+                }
+            });
+            $.ajax({
+                type: "POST",
+                url: "../content/title.php",
+                data: "type_id=" + type_id,
+                success: function (response) {
+                    setTimeout(function() {
+                        $('.title-product').html(response);
+
+                    }, 2000);
+                   
+
+                }
+            });
+
+        })
+        $('.filter-product-brand').click(function() {
+            let brand_id = $(this).data('id');
+            console.log(type_id);
+            // $loading.show();
+            $.ajax({
+                type: "POST",
+                url: "../content/product.php",
+                data: "brand_id=" + brand_id,
+                beforeSend: function() {
+                    $loading.show();
+
+                },
+                success: function(response) {
+                    setTimeout(function() {
+                        $loading.hide();
+                        $('#product-zone').html(response);
+
+                    }, 2000);
+                }
+            });
+
+        })
+       
+    });
+</script>
+<script>
+    var img = document.getElementById('slideImg');
+    var images = new Array(
+        "1.jpg",
+        "2.jpg",
+        "3.jpg"
+
+    );
+    var i = 0;
+    var length = images.length;
+
+    function slider() {
+        if (i > length - 1) {
+            i = 0;
+        }
+        img.src = images[i];
+        i++;
+        setTimeout('slider()', 3000);
+    }
+</script>
+<script>
+$(document).ready(function () {
+    let boll = true;
+    $('.filter-header').click(function () {
+        let data = $(this).data('id');
+        if(boll){
+            $(`#${data}`).hide();
+            $(`.${data}`).addClass('rotate');
+            boll = false;
+        }
+        else{
+            $(`#${data}`).show();
+            $(`.${data}`).removeClass('rotate');
+            boll = true;
+        }
+    });
+    
+});
+
+
+</script>
 </html>

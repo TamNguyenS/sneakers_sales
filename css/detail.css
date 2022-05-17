@@ -14,8 +14,12 @@
 }
 .hold-img img{
     border: 1px solid rgb(205, 204, 204);
-    border-radius: 8px;
+    border-radius: 3px;
     margin-bottom: 10px;
+}
+.hold-img img:hover{
+    transition: all .5s;
+    border: 1px solid rgb(233, 25, 42);
 }
 .buttonadd{
     width: 400px;

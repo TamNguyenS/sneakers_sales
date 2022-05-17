@@ -76,8 +76,10 @@ $product_info = get_list($query);
     <header>
         <?php require_once '../root/header.php' ?>
     </header>
+    <?php require_once '../root/user.php' ?>
     <!-- nav -->
     <div id="toast"></div>
+
     <nav class="navbar">
 
         <div id="close">&nbsp;<i class="fas fa-times"></i></div>
@@ -125,6 +127,7 @@ $product_info = get_list($query);
         <a href="/checkout" class="linktocheckout button dark">Thanh toán</a>
 
     </nav>
+  
 
 
     <!-- products content -->
@@ -137,7 +140,7 @@ $product_info = get_list($query);
                         <span><i class="fa-solid fa-angle-right"></i></span>
                         <a href="../product">Tất cả sản phẩm</a>
                         <span><i class="fa-solid fa-angle-right"></i></span>
-                        <a href="./products.html" style="font-style:italic">Sản phẩm gì đây</a>
+                        <a href="" style="font-style:italic"><?= $product_info[0]['name']  ?></a>
                     </div>
 
                 </div>
@@ -149,7 +152,7 @@ $product_info = get_list($query);
                         <div class="hold-img">
                             <?php foreach ($img_result as $value) {
                             ?>
-                                <img src="../admin/photos/<?= $value['img'] ?>">
+                                <a href="#img<?= $value['img'] ?>"> <img src="../admin/photos/<?= $value['img'] ?>"></a>
                             <?php } ?>
 
                         </div>
@@ -159,7 +162,7 @@ $product_info = get_list($query);
                         <div class="img-mid">
                             <?php foreach ($img_result as $value) {
                             ?>
-                                <img style=" width: 956px;" src="../admin/photos/<?= $value['img'] ?>">
+                                <img id="img<?= $value['img'] ?>" style=" width: 956px;" src="../admin/photos/<?= $value['img'] ?>">
                             <?php } ?>
                         </div>
 
@@ -190,7 +193,7 @@ $product_info = get_list($query);
                                             <span class="cost">đ</span></span>
                                         <span><del><?php
 
-                                                   
+
                                                     echo number_format($value['cost'], 0, '', ',');
                                                     ?></del></span>
 

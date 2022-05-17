@@ -15,6 +15,9 @@
     --btn-border-color: #000;
     --btn-color: #fff;
 }
+html{
+    scroll-behavior: smooth;
+}
 
 html::-webkit-scrollbar {
     width: .44rem;
@@ -39,6 +42,7 @@ input:focus {
     margin: 0;
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
+   
 }
 
 body {
@@ -117,7 +121,7 @@ img {
     position: relative;
 }
 
-.search input {
+ .search input {
     height: 100%;
     width: 100%;
     font-size: 16px;
@@ -127,7 +131,6 @@ img {
     border: 0;
     background-color: var(--second-bg-color);
 }
-
 .search i {
     position: absolute;
     top: 50%;
@@ -194,7 +197,9 @@ img {
     z-index: 2;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0;
     transition: all 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+ 
 }
+
 
 .mega-dropdown:hover .mega-content {
     opacity: 1;
@@ -531,10 +536,25 @@ footer ul li {
     font-weight: 600;
     text-transform: uppercase;
     font-size: 13px;
+    cursor: pointer;
+    
 }
+.filter-header i{
+    transition: all 0.3s ease-in-out;
+}
+.rotate i{
+    transform: rotate(90deg);
+    transition: all 0.3s ease-in-out;
 
+}
 .filter-list>li {
     margin-bottom: 5px;
+    cursor: pointer;
+
+   
+}
+.filter-list{
+    animation: scale-animation 0.2s ease-in-out;
 }
 
 .filter-toggle-box {
@@ -1061,3 +1081,61 @@ footer .col-md-6 {
      left: -3px;
     
  }
+
+ .drop-user{
+     position:fixed;
+ }
+ .drop-content{
+    display: block;
+    background:rgb(239, 175, 217);
+    position:absolute;
+    top:50px;
+    right:0px;
+    padding: 10px;
+}
+
+.drop-user {
+    display: block;
+    position: fixed;
+    top: 7%;
+    right: 10px;
+    z-index: 1000;
+    height: auto;
+    max-height: 400px;
+    background: rgb(255, 255, 255);
+    width: 30rem;
+    transition: all 0.5s ease-in-out;
+    width: 150px;
+    border-radius: 10px;    
+    visibility: hidden;
+    opacity: 0;
+    transform: scale(0.7);transform: scale(0.7);
+
+}
+.drop-user.active1
+    {
+    visibility: visible;
+    opacity: 1;
+    transform: scale(1);transform: scale(1);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+    .content-user{
+        margin: 10px;
+    }
+    .bottomm1 {
+        border-bottom: 1px solid #dfe0e1;
+    }
+    @keyframes scale-animation {
+        0%{
+          opacity: 0;
+          transform: scaleY(1.1);
+          transform: scaleX(1.1);
+     
+        }
+        100%{
+          opacity: 1;
+          transform: scaleY(1);
+          transform: scaleX(1);
+       
+        }
+      }
