@@ -1,7 +1,10 @@
 <div class="header-wrapper" id="header-wrapper"><span class="mb-menu-toggle mb-menu-close" id="mb-menu-close"><i class='bx bx-x'></i></span>
 
     <div class="bg-main">
-        <div class="mid-header container"><img style="width:180px" src="https://file.hstatic.net/200000346037/file/toptokago_b47efd92e9634fac8ed8e2583d341e60.png">
+    
+        <div class="mid-header container">    <a href="../product/"><img style="width:180px" src="https://file.hstatic.net/200000346037/file/toptokago_b47efd92e9634fac8ed8e2583d341e60.png"></a>
+
+
             <?php $search = empty($_GET['search']) ? '' : $_GET['search'];
             $search = validate($search); ?>
 

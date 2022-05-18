@@ -3,6 +3,75 @@ require_once '../admin/process_root/check_session.php';
 require_once '../admin/db.php';
 require_once '../admin/func.php';
 ?>
+<?php
+$cookies_temp = isset($_COOKIE['token_remem']) ? isset($_COOKIE['token_remem_user'])  : false;
+if ($cookies_temp != false) {
+
+    $token = $_COOKIE['token_remem'];
+    $sql = "SELECT * FROM customer WHERE token = '$token' limit 1";
+    $record = get_list($sql);
+    $conn = connect();
+    $query = "SELECT * FROM customer WHERE token = '$token'";
+    $result = mysqli_query($conn, $query);
+    $number_rows = mysqli_num_rows($result);
+    if ($number_rows == 1) {
+        $_SESSION['id'] = $record[0]['id'];
+        $_SESSION['username'] = $record[0]['username'];
+        $_SESSION['position'] = $record[0]['position'];
+        $_SESSION['photo'] = $record[0]['photo'];
+    }
+}
+
+if (isset($_SESSION['id'])) {
+    header('location: ../product');
+    exit;
+}
+
+?>
+
+<?php
+if (isset($_POST['remember'])) {
+    $remember = true;
+} else {
+    $remeber = false;
+}
+
+$email = isset($_POST['email']) ? $_POST['email'] : false;
+$password = isset($_POST['password']) ? $_POST['password'] : false;
+$isEnror = false;
+$error = '';
+$msg = '';
+
+if ($email != false && $password != false) {
+
+    $conn = connect();
+    $query = "SELECT * FROM customer WHERE email = '$email' AND password = '$password'";
+    $result = mysqli_query($conn, $query);
+
+    $number_rows = mysqli_num_rows($result);
+    if ($number_rows == 1) {
+
+        $info = mysqli_fetch_array($result);
+        $id = $info['id'];
+        session_start(); 
+        $_SESSION['id'] = $id;
+        $_SESSION['name'] = $info['name'];
+        $_SESSION['loginsucces'] = true;
+        // $_SESSION['position'] = $info['position'];
+        if ($remember) {
+            $token = uniqid($info['username'] . '_', true);
+            $update_token = update('customer', array('token' => $token), "id = $id");
+
+            setcookie('token_remem', $token, time() + (24 * 30), '/', '', 0);
+        }
+        $msg = 'Ban da dang nhap thanh cong';
+        header('Location: ../product');
+        exit;
+    } else {
+        $error = "Tên tài khoản và mật khẩu khum đúng! ";
+    }
+}
+?>
 
 <!DOCTYPE html>
 <html>
@@ -25,7 +94,77 @@ require_once '../admin/func.php';
     <link rel="stylesheet" href="../css/detail.css?v=2">
     <link rel="stylesheet" href="../css/payment.css?v=2">
     <link rel="stylesheet" href="../admin/css/toast.css?v=2">
- 
+    <style>
+        .heading-page:after {
+            content: "";
+            background: #252a2b;
+            display: block;
+            width: 60px;
+            height: 4px;
+            margin: 25px 0px 0;
+        }
+
+        .box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .group {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .group input {
+            font-size: 18px;
+            padding: 15px 7px 15px 12px;
+            display: block;
+            width: 100%;
+            border-radius: 5px;
+            background: rgb(236, 236, 236);
+            border: none;
+            border: 1px solid rgb(236, 236, 236);
+            transition: border 0.5s ease-in-out;
+
+
+        }
+
+
+        .group input:focus {
+            outline: none;
+            border: 1px solid rgb(149, 149, 149);
+            transition: all 0.5s ease-in-out;
+        }
+
+        .group label {
+            color: #999;
+            font-size: 18px;
+            font-weight: normal;
+            position: absolute;
+            pointer-events: none;
+            left: 5px;
+            top: 15px;
+            transition: 0.2s ease all;
+        }
+
+        .group input:focus~label,
+        .group input:valid~label {
+            top: -25px;
+            font-size: 16px;
+            color: #353538;
+        }
+
+        .box {
+            padding: 30px;
+        }
+
+        .content-l {
+            margin-left: 70px;
+        }
+        .dd a{
+            color: blue;
+        }
+    </style>
 </head>
 
 <body>
@@ -85,15 +224,71 @@ require_once '../admin/func.php';
 
     </nav>
 
-
+    <form method="POST" action="">
     <!-- products content -->
     <div class="bg-main close-cart">
+
         <div class="container">
-       
-        </div>   </div>
-        <!-- end products content -->
-        <?php require_once '../root/footer.php' ?>
-        <!-- app js -->
+            <div class="box">
+
+                <div class="col-5">
+                    
+                        <h1 style="font-size: 50px;"> Đăng Nhập </h1>
+                        <br>
+                        <div class="heading-page">
+
+                        </div>
+                </div>
+
+
+                <div class="col-5" style="border-left: 1px solid rgb(226, 226, 226);">
+                    <div class="content-l">
+                        <span style="color:red; font-weight: bold;"><?php echo $error ?></span> <br><br><br>
+
+                        <div class="group">
+                            <input name="email" type="text" required>
+                            <label>Email</label>
+                        </div>
+                        <br>
+                        <div class="group">
+                            <input name="password"type="password" required>
+                            <label>Mật Khẩu</label>
+                        </div>
+
+
+                        <div class="checkbox-content">
+                            <label>Remember me
+                                <input type="checkbox" name="remember">
+                            </label>
+                        </div>
+
+                        <br>
+
+                        <div class="dd" style="color:grey">
+                            This site is protected by reCAPTCHA and the Google
+                            <a href="https://policies.google.com/privacy" target="_blank" rel="noreferrer">Privacy Policy</a>
+                            and <a href="https://policies.google.com/terms" target="_blank" rel="noreferrer">Terms of Service</a> apply.
+                        </div>
+                        <br>
+                        <p><button style="width :150px" onlicks="" type="submit" id="add-to-cart" class="button dark buttonadd btn-cart-add-to"">Đăng Nhập</button>
+                    <a href=" #"> Quên mật khẩu? </a>
+                                <span style="color :grey">hoặc</span>
+                                <a href="#"> Đăng ký </a>
+                        </p>
+                        <br><br><br>
+                        
+                    </div>
+                </div>
+
+
+            </div>
+            </form>
+
+        </div>
+    </div>
+    <!-- end products content -->
+    <?php require_once '../root/footer.php' ?>
+    <!-- app js -->
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="../js/headersticky.js"></script>

@@ -48,6 +48,11 @@ $records = get_list($query);
         .activeimg {
             border: 1 solid black;
         }
+        .active1{
+    color:white;
+    background-color:rgb(55, 55, 55);
+}
+
     </style>
 </head>
 
@@ -65,7 +70,11 @@ $records = get_list($query);
     <header>
         <?php require_once '../root/header.php' ?>
     </header>
+
+
     <?php require_once '../root/user.php' ?>
+
+    
     <!-- nav -->
     <nav class="navbar">
 
@@ -145,86 +154,14 @@ $records = get_list($query);
             <img id="slide" class="zoom" style="width: 100%;  max-height: 500px;" src="https://file.hstatic.net/200000346037/file/mockup_web_2_b93d6d62704c4cb3a0579d71c863683f.png">
 
             <br><br>
+
+
             <div class="box">
                 <div class="row">
-                    <div class="col-3 filter-col" id="filter-col">
-
-                        <div class="box" style="border-bottom: 1px solid rgb(207, 206, 206) ">
-                            <span class="filter-header filter-1" data-id="filter-1">
-                                <i class="fa-solid fa-angle-right"></i>&emsp; Danh mục sản phẩm
-                            </span>
-                            <ul class="filter-list" id="filter-1">
-                                <?php $query_type = "SELECT * FROM type";
-                                foreach (get_list($query_type) as $type) {
-                                ?>
-                                    <li class="filter-product-type" data-name="<?= $type['name'] ?>" data-id="<?= $type['id'] ?>"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a><?= $type['name'] ?></a></li>
-                                <?php } ?>
-                            </ul>
-
-                        </div>
-
-                        <div class="box" style="border-bottom: 1px solid rgb(207, 206, 206) ">
-                            <span class="filter-header filter-2" data-id="filter-2">
-                                <i class="fa-solid fa-angle-right"></i>&emsp; Giá tiền
-                            </span>
-                            <ul class="filter-list" id="filter-2">
-                                <li>
-                                    <div class="group-checkbox">
-                                        <input type="checkbox" id="status1">
-                                        <label for="status1">
-                                            <span style=" font: weight 300px;">Dưới 1,000,000₫</span>
-                                            <i class='bx bx-check'></i>
-                                        </label>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="group-checkbox">
-                                        <input type="checkbox" id="status2">
-                                        <label for="status2">
-                                            <span style=" font: weight 300px;">1tr -5,000,000₫</span>
-                                            <i class='bx bx-check'></i>
-                                        </label>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="group-checkbox">
-                                        <input type="checkbox" id="status3">
-                                        <label for="status3">
-                                            <span style=" font: weight 300px;">Dưới 10,000,000₫</span>
-                                            <i class='bx bx-check'></i>
-                                        </label>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="group-checkbox">
-                                        <input type="checkbox" id="status4">
-                                        <label for="status4">
-                                            <span style=" font: weight 300px;">Trên 10,000,000₫</span>
-                                            <i class='bx bx-check'></i>
-                                        </label>
-                                    </div>
-                                </li>
-                            </ul>
-
-                        </div>
-
-                        <div class="box" style="border-bottom: 1px solid rgb(207, 206, 206) ">
-                            <span class="filter-header filter-3" data-id="filter-3"> 
-                                <i class="fa-solid fa-angle-right"></i> &emsp;Thương hiệu
-                            </span>
-                            <ul class="filter-list" id="filter-3">
-                                <?php $query_type = "SELECT name FROM manufacture";
-                                foreach (get_list($query_type) as $type) {
-                                ?>
-                                    <li class="filter-product-brand"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a ><?= $type['name'] ?></a></li>
-                                <?php } ?>
 
 
-                            </ul>
+                    <?php require_once '../root/filter.php' ?>
 
-                        </div>
-
-                    </div>
 
                     <div class="col-9 col-md-12">
                         <div class="row-title title-product" style="margin-top:30px;">
@@ -442,12 +379,12 @@ $records = get_list($query);
                 type: "POST",
                 url: "../content/title.php",
                 data: "type_id=" + type_id,
-                success: function (response) {
+                success: function(response) {
                     setTimeout(function() {
                         $('.title-product').html(response);
 
                     }, 2000);
-                   
+
 
                 }
             });
@@ -475,7 +412,7 @@ $records = get_list($query);
             });
 
         })
-       
+
     });
 </script>
 <script>
@@ -499,24 +436,22 @@ $records = get_list($query);
     }
 </script>
 <script>
-$(document).ready(function () {
-    let boll = true;
-    $('.filter-header').click(function () {
-        let data = $(this).data('id');
-        if(boll){
-            $(`#${data}`).hide();
-            $(`.${data}`).addClass('rotate');
-            boll = false;
-        }
-        else{
-            $(`#${data}`).show();
-            $(`.${data}`).removeClass('rotate');
-            boll = true;
-        }
+    $(document).ready(function() {
+        let boll = true;
+        $('.filter-header').click(function() {
+            let data = $(this).data('id');
+            if (boll) {
+                $(`#${data}`).hide();
+                $(`.${data}`).addClass('rotate');
+                boll = false;
+            } else {
+                $(`#${data}`).show();
+                $(`.${data}`).removeClass('rotate');
+                boll = true;
+            }
+        });
+
     });
-    
-});
-
-
 </script>
+
 </html>
