@@ -366,7 +366,7 @@ if(count($records)==0){
                                         </td>
                                         
 
-                                        <td ><span style="color:red; font-weight:bold;"><?=number_format($sum* 10/100 +$sum, 0, '', ',');  ?> </span> <span class="cost">đ</span></td>
+                                        <td ><span style="color:red; font-weight:bold;"><?=number_format($record['total_cost'], 0, '', ',');  ?> </span> <span class="cost">đ</span></td>
                                       
                                     </tr>
                                 </thead>

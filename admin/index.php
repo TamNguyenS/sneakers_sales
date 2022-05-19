@@ -20,7 +20,7 @@ if ($cookies_temp != false) {
 	}
 }
 
-if (isset($_SESSION['id'])) {
+if (isset($_SESSION['id']) && isset($_SESSION['position'])) {
 	header('location: ./main');
 	exit;
 }

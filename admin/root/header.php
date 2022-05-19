@@ -1,5 +1,9 @@
 <?php
 require_once '../process_root/check_session.php';
+// require_once '../process'
+?>
+<?php 
+
 ?>
 
 <!DOCTYPE html>
@@ -25,7 +29,6 @@ require_once '../process_root/check_session.php';
 
         </div>
        
-
 
             <div class="user-wrapper">
                 <img src="../img/shikimori.gif" alt="anh">

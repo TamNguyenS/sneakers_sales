@@ -1,6 +1,15 @@
 <?php
-require_once '../root/checklogin.php';
+
 require_once '../admin/process_root/check_session.php';
+// if(!(isset($_SESSION['loggedsucces']) && $_SESSION['loggedsucces'] == true)){
+//    return true;
+// }
+function check_login(){
+    if(!(isset($_SESSION['loginsucces']) && $_SESSION['loginsucces'] == true)){
+        return true;
+    }
+    return false;
+}
 $result = check_login();
 // echo $result;
 // die();
@@ -14,8 +23,8 @@ if ($result!=1) {
           </div>
           <h4>$name</h4>
           <ul>
-              <li><a href='#'>Thông tin </a></li>
-              <li><a href='../root/signout.php'>Đăng xuất</a></li>
+              <li ><a  style='color:white' href='#'>Thông tin </a></li>
+              <li><a style='color:white' href='../root/signout.php'>Đăng xuất</a></li>
           </ul>
   
       </div>
@@ -27,8 +36,8 @@ if ($result!=1) {
       <div class="content-user">
       <p> Xin chào </p>
       <ul>
-      <li><a href="../account/login.php">Đăng nhập </a></li>
-      <li><a href="../account/regis.php">Đăng ký</a></li>
+      <li><a style="color:white" href="../account/login.php">Đăng nhập </a></li>
+      <li><a style="color:white" href="../account/regis.php">Đăng ký</a></li>
     </ul>
     
         </div>

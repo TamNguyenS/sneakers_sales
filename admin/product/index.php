@@ -69,6 +69,9 @@ $count_product_sold_year = get_count_v2("SELECT SUM(quantity) AS TOTAL FROM orde
         main {
             height: auto;
         }
+        a{
+            color: white;
+        }
     </style>
 
 </head>

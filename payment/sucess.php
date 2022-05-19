@@ -2,7 +2,27 @@
 require_once '../admin/process_root/check_session.php';
 require_once '../root/checklogin.php';
 
+$id_order = $_GET['id'];
+$query = "SELECT product.id AS product_id, product.name AS product_name,product.cost AS product_cost,
+orders_detail.quantity AS quantity, orders.* ,
+customer.name as customer_name, customer.email as customer_email,
+customer.phone as customer_phone, customer.address as customer_address 
+FROM ((((product LEFT JOIN orders_detail ON product.id = orders_detail.product_id)
+LEFT JOIN orders ON orders_detail.orders_id = orders.id))
+LEFT JOIN customer ON orders.recipient_id = customer.id)
+WHERE orders.id = '$id_order'";
+
+$records = get_list($query);
+
+// if(count($records)==0){
+//     header("Location: ../root/404page.php");
+//     exit();
+// }
+ foreach ($records as $record) { 
+    $id_order = $record['id'];
+ }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,7 +55,7 @@ require_once '../root/checklogin.php';
         }
 
         .container {
-            width: 80%;
+            width: 90%;
             display: flex;
             justify-content: center;
             margin: 0px auto;
@@ -43,7 +63,7 @@ require_once '../root/checklogin.php';
         }
 
         .left-site {
-            width: 50%;
+            width: 60%;
             /* border-right: 1px solid grey; */
         }
 
@@ -213,6 +233,9 @@ require_once '../root/checklogin.php';
             font-weight: bold;
             margin-bottom: 20px;
         }
+        th{
+            width: 150px;
+        }
     </style>
 </head>
 
@@ -231,114 +254,78 @@ require_once '../root/checklogin.php';
                     </li>
                     |
                     <li class="breadcrumb-item breadcrumb-item-current">
-                        Thông tin giao hàng & Thanh toán
+                        Đang chờ duyệt
                     </li>
+                    
                 </ul>
-                <h3>Thông tin giao hàng <span style="color:grey; font-size: 12px; font-style:italic">(Zui lòng đọc kĩ hướng dẫn trước khi thực hiện thanh toán)</span></h3>
+                <h3>ĐẶT HÀNG THÀNH CÔNG <span style="color:grey; font-size: 12px; font-style:italic">(Zui lòng check mail để theo dõi trạng thái đơn hàng)</span></h3>
                 <div class="error">
                     <!-- <span>• sd</span> -->
                 </div>
-                <form method="post" action="./payment_process.php">
-                    <div class="info">
-                       <div class="group">
-                        <input name="name" id="name" type="text" required>
-                        <label>Name</label>
-                    </div>
+                <div class="content">
+                <div class="order-detail">
+                                <h5 class="title-detail">Thông tin người đặt hàng :</h5>
+                                <br>
+                                <div class="table-order">
+                                    <table style=" text-align: left; ">
+                                        <thead>
+                                            <tr>
+                                                <th>Tên người đặt </th>
 
-                        <div class="info2">
+                                                <td><?= $record['customer_name'] ?></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Địa chỉ </th>
+                                                <td><?= $record['customer_address'] ?></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Số điện thoại </th>
+                                                <td><?= $record['customer_phone'] ?></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Email </th>
+                                                <td><?= $record['customer_email'] ?></td>
+                                            </tr>
+                                        </thead>
+                                    </table>
 
-                            <div class="div1">
-                            <div class="group">
-                                <input name="email" id="email" type= "text" required>
-                                <label>Email</label>
-                            </div>
 
-                        </div>
-                            <div class="div2">
-                                <div class="group">
-                                    <input name="phone" id="phone" type="text" required >
-                                    <label>SĐT</label>
+
                                 </div>
-                            </div>
-                        </div>
+                                <br>
+                                <h5 class="title-detail">Thông tin người nhận hàng :</h5>
+                                <br>
+                                <div class="table-order">
+                                    <table style=" text-align: left; ">
+                                        <thead>
+                                            <tr>
+                                                <th>Tên người nhận </th>
 
-                        <div class="group">
-                            <input name="address" id="address" type="text" required>
-                            <label>Địa chỉ</label>
-                        </div>
+                                                <td><?= $record['recipent_name'] ?></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Địa chỉ </th>
+                                                <td><?= $record['recipent_address'] ?></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Số điện thoại </th>
+                                                <td><?= $record['recipent_phone'] ?></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Email </th>
+                                                <td><?= $record['customer_email'] ?></td>
+                                            </tr>
+                                        </thead>
+                                    </table>
 
-                        <div class="info2">
-                            <div class="div3">
-                                <div class="group">
-                                    <select id="city" required  value="Chọn tỉnh / thành">
-                                        <option value="none">Chọn tỉnh / thành</option>
 
-                                    </select>
-                                    <label>Tỉnh / thành</label>
+
                                 </div>
-
+                                <br>
+                
+                                
                             </div>
-                            <div class="div3">
-                                <div class="group">
-                                    <select id="district" type="text" required value="Chọn phường / xã">
-                                        <option value="">Chọn quận / huyện</option>
-
-                                    </select>
-
-                                    <label>Quận / huyện</label>
-                                </div>
-                            </div>
-                            <div class="div3">
-                                <div class="group">
-                                    <select id="ward" type="text" required  value="Chọn phường / xã">
-                                        <option value="">Chọn phường / xã</option>
-
-                                    </select>
-
-                                    <label>Phường / xã</label>
-                                </div>
-                            </div>
-                            <input type="hidden" id="text" name="address1" hidden>
-                            <?php
-                                $total1 = 0;
-                                if (isset($_SESSION['cart'])) {
-                                    $cart = $_SESSION['cart'];
-
-                                    foreach ($cart as $value) {
-                                        $total1 += $value['cost'] * $value['quantity'] * (1 - (int)$value['sale'] / 100)
-                                            + $value['cost'] * $value['quantity'] * (1 - (int)$value['sale'] / 100) * 0.1;
-                                    }
-                                }
-                                ?>
-                            <input type="hidden" id="text" name="total"  value="<?=$total1;?>">
-
-                            <script type="text/javascript">
-                                document.getElementById('city').addEventListener('change', function() {
-                                    document.getElementById('text').value = this[this.selectedIndex].text;
-
-                                });
-                                document.getElementById('district').addEventListener('change', function() {
-                                    document.getElementById('text').value +=", " + this[this.selectedIndex].text;
-
-                                });
-                                document.getElementById('ward').addEventListener('change', function() {
-                                    document.getElementById('text').value +=", " + this[this.selectedIndex].text;
-
-                                });
-                            </script>
-                        </div>
-                        <div class="group">
-                            <input name="note" id="note" type="text" required>
-                            <label>Ghi chú</label>
-                        </div>
-                    </div>
-                    <br>
-
-                    <a href="../cart/">Giỏ Hàng</a>
-              
-                    <input type="submit" class="btn b" value="Xác nhận đặt đơn" value="Submit" onclick="return checkPayment()">
-
-                </form>
+                </div>
 
             </div>
         </div>

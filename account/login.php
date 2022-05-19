@@ -4,10 +4,14 @@ require_once '../admin/db.php';
 require_once '../admin/func.php';
 ?>
 <?php
-$cookies_temp = isset($_COOKIE['token_remem']) ? isset($_COOKIE['token_remem_user'])  : false;
+if (isset($_SESSION['id_user'])) {
+    header('location: ../product');
+    exit;
+}
+$cookies_temp = isset($_COOKIE['token_remem_user']) ? isset($_COOKIE['token_remem_user'])  : false;
 if ($cookies_temp != false) {
 
-    $token = $_COOKIE['token_remem'];
+    $token = $_COOKIE['token_remem_user'];
     $sql = "SELECT * FROM customer WHERE token = '$token' limit 1";
     $record = get_list($sql);
     $conn = connect();
@@ -15,17 +19,13 @@ if ($cookies_temp != false) {
     $result = mysqli_query($conn, $query);
     $number_rows = mysqli_num_rows($result);
     if ($number_rows == 1) {
-        $_SESSION['id'] = $record[0]['id'];
-        $_SESSION['username'] = $record[0]['username'];
-        $_SESSION['position'] = $record[0]['position'];
-        $_SESSION['photo'] = $record[0]['photo'];
+        $_SESSION['id_user'] = $record[0]['id'];
+        $_SESSION['name'] = $record[0]['name'];
+        $_SESSION['loginsucces'] = true;
     }
 }
 
-if (isset($_SESSION['id'])) {
-    header('location: ../product');
-    exit;
-}
+
 
 ?>
 
@@ -47,22 +47,21 @@ if ($email != false && $password != false) {
     $conn = connect();
     $query = "SELECT * FROM customer WHERE email = '$email' AND password = '$password'";
     $result = mysqli_query($conn, $query);
-
     $number_rows = mysqli_num_rows($result);
     if ($number_rows == 1) {
 
         $info = mysqli_fetch_array($result);
         $id = $info['id'];
-        session_start(); 
-        $_SESSION['id'] = $id;
+       
+        $_SESSION['id_user'] = $id;
         $_SESSION['name'] = $info['name'];
         $_SESSION['loginsucces'] = true;
-        // $_SESSION['position'] = $info['position'];
+        // $_SESSION['position'] = $info['position']
         if ($remember) {
-            $token = uniqid($info['username'] . '_', true);
+            $token = uniqid($info['username'] . '_client', true);
             $update_token = update('customer', array('token' => $token), "id = $id");
 
-            setcookie('token_remem', $token, time() + (24 * 30), '/', '', 0);
+            setcookie('token_remem_user', $token, time() + (24 * 30 *30), '/', '', 0);
         }
         $msg = 'Ban da dang nhap thanh cong';
         header('Location: ../product');
@@ -218,9 +217,9 @@ if ($email != false && $password != false) {
             </tr>
         </table>
 
-        <a href="/cart" class="linktocart button dark">Xem giỏ hàng</a>
+        <a href="../cart/" class="linktocart button dark">Xem giỏ hàng</a>
         &emsp;&emsp;&emsp;&emsp;&nbsp;
-        <a href="/checkout" class="linktocheckout button dark">Thanh toán</a>
+        <a href="../payment/" class="linktocheckout button dark">Thanh toán</a>
 
     </nav>
 
