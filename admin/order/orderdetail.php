@@ -238,7 +238,7 @@ if(count($records)==0){
                                             </tr>
                                             <tr>
                                                 <th>Email </th>
-                                                <td><?= $record['customer_email'] ?></td>
+                                                <td><?= $record['recipent_email'] ?></td>
                                             </tr>
                                         </thead>
                                     </table>

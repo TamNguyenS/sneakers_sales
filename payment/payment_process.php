@@ -22,6 +22,7 @@ $result = insert('orders', array(
     'recipent_name' => $name,
     'recipent_address' => $dres,
     'recipent_phone' => $phone,
+    'recipent_email' => $email,
     'total_cost' => $total,
     'note' => $note,
     'status' => 0,

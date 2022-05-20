@@ -125,3 +125,151 @@ if($type_id == ''){
         <li><a href="#"><i class='bx bxs-chevron-right'></i></a></li>
     </ul>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="../js/headersticky.js"></script>
+<script src="../js/cart.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.btn-cart-add-to').click(function() {
+            let id = $(this).val();
+            console.log(id);
+            $.ajax({
+                type: "POST",
+                url: "../cart/add_to_cart.php",
+                data: "id=" + id,
+                beforeSend: function() {
+
+                },
+                success: function(response) {
+                    console.log(response);
+                    $('.cart').html(response);
+                    $('.navbar').addClass('active');
+                }
+            });
+            $.ajax({
+                type: "POST",
+                url: "../cart/count_product.php",
+                data: "id=" + id,
+                success: function(data) {
+                    console.log(data);
+                    $('.count').html(data);
+                    $('.count2').html(data);
+                }
+            });
+            $.ajax({
+                type: "POST",
+                url: "../cart/cart_total_cost.php",
+                data: "id=" + id,
+                success: function(data) {
+                    console.log(data);
+                    $('.text-right').html(data);
+
+                }
+            });
+        });
+
+    });
+</script>
+<script>
+    var $loading = $('.loading').hide();
+
+    $(document).ready(function() {
+        $('.filter-product-type').click(function() {
+            let type_id = $(this).data('id');
+            console.log(type_id);
+            // $loading.show();
+            $.ajax({
+                type: "POST",
+                url: "../content/product.php",
+                data: "type_id=" + type_id,
+                beforeSend: function() {
+                    $loading.show();
+
+                },
+                success: function(response) {
+                    setTimeout(function() {
+                        $loading.hide();
+
+                        $('#product-zone').html(response);
+
+                    }, 2000);
+                }
+            });
+            $.ajax({
+                type: "POST",
+                url: "../content/title.php",
+                data: "type_id=" + type_id,
+                success: function(response) {
+                    setTimeout(function() {
+                        $('.title-product').html(response);
+
+                    }, 2000);
+
+
+                }
+            });
+
+        })
+        $('.filter-product-brand').click(function() {
+            let brand_id = $(this).data('id');
+            console.log(type_id);
+            // $loading.show();
+            $.ajax({
+                type: "POST",
+                url: "../content/product.php",
+                data: "brand_id=" + brand_id,
+                beforeSend: function() {
+                    $loading.show();
+
+                },
+                success: function(response) {
+                    setTimeout(function() {
+                        $loading.hide();
+                        $('#product-zone').html(response);
+
+                    }, 2000);
+                }
+            });
+
+        })
+
+    });
+</script>
+<script>
+    var img = document.getElementById('slideImg');
+    var images = new Array(
+        "1.jpg",
+        "2.jpg",
+        "3.jpg"
+
+    );
+    var i = 0;
+    var length = images.length;
+
+    function slider() {
+        if (i > length - 1) {
+            i = 0;
+        }
+        img.src = images[i];
+        i++;
+        setTimeout('slider()', 3000);
+    }
+</script>
+<script>
+    $(document).ready(function() {
+        let boll = true;
+        $('.filter-header').click(function() {
+            let data = $(this).data('id');
+            if (boll) {
+                $(`#${data}`).hide();
+                $(`.${data}`).addClass('rotate');
+                boll = false;
+            } else {
+                $(`#${data}`).show();
+                $(`.${data}`).removeClass('rotate');
+                boll = true;
+            }
+        });
+
+    });
+</script>

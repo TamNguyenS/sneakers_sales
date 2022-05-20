@@ -18,7 +18,15 @@ ORDER BY sold DESC  LIMIT 4";
 $bestseler = get_list($query_best_seler);
 
 ?>
-
+<?php
+$this_month = date('m');
+$this_year = date('Y');
+$count_product = get_count("SELECT count(*) FROM product");
+$count_product_sold_month = get_count_v2("SELECT SUM(quantity) AS TOTAL FROM orders_detail LEFT JOIN orders ON orders_detail.orders_id = orders.id WHERE MONTH(time_accept) = $this_month ");
+$count_product_sold_year = get_count_v2("SELECT SUM(quantity) AS TOTAL FROM orders_detail LEFT JOIN orders ON orders_detail.orders_id = orders.id WHERE YEAR(time_accept) = $this_year");
+$count_product_new_month =  get_count_v2("SELECT count(id) AS TOTAL FROM orders_detail LEFT JOIN orders ON orders_detail.orders_id = orders.id WHERE MONTH(time_accept) = $this_month ");
+$count_product1 = get_count_v2("SELECT SUM(quantity)AS TOTAL FROM product");
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -155,7 +163,7 @@ $bestseler = get_list($query_best_seler);
 
           <div class="card-single">
             <div>
-              <h1> 15</h1>
+              <h1><?=$count_product?></h1>
               <span>Tổng số sản phẩm </span>
             </div>
             <div class="card-icon" style="background-color: rgb(252, 242, 210);">
@@ -165,7 +173,7 @@ $bestseler = get_list($query_best_seler);
 
           <div class="card-single">
             <div>
-              <h1> 13</h1>
+              <h1> <?=$count_product_new_month?></h1>
               <span>Sản phẩm mới trong tháng</span>
             </div>
             <div class="card-icon" style="  background-color: rgb(221, 230, 254);">
@@ -175,7 +183,7 @@ $bestseler = get_list($query_best_seler);
           </div>
           <div class="card-single">
             <div>
-              <h1> 13</h1>
+              <h1><?=$count_product1 ?></h1>
               <span>Số lượng sản phẩm hiện có</span>
             </div>
             <div class="card-icon" style="background-color: rgb(249, 219, 237);">
@@ -184,7 +192,7 @@ $bestseler = get_list($query_best_seler);
           </div>
           <div class="card-single">
             <div>
-              <h1> 13</h1>
+              <h1><?=$count_product_sold_year ?></h1>
               <span>Số sản phẩm đã bán đi</span>
             </div>
             <div class="card-icon" style="background-color: #ffe9ed;">
