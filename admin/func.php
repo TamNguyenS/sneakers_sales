@@ -36,7 +36,7 @@ function isPhone($phone){
         return true;
     
 }
-function isName($name){
+function isName1($name){
     if((!preg_match('/^[a-z0-9_-]{3,16}$/',$name))){
         return false;
     }

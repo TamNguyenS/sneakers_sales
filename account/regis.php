@@ -3,6 +3,9 @@ require_once '../admin/process_root/check_session.php';
 require_once '../admin/db.php';
 require_once '../admin/func.php';
 ?>
+<?php
+
+?>
 
 <!DOCTYPE html>
 <html>
@@ -90,6 +93,9 @@ require_once '../admin/func.php';
         .box {
             padding: 30px;
         }
+        .warmings{
+            color: red;
+        }
     </style>
 </head>
 
@@ -155,7 +161,7 @@ require_once '../admin/func.php';
     <div class="bg-main close-cart">
         <div class="container">
             <div class="box">
-                <div class="col-5">
+                <div class="col-5" style="margin-top:-250px">
                     <div class="dsdad" style="position:sticky ">
                         <h1 style="font-size: 40px; "> Tạo tài khoản</h1>
                         <br>
@@ -168,51 +174,62 @@ require_once '../admin/func.php';
                 </div>
 
 
-                <div class="col-5" style="border-left: 1px solid rgb(226, 226, 226); ">
-                    <br> <br><br>
-                    <div class="group">
-                        <input type="text" required>
-                        <label>Họ và tên</label>
+                <div class="col-5" style="border-left: 1px solid rgb(226, 226, 226); " >
+                    <div class="warmings">
+
                     </div>
-                    <br>
-                    <div class="group">
-                        <input type="text" required>
-                        <label>Email</label>
-                    </div>
-                    <br>
-                    <div class="group">
-                        <input type="text" required>
-                        <label>Số điện thoại</label>
-                    </div>
-                    <br>
-                    <div class="group">
-                        <input type="date" required>
-                        <label style="z-index:-1">Ngày sinh</label>
-                    </div>
-                    <br>
-                    <div class="group">
-                        <input type="text" required>
-                        <label>Địa chỉ</label>
-                    </div>
-                    <br>
-                    <div class="group">
-                        <input type="password" required>
-                        <label>Mật Khẩu</label>
-                    </div>
-                    <br>
-                    <div class="clearfix large_form sitebox-recaptcha">
-                        This site is protected by reCAPTCHA and the Google
-                        <a href="https://policies.google.com/privacy" target="_blank" rel="noreferrer">Privacy Policy</a>
-                        and <a href="https://policies.google.com/terms" target="_blank" rel="noreferrer">Terms of Service</a> apply.
-                    </div>
-                    <br>
-                    <p><button style="width :150px" type="button" id="add-to-cart" class="button dark buttonadd btn-cart-add-to"">Đăng kí</button>
+                    <form  action="" method="POST" id="uploadFrom" >
+                        <br> <br><br>
+                        <div class="group">
+                            <input type="text" name="name" required>
+                            <label>Họ và tên</label>
+                            <span class="from-msg"></span>
+                        </div>
+                        <br>
+                        <div class="group">
+                            <input type="email" name="email" required>
+                            <label>Email</label>
+                            <span class="from-msg"></span>
+                        </div>
+                        <br>
+                        <div class="group">
+                            <input type="text" name="phone"  required>
+                            <label>Số điện thoại</label>
+                            <span class="from-msg"></span>
+                        </div>
+                        <br>
+                        <div class="group">
+                            <input type="date" name="date" required>
+                            <label style="z-index:-1">Ngày sinh</label>
+                            <span class="from-msg"></span>
+                        </div>
+                        <br>
+                        <div class="group">
+                            <input type="text" name="address"required>
+                            <label>Địa chỉ</label>
+                            <span class="from-msg"></span>
+                        </div>
+                        <br>
+                        <div class="group">
+                            <input type="password" name="password" required>
+                            <label>Mật Khẩu</label>
+                            <span class="from-msg"></span>
+                        </div>
+                        <br>
+                        <div class="clearfix large_form sitebox-recaptcha">
+                            This site is protected by reCAPTCHA and the Google
+                            <a href="https://policies.google.com/privacy" target="_blank" rel="noreferrer">Privacy Policy</a>
+                            and <a href="https://policies.google.com/terms" target="_blank" rel="noreferrer">Terms of Service</a> apply.
+                        </div>
+                        <br>
+                        <p><button style="width :150px" type="submit" id="add-to-cart" class="button dark buttonadd btn-cart-add-to"">Đăng kí</button>
 
                     </p>
                     <br><br><br>
                     <div class=" clearfix req_pass">
-                            <a class="come-back" href="../product/"><i class="fa fa-long-arrow-left"></i> Quay lại trang chủ</a>
+                                <a class="come-back" href="../product/"><i class="fa fa-long-arrow-left"></i> Quay lại trang chủ</a>
                 </div>
+                </form>
             </div>
 
 
@@ -230,8 +247,55 @@ require_once '../admin/func.php';
 <script src="../js/headersticky.js"></script>
 <script src="../js/cart.js"></script>
 <script src="../admin/js/toast.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#uploadFrom").on('submit', (function(e) {
+            e.preventDefault();
+                $.ajax({
+                    url: "./process_regis.php",
+                    type: "POST",
+                    data: new FormData(this),
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    // success: function(response) {
+                    //     $('#uploadFrom').find('input').val('');
+                    //     $('#uploadFrom').find('textarea').val('');
+                    //     showSuccessToast("Thành công", "Thêm thành công sản phẩm!")
+                    // },
+                }).done(function(data) {
+                    if (data == 1) {
+                        showSuccessToast("Thành công", "Đăng kí thành công!")
+                        setTimeout(function() {
+                            window.location.href = "./login.php";
+                        }, 2000);
+                    } else{
+                        console.log(data);
+                        $('.warmings').empty();
+                       $('.warmings').append(data)
+                    }
+                });
 
-
+        }));
+    });
 </script>
+<script>
+    function showSuccessToast(type, message) {
+        toast({
+            title: type,
+            message: message,
+            type: "success",
+            duration: 5000
+        });
+    }
 
+    function showErrorToast(type, message) {
+        toast({
+            title: type,
+            message: message,
+            type: "error",
+            duration: 5000
+        });
+    }
+</script>
 </html>
