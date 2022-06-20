@@ -146,7 +146,7 @@ $product_info = get_list($query);
                 </div>
             </div>
 
-            <div class="box">
+            <div class="box" id="mobile-site">
                 <div class="row" style="margin-left:50px;">
                     <div class="col-1">
                         <div class="hold-img">

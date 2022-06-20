@@ -14,13 +14,14 @@
     box-shadow: 0 .5rem 1rem rgba(97, 97, 97, 0.1);
     margin-left: -180px;
     transition: all .5s ease-in-out;
+    height: 45px;
 
 }
 
 .logo-bottom {
     position: relative;
     top: 0px;
-    right: 280px;
+    right: 340px;
     font-size: 10px;
     display: none;
 }

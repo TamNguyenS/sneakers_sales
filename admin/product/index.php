@@ -24,6 +24,11 @@ $query = "SELECT product.*, product_img.img AS image FROM product INNER JOIN pro
 ON product.id = product_img.product_id WHERE NAME LIKE'%$search%' GROUP BY name LIMIT  $page_limit OFFSET $page_skip";
 $records = get_list($query);
 
+// $query = "SELECT 
+// product.*, product_img.img 
+// AS image FROM product 
+// INNER JOIN (select * from product_img limit 1) as product_img
+// ON product.id = product_img.product_id WHERE NAME LIKE'%%'";
 // print_r($records);
 // die();
 ?>

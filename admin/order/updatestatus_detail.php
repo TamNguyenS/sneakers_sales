@@ -83,6 +83,7 @@ if (
     if ($result) {
         $msg = 'Cập nhật thành công';
         echo "<script>window.location.assign('./orderdetail.php?id=$id_order)</script>";
+        header('location:./orderdetail.php?id=$id_order');
     }
 }
 ?>
